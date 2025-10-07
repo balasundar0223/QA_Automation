@@ -17,7 +17,7 @@ export default defineConfig({
   // globalSetup: require.resolve('utils/jiraReport.ts'),
 
   fullyParallel: false,
-  retries: 1,
+  retries: 0,
   workers: 2,
   repeatEach: 0,
 

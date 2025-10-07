@@ -35,7 +35,6 @@ test.describe(`Confirm that YouTube content functions correctly and as expected.
         );
       // let courseName="Haptic Matrix Reboot";
         await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
-        
         await catalog.mostRecent();
         await catalog.searchCatalog(courseName);
         await catalog.addtoWishlist(); 
