@@ -452,12 +452,16 @@ export abstract class PlaywrightWrapper {
         await this.wait('minWait');
         const spinner = this.page.locator("[class='p-3'] svg");
         try {
-            await expect.soft(spinner).toHaveCount(0, { timeout: 60000 });
-            console.log("Expected element is disabled");
-        } catch (error) {
-            console.log("Spinner is still present or assertion failed. Continuing execution.");
+             await Promise.race([
+            spinner.first().waitFor({ state: 'detached', timeout: 60000 }),
+            expect(spinner).toBeHidden({ timeout: 60000 })
+             ]);
+             console.log("Spinner disappeared or hidden successfully");
+         } catch (error) {
+        console.log("Spinner still present after timeout or assertion failed. Continuing execution.");
         }
     }
+
 
     async typeText(locator: string, name: string, data: Promise<string | null>) {
         const resolvedData = await data;

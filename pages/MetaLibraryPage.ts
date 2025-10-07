@@ -118,10 +118,11 @@ export class MetaLibraryPage extends AdminHomePage {
     // }
 
     async categorySearchfield(data: string) {
+        await this.wait("minWait");
         await this.retrieveData(this.selectors.newOfLearningCategory(data), filePath.catagory    )
         await this.type(this.selectors.categorySearchField, "Search Field", data);
         await this.keyboardAction(this.selectors.categorySearchField, "Enter", "Search Field", data);
-        await this.spinnerDisappear();
+        // await this.spinnerDisappear();
     }
 
     public async clickDeleteRecentlyCreated(option: "Classroom" | "Virtual Class") {
@@ -158,15 +159,16 @@ export class MetaLibraryPage extends AdminHomePage {
         await this.wait('minWait');
         await this.page.locator(this.selectors.saveBtn).scrollIntoViewIfNeeded();
         await this.click(this.selectors.saveBtn, "Save", "Button");
-        await this.spinnerDisappear();
+        // await this.spinnerDisappear();
     }
 
     async verifyCategory(data: string) {
+        await this.wait("minWait");
         await this.verification(this.selectors.categoryVerification(data), data);
     }
 
     async providerExpandButton() {
-        await this.spinnerDisappear();
+        // await this.spinnerDisappear();
         await this.mouseHover(this.selectors.providerExpandBtn, "Provider");
         await this.click(this.selectors.providerExpandBtn, "Provider", "Expand Button");
     }

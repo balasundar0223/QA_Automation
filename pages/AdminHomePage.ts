@@ -275,14 +275,14 @@ export class AdminHomePage extends AdminLogin {
         await this.validateElementVisibility(this.selectors.metaLearningLink, "Learning");
         await this.mouseHover(this.selectors.metaLearningLink, "Learning");
         await this.click(this.selectors.metaLearningLink, "Learning", "Button");
-        await this.spinnerDisappear();
+        // await this.spinnerDisappear();
     }
 
     public async metaGeneralLink() {
         await this.validateElementVisibility(this.selectors.metaGeneralLink, "Learning");
         await this.mouseHover(this.selectors.metaGeneralLink, "Learning");
         await this.click(this.selectors.metaGeneralLink, "Learning", "Button");
-        await this.spinnerDisappear();
+        // await this.spinnerDisappear();
     }
     async enter(name: string, data: string) {
         await this.wait("mediumWait")
