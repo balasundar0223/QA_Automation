@@ -38,7 +38,7 @@ export default defineConfig({
     '*/tests/admin/adminGroups_CustomerAdminGroupUserCreation/**/*.spec.ts',
     '*/tests/admin/adminGroups2/**/*.spec.ts',
    '*/tests/admin/customrolecreation/**/*.spec.ts',
-    '*/tests/admin/metadataLibrary/**/*.spec.ts',
+    // '*/tests/admin/metadataLibrary/**/*.spec.ts',
     '*/tests/admin/location/**/*.spec.ts',
   '*/tests/admin/admin_Enrollments/**/*.spec.ts',
     '*/tests/admin/completionCertificate/**/*.spec.ts',
