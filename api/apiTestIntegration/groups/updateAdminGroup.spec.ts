@@ -17,22 +17,19 @@ let roleName1:any;
 
 
 
-let included_users=credentials.NEWCUSTOMERADMIN.username;
+let included_users= FakerData.getUserId()
 //let valid_till: any= getFutureDate()
 let valid_till: any= "10/05/2035"   //MM/DD/YYYY format
 
 
-//title = "AG"+'_'+ FakerData.getCategory();
-//code = "AG"+generateCode();
+title = "AG"+'_'+ FakerData.getCategory();
+code = "AG"+generateCode();
 title1= "AG"+' '+FakerData.getCategory();
 //roleName = FakerData.getFirstName() + "role"
 roleName1 = FakerData.getFirstName() + "role"
 
  //admin_roles=roleName,roleName1;
- //Hot code values:-
-title="DebugGroup66";
-code="AG_006666";
-roleName="Registrar";
+roleName = FakerData.getFirstName() + " role";
 
 
 test.beforeAll('Generate Access Tokken', async () => {
@@ -43,6 +40,27 @@ test.beforeAll('Generate Access Tokken', async () => {
 
 test.describe(`Verify the privileges and search functionality`, async () => {
     test.describe.configure({ mode: 'serial' })
+    test(`Creating an user for AdminGroup API`, async ({ adminHome, editCourse, createUser, learnerHome, adminRoleHome, adminGroup, createCourse, contentHome, learnerGroup }) => {
+    test.info().annotations.push(
+        { type: `Author`, description: `Tamilvanan` },
+        { type: `TestCase`, description: `Creating an user for AdminGroup API` },
+        { type: `Test Description`, description: `Creating user for AdminGroup API` }
+
+    );
+         await adminHome.loadAndLogin("SUPERADMIN")
+            await adminHome.menuButton()
+            await adminHome.people();
+            await adminHome.user();
+            await createUser.clickCreateUser();
+            await createUser.verifyCreateUserLabel();
+            await createUser.enter("first_name", FakerData.getFirstName());
+            await createUser.enter("last_name", FakerData.getLastName());
+            await createUser.enter("username", included_users);
+            await createUser.enter("user-password", "Welcome1@");
+            await createUser.clickSave();
+          //  await createUser.verifyUserCreationSuccessMessage();
+        //    await contentHome.gotoListing();
+    });
     test(`Verify the Custom role creation with all privileges `, async ({ adminHome, adminRoleHome }) => {
         test.info().annotations.push(
             { type: `Author`, description: `Arivazhagan P` },
@@ -86,7 +104,7 @@ test('Verify that a group can be created using the `createGroupAPI`', async () =
 
 test('Verify that a group can be created with users and validity using the `updateGroupAPI`', async () => {
 
-    await updateAdminGroup_fn(updateAdminGroup(title1,code,"active",included_users,valid_till), { Authorization: access_token });   
+    await updateAdminGroup_fn(updateAdminGroup(title1,code,"active",roleName1,included_users,valid_till), { Authorization: access_token });   
     console.log("Group created successfully with included users and valid till date");
         console.log("Debug2:"+' '+code); 
     console.log(included_users);

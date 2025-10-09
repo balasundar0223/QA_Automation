@@ -33,3 +33,11 @@ export async function addUsersInAdminGroup_fn(grpData1:any,authorization: any){
         await assertResponse(response.data.status, "success");
         await assertResponse(response.data.message, "user has been updated successfully");
 }
+
+export async function addOrganizationInAdminGroup_fn(grpData1:any,authorization: any){
+    let response=await postRequest(grpData1, endPointURL, authorization);
+    console.log(response);
+        await assertStatus(response.status, 200);
+        await assertResponse(response.data.status, "success");
+        await assertResponse(response.data.message, "organization has been updated successfully");
+}

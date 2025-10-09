@@ -556,3 +556,12 @@ export let addUsersInAdminGroup =(uname:any,admingrpcode:any,action:"add"|"remov
    api_name: apiName.manageUserInAdminGroup,
    response_fields: ["result"]
 })
+
+export let addOrganizationInAdminGroup =(orgCode:any,admingrpcode:any,action:"add"|"remove") => ({
+   user_id:userId,
+   org_code:orgCode,
+   admin_group_code:admingrpcode,
+   action:action,
+   api_name: apiName.manageOrganizationInAdminGroup,
+   response_fields: ["result"]
+})

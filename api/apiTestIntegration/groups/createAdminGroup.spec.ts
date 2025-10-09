@@ -13,7 +13,7 @@ let title1: any;
 let status = "active";
 let admin_roles:any=[];
 
-let included_users=credentials.NEWCUSTOMERADMIN.username;
+let included_users= FakerData.getUserId()
 //let valid_till: any= getFutureDate()
 let valid_till: any= "10/05/2035"   //MM/DD/YYYY format
 
@@ -36,6 +36,28 @@ test.beforeAll('Generate Access Tokken', async () => {
 
 test.describe(`Verify the privileges and search functionality`, async () => {
     test.describe.configure({ mode: 'serial' })
+    test(`Creating an user for AdminGroup API`, async ({ adminHome, editCourse, createUser, learnerHome, adminRoleHome, adminGroup, createCourse, contentHome, learnerGroup }) => {
+    test.info().annotations.push(
+        { type: `Author`, description: `Tamilvanan` },
+        { type: `TestCase`, description: `Creating an user for AdminGroup API` },
+        { type: `Test Description`, description: `Creating user for AdminGroup API` }
+
+    );
+         await adminHome.loadAndLogin("SUPERADMIN")
+            await adminHome.menuButton()
+            await adminHome.people();
+            await adminHome.user();
+            await createUser.clickCreateUser();
+            await createUser.verifyCreateUserLabel();
+            await createUser.enter("first_name", FakerData.getFirstName());
+            await createUser.enter("last_name", FakerData.getLastName());
+            await createUser.enter("username", included_users);
+            await createUser.enter("user-password", "Welcome1@");
+            await createUser.clickSave();
+          //  await createUser.verifyUserCreationSuccessMessage();
+           // await contentHome.gotoListing();
+    });
+
     test(`Verify the Custom role creation with all privileges `, async ({ adminHome, adminGroup, adminRoleHome }) => {
         test.info().annotations.push(
             { type: `Author`, description: `Arivazhagan P` },
