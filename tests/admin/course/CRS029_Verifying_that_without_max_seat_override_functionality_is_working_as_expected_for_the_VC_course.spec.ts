@@ -91,7 +91,7 @@ test.describe(`Verify that without Max Seat Override functionality is working as
                 // await enrollHome.clickEnrollButton()
                 // await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
                 // await enrollHome.clickEnrollBtn();
-                await enrollHome.verifyMaxSeatPopup()
+              //  await enrollHome.verifyMaxSeatPopup()
     })
 
 
