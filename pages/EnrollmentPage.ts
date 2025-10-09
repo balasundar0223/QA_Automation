@@ -108,6 +108,7 @@ export class EnrollmentPage extends AdminHomePage {
 
     }
     async clickSelectedLearner() {
+        await this.wait("minWait")
         await this.click(this.selectors.selectedLearners, "Select Learners", "Button")
 
     }
@@ -303,9 +304,27 @@ export class EnrollmentPage extends AdminHomePage {
         await this.click(this.selectors.clickEnrollButton, "Enroll Button", "Button")
     }
 
-
-
-
-
-
-}    
+   async selectclassBtn(){
+        await this.validateElementVisibility(this.selectors.selectClassBtn, "Select Class Button");
+        await this.click(this.selectors.selectClassBtn, "Select Class Button", "Button")
+    }
+    async learnerforSC(data:string){
+        await this.wait("minWait");
+        await this.validateElementVisibility(this.selectors.learnerSelect(data), "Select Learner");
+        await this.click(this.selectors.learnerSelect(data), "Select Learner", "Button")
+    }
+    async selectInstance(data:string){
+        await this.validateElementVisibility(this.selectors.selectInstance(data), "Select Instance");
+        await this.click(this.selectors.selectInstance(data), "Select Instance", "Button");
+    }
+    async searchCourseForSC(instance:string){
+        await this.click(this.selectors.searchCourseForSC, "Search Course", "Button");
+        await this.typeAndEnter(this.selectors.searchCourseForSC, "Search Course", instance);
+        await this.wait("minWait");
+        await this.click(this.selectors.clickRadioBtn(instance), "Select Instance", "Button");
+        await this.wait("minWait");
+        await this.click(this.selectors.saveSelectionBtn, "Search Button", "Button");
+        await this.wait("minWait");
+        await this.click(this.selectors.enrollBtn, "Select Course", "Button");
+    }
+}

@@ -60,7 +60,7 @@ test.describe(`Ensure that a manager can enroll a team member based on specific 
             { type: `TestCase`, description: `Verifying team member side after enrolled by specific criteria` },
             { type: `Test Description`, description: `Verifying team member side after enrolled by specific criteria` }
         );
-        await learnerHome.learnerLogin("TEAMUSER2", "DefaultPortal");
+        await learnerHome.learnerLogin("TEAMUSER1", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
        // await catalog.verifyEnrolledCourseByCODE(createdCode);

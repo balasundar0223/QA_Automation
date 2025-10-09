@@ -681,15 +681,18 @@ export class CoursePage extends AdminHomePage {
   }
 
   //Bulk class creation
-  async bulkClassCreation(classNos: any, mode: "manual" | "copy/paste") {
+  async bulkClassCreation(classNos: any, mode: "manual" | "copy/paste",title:string) {
     await this.click(this.selectors.NoOfClass, "TextBox", "click");
     await this.keyboardType(this.selectors.NoOfClass, classNos);
     await this.clickCreateInstance();
     switch (mode) {
       case "manual":
         // const totalClasses = parseInt(classNos);
+        const allSessionNames: string[] = [];
 
         for (let i = 0; i < classNos; i++) {
+          let str=title+"_"+FakerData.getSession();
+          allSessionNames.push(str);
           await this.enterSessionName_bulk(FakerData.getSession(), i);
           await this.captureDropdownValues(
             i,
@@ -700,11 +703,19 @@ export class CoursePage extends AdminHomePage {
           await this.startandEndTime_bulkClass(i);
           await this.setMaxSeat_bulk(i);
           await this.waitList_bulk(i);
+          const filePath = path.join(__dirname, '../data/instanceNames.json');
+          fs.writeFileSync(filePath, JSON.stringify(allSessionNames, null, 2), 'utf-8');
+          for (const sessionName of allSessionNames) {
+          console.log('Stored session name:', sessionName);
+          }
         }
+        const filePath = path.join(__dirname, '../data/instanceNames.json');
+                fs.writeFileSync(filePath, JSON.stringify(allSessionNames, null, 2), 'utf-8');
+
         await this.checkConflict();
         //console.log("next");
         break;
-      case "copy/paste":
+       case "copy/paste":
         await this.enterSessionName_copy(FakerData.getSession());
         await this.selectInstructor_Copy(credentials.INSTRUCTORNAME.username);
         await this.selectLocation_Copy();

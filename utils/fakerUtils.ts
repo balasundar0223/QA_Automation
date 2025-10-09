@@ -346,3 +346,20 @@ export function  getallRandomInstructor(): DataItem1| any {
         return null;
     }
 }
+type insData = string;
+export function getRandomIns(): insData | any {
+    const filePath = path.join(__dirname, '../data/instanceNames.json');
+    try {
+        const jsonData = fs.readFileSync(filePath, 'utf8');
+        const dataArray: insData[] = JSON.parse(jsonData);
+        if (!Array.isArray(dataArray) || dataArray.length === 0) {
+            throw new Error('Data array is empty or not an array');
+        }
+        const randomIndex = Math.floor(Math.random() * dataArray.length);
+        const randomValue = dataArray[randomIndex];
+        return randomValue;
+    } catch (error) {
+        console.error('Error in getRandomINS:', error.message);
+        return null;
+    }
+}
