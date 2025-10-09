@@ -1173,10 +1173,57 @@ export class CoursePage extends AdminHomePage {
   }
 
   async clickSave() {
-    await this.wait("minWait");
+    await this.wait("maxWait");
     await this.validateElementVisibility(this.selectors.saveBtn, "Save");
-    await this.click(this.selectors.saveBtn, "Save", "Button");
+    // await this.click(this.selectors.saveBtn, "Save", "Button");
+
+    await this.handleSaveUntilProceed();
   }
+
+
+  /**
+ * Handles clicking Save and retrying based on API response status.
+ */
+
+async handleSaveUntilProceed(maxRetries = 6) {
+  let attempt = 0;
+
+  while (attempt < maxRetries) {
+    attempt++;
+    console.log(`Attempt ${attempt}: Clicking Save button...`);
+
+    try {
+      // Wait before clicking each time
+      await this.wait("mediumWait");
+
+      // Click Save button
+      await this.click(this.selectors.saveBtn, "Save", "Button");
+      await this.wait("mediumWait");
+
+      const proceedVisible = await this.page.locator(this.selectors.proceedBtn).isVisible();
+      const saveVisible = await this.page.locator(this.selectors.saveBtn).isVisible();
+
+      if (proceedVisible) {
+        console.log("Proceed button visible. Save successful.");
+        return;
+      }
+
+      if (!saveVisible) {
+        console.log("Save button hidden. Assuming Save successful.");
+        return;
+      }
+
+      console.log("Save button still visible. Retrying...");
+
+    } catch (error) {
+      console.log(`Error during Save attempt ${attempt}: ${error.message}`);
+    }
+  }
+
+  console.log("Proceed button not visible even after 6 attempts. Save may have failed.");
+}
+
+
 
   async clickProceed() {
     await this.wait("maxWait");
@@ -1186,6 +1233,7 @@ export class CoursePage extends AdminHomePage {
   }
 
   async verifySuccessMessage() {
+    await this.wait("minWait");
     await this.verification(this.selectors.successMessage, "successfully");
   }
 

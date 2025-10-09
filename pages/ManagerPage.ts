@@ -42,11 +42,12 @@ export class ManagerPage extends PlaywrightWrapper {
 
   async enterSearchCourse(data: string) {
     await this.page.mouse.wheel(0, 800);
+    await this.page.keyboard.press("PageDown");
     await this.validateElementVisibility(
       this.selectors.searchCourse,
       "Search Text Field"
     );
-    await this.keyboardType(this.selectors.searchCourse, data);
+    await this.typeAndEnter(this.selectors.searchCourse, "Search Course",data);
   }
 
   async clickrecommendIcon(data: string) {
@@ -238,6 +239,7 @@ export class ManagerPage extends PlaywrightWrapper {
   }
   public async searchTeamUser(data: string) {
     await this.wait("minWait");
+    await this.page.locator(this.selectors.searchTeamUser).scrollIntoViewIfNeeded();
     await this.typeAndEnter(
       this.selectors.searchTeamUser,
       "Search Team User",

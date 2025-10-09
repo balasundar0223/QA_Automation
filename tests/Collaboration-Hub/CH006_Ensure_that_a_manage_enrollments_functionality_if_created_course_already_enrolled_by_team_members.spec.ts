@@ -51,6 +51,7 @@ test.describe(`Ensure that a manage enrollments functionality works correctly if
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+        await learnerHome.selectCollaborationHub();
         await managerHome.enterSearchCourse(createdCode);
         await managerHome.clickGuideTeamIcon(courseName);
         await enrollHome.selectBycourse(courseName)

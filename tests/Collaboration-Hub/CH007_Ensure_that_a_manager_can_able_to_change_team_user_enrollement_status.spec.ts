@@ -52,7 +52,8 @@ test.describe(`Ensure that a manager can change the enrollment status of a team 
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
-         await managerHome.searchTeamUser(user)
+        await learnerHome.selectCollaborationHub();
+        await managerHome.searchTeamUser(user)
         await managerHome.clickTeamEnrollementStatus();
         await enrollHome.selectTeamUser()
         await enrollHome.changeEnrollmentStatus(createdCode,"Completed")

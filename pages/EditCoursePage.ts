@@ -162,6 +162,7 @@ export class EditCoursePage extends AdminHomePage {
     }
 
     async verifyInheritanceMessage() {
+        await this.wait('minWait')
         await this.verification(this.selectors.inheritMessage, "inherited")
         await this.mouseHover(this.selectors.okBtnTag, "Ok ")
         await this.click(this.selectors.okBtnTag, "Ok ", "Button")

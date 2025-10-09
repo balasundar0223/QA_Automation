@@ -64,6 +64,7 @@ export class SurveyAssessmentPage extends AdminHomePage {
     super(page, context);
   }
   async clickCreateSurvey() {
+    await this.wait('minWait');
     await this.validateElementVisibility(this.selectors.createSurveyBtn, "Survey");
     await this.click(this.selectors.createSurveyBtn, "Survey", "Button");
   }
@@ -73,6 +74,7 @@ export class SurveyAssessmentPage extends AdminHomePage {
     await this.click(this.selectors.createAssessment, "Survey", "Button");
   }
   async clickCreateQuestions() {
+    await this.wait('maxWait');
     await this.validateElementVisibility(this.selectors.createQuestionBtn, "Questions");
     await this.click(this.selectors.createQuestionBtn, "Questions", "Button");
   }
@@ -361,10 +363,16 @@ export class SurveyAssessmentPage extends AdminHomePage {
 
   async clickPublish() {
     //await this.validateElementVisibility(this.selectors.publishBtn, "Publish")
-    //await this.wait("maxWait")
+    // await this.wait("maxWait")
     await this.page.locator(this.selectors.publishBtn).scrollIntoViewIfNeeded({ timeout: 5000 });
-    await this.mouseHover(this.selectors.publishBtn, "Publish");
-    await this.click(this.selectors.publishBtn, "Publish", "Button");
+    //await this.mouseHover(this.selectors.publishBtn, "Publish");
+    await this.page.getByRole('button', { name: 'Publish' }).waitFor({ state: 'visible', timeout: 5000 });
+    await this.page.getByRole('button', { name: 'Publish' }).click();
+    
+
+
+    
+    //await this.click(this.selectors.publishBtn, "Publish", "Button");
   }
 
   async clickSaveDraft() {

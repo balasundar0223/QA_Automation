@@ -78,7 +78,8 @@ test.describe(`Verify manager approved ILT course is available on the learner si
         await catalog.searchCatalog(courseName);
         await catalog.clickMoreonCourse(courseName);
         await catalog.clickSelectcourse(courseName);
-        await catalog.clickRequestapproval();
+        // await catalog.clickRequestapproval();
+        await catalog.clickRequestClass();
         await catalog.requstcostCenterdetails();
     })
 

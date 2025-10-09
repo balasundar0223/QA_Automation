@@ -244,7 +244,7 @@ switch (environmentSetup) {
         password: "Welcome1@",
       },
       TEAMUSER1: {
-        username: "autodirect",
+        username: "directuser12",
         password: "Welcome1@",
       },
       TEAMUSER2: {

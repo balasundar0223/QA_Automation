@@ -43,13 +43,14 @@ test.describe(`Ensure that a manager can enroll a team member based on specific 
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+        await learnerHome.selectCollaborationHub();
         await managerHome.enterSearchCourse(createdCode);
         await managerHome.clickGuideTeamIcon(courseName);
         await enrollHome.selectEnroll();
         await enrollHome.clickSelectedLearner();
         await enrollHome.enrollByCriteria("By Reportees","Direct","Virtual")
-         await enrollHome.clickEnrollBtn();
-         await enrollHome.verifytoastMessage()
+        await enrollHome.clickEnrollBtn();
+        await enrollHome.verifytoastMessage()
     })
 
 
@@ -63,14 +64,13 @@ test.describe(`Ensure that a manager can enroll a team member based on specific 
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
        // await catalog.verifyEnrolledCourseByCODE(createdCode);
-               await catalog.clickCourseInMyLearning(courseName);
+        await catalog.clickCourseInMyLearning(courseName);
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
         await catalog.clickMyLearning();
         await catalog.clickCompletedButton();
         await catalog.searchMyLearning(courseName);
         await catalog.verifyCompletedCourse(courseName);
-
     })
 
 })

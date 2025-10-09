@@ -43,8 +43,9 @@ test.describe(`Ensure_that_a_course_enrolled_by_the_manager_is_available_in_the_
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+        await learnerHome.selectCollaborationHub();
         await managerHome.enterSearchCourse(createdCode);
-        await managerHome.clickGuideTeamIcon(courseName);
+         await managerHome.clickGuideTeamIcon(courseName);
         await enrollHome.selectEnroll();
         await enrollHome.clickSelectedLearner();
          await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)

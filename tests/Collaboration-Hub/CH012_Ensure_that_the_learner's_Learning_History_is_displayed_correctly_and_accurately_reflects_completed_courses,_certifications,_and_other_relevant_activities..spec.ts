@@ -16,7 +16,7 @@ for (const data of courseType) {
       }
     );
     await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
-    //   await learnerHome.selectCollaborationHub();
+      await learnerHome.selectCollaborationHub();
     await managerHome.clickViewLearning(credentials.TEAMUSER2.username);
     await managerHome.verifyallCourses(data);
   });

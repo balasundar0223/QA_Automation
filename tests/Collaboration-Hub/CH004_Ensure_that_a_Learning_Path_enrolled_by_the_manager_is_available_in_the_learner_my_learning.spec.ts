@@ -67,6 +67,7 @@ test.describe(`Confirm that Manager enrollment functions correctly and as expect
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a Learning path to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+        await learnerHome.selectCollaborationHub();
         await managerHome.enterSearchCourse(createdCode);
         await managerHome.clickGuideTeamIcon(title);
         await enrollHome.selectEnroll();

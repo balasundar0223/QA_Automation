@@ -136,6 +136,7 @@ export class AdminHomePage extends AdminLogin {
 
     public async menuButton() {
         await this.wait("minWait");
+        await this.page.keyboard.press('PageUp');
         await this.page.waitForLoadState('load');
         await this.spinnerDisappear();
         await this.mouseHover(this.selectors.menu, "Menu");

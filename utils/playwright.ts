@@ -456,7 +456,6 @@ export abstract class PlaywrightWrapper {
             spinner.first().waitFor({ state: 'detached', timeout: 60000 }),
             expect(spinner).toBeHidden({ timeout: 60000 })
              ]);
-             console.log("Spinner disappeared or hidden successfully");
          } catch (error) {
         console.log("Spinner still present after timeout or assertion failed. Continuing execution.");
         }

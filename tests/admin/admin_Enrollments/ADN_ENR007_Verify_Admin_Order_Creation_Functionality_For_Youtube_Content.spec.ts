@@ -90,7 +90,7 @@ test.describe(`Verify Admin Order Creation Functionality For Learning Path`, asy
         await dashboard.clickLearningPath_And_Certification();
         await dashboard.searchCertification(title);
         await dashboard.verifyTheEnrolledCertification(title);
-        await dashboard.clickMoreonTP(title);
+        await dashboard.clickTitle(title);
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
     })

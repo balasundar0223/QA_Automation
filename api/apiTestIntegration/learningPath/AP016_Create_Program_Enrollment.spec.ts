@@ -84,7 +84,7 @@ test(`Verify_Learning_Path__single_instance_with_attached_created_course`, async
 
     
         test(`Verify to Complete Course in Learner side`, async ({ learnerHome,dashboard, catalog }) => {
-            await learnerHome.learnerLogin("LEARNERUSERNAME", "Portal1");
+            await learnerHome.learnerLogin("LEARNERUSERNAME", "defaultPortal");
             await learnerHome.clickDashboardLink();
             await dashboard.clickLearningPath_And_Certification();
             await dashboard.searchCertification(program_code);

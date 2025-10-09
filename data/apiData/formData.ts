@@ -391,7 +391,7 @@ export let userUpdationDataWithOptional = (username: string, role?: "manager" | 
 export const createCourseEnrollmentForProgram = (code: any, courseCode: string, enrollUser: string) => ({
     user_id: userId,
     Program_code: code,
-    Instance_code: courseCode,
+    instance_code: courseCode,
     username: enrollUser,
     api_name: apiName.createCourseEnrollmentForProgram,
     response_fields: ["result"]

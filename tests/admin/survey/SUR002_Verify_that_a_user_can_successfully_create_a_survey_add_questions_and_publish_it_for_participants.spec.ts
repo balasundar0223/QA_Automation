@@ -25,6 +25,4 @@ test(`Verify_that_a_user_can_successfully_create_a_survey_add_questions_and_publ
     await SurveyAssessment.clickImportQuestion();
     await SurveyAssessment.clickPublish();
     await SurveyAssessment.verifySuccessMessage();
-
-
 });

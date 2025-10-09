@@ -65,8 +65,7 @@ export class EnrollmentPage extends AdminHomePage {
         paymentMethodDropdown: `//label[text()='Payment Method']//following::div[@id='wrapper-state']`,
         paymentMethod: (option: string) => `//span[text()='${option}']`,
         orderSuccessMsg: `//section[contains(@class,'lms-success')]//h3`,
-
-
+        loadMoreBtn: `//button[text()='Load More']`,
 
 
     };
@@ -187,10 +186,33 @@ export class EnrollmentPage extends AdminHomePage {
     }
     //Enrollment by manager
 
+
     async changeEnrollmentStatus(code: string, data: string) {
-        await this.validateElementVisibility(this.selectors.enrollementSts(code), "View/Update Status");
-        await this.click(this.selectors.enrollementSts(code), "View/Update Statusr", "Dropdown")
-        await this.page.locator(this.selectors.enrollORCancel(data)).last().click({ force: true });
+        await this.wait("mediumWait")
+        // await this.page.locator(this.selectors.enrollementSts(code)).scrollIntoViewIfNeeded();
+        let attempts = 0;
+        const maxAttempts = 10;
+        while (attempts < maxAttempts) {
+            const isPresent = await this.page.locator(this.selectors.enrollementSts(code)).count() > 0;
+            if (isPresent) {
+                await this.validateElementVisibility(this.selectors.enrollementSts(code), "View/Update Status");
+                await this.click(this.selectors.enrollementSts(code), "View/Update Status", "Dropdown");
+                await this.page.locator(this.selectors.enrollORCancel(data)).last().click({ force: true });
+                return;
+            }
+            const loadMoreBtn = this.page.locator(this.selectors.loadMoreBtn);
+
+            await loadMoreBtn.scrollIntoViewIfNeeded();
+            if (await loadMoreBtn.isVisible()) {
+                await loadMoreBtn.click();
+                await this.wait("minWait");
+            } else {
+                break;
+            }
+            attempts++;
+        }
+        // After all attempts, if not found, throw error
+        throw new Error(`Enrollment status code '${code}' not found after loading all pages.`);
     }
     //Enrollment by manager
 

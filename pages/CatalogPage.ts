@@ -23,6 +23,7 @@ export class CatalogPage extends LearnerHomePage {
       `(//span[text()='${course}']//following::i[contains(@class,'fa-circle icon')])[${index}]`,
     enrollButton: `//span[text()='Enroll']`,
     requestApproval: `//span[text()='Request approval']`,
+    requestClass: `//button[text()='Request Class ']`,
     approvalcostcenter: `//input[@id='cc']`,
     submitRequest: `//button[text()='Submit request']`,
     closeBtn: `(//button[text()='Close'])[1]`,
@@ -675,6 +676,21 @@ export class CatalogPage extends LearnerHomePage {
       "Button"
     );
   }
+
+  async clickRequestClass() {
+    await this.validateElementVisibility(
+      this.selectors.requestClass,
+      "Request Class"
+    );
+    await this.click(
+      this.selectors.requestClass,
+      "Request Class",
+      "Button"
+    );
+  }
+
+
+
   async requstcostCenterdetails() {
     await this.validateElementVisibility(
       this.selectors.approvalcostcenter,

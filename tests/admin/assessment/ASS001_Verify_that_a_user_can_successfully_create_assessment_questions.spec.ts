@@ -17,6 +17,6 @@ test(`Verify_that_a_user_can_successfully_create_assessment_questions`, async ({
     await SurveyAssessment.displayOption();
     await SurveyAssessment.selectLanguage();
     //selectingType --> "Radio button","Dropdown","Checkbox","Image - Radio Button","Image - Checkbox"
-    await SurveyAssessment.selectingType();
+    await SurveyAssessment.selectingType("Radio button");
     await SurveyAssessment.clickSave();
 })
