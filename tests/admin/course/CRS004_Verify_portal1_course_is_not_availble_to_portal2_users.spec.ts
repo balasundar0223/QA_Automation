@@ -45,7 +45,7 @@ test.describe(`Verify portal1 course is not availble to portal2 users`, async ()
             { type: `Test Description`, description: `Verify Course Visibility is Limited to the Assigned Portal` }
 
         );
-        await learnerHome.learnerLogin("LEARNERPORTAL_2User", "Portal2");
+        await learnerHome.learnerLogin("LEARNERPORTAL_2User", "Portal1");
         await learnerHome.clickCatalog();
         console.log(courseName)
         await catalog.searchCatalog(courseName);

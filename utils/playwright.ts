@@ -384,7 +384,7 @@ export abstract class PlaywrightWrapper {
     }
 
 
-    async validateElementVisibility(locator: any, elementName: string) {
+    async validateElementVisibility(locator: any, elementName: string, p0?: { timeout: number; }) {
         try {
             const element = this.page.locator(locator);
             await this.page.waitForSelector(locator, { state: 'attached', timeout: 40000, strict: true });

@@ -1852,7 +1852,7 @@ export class CoursePage extends AdminHomePage {
 
   async save_editedcoursedetails() {
     await this.click(this.selectors.detailsbtn, "details", "button");
-    await this.clickCatalog();
+    //await this.clickCatalog();
     await this.validateElementVisibility(
       this.selectors.courseUpdateBtn,
       "button"

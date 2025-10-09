@@ -46,7 +46,7 @@ switch (environmentSetup) {
         URLConstants = {
             adminURL: "https://qaautomation.expertusoneqa.cloud/backdoor",
             leanerURL: "https://qaautomation.expertusoneqa.cloud/learner/qaautomation/",
-            learnerportal: "https://qaautomation.expertusoneqa.cloud/learner/autoportal/",
+            learnerportal: "https://automation.expertusoneqa.in/learner/learnerportal/",
             learnerportal2: "https://qaautomation.expertusoneqa.cloud/learner/autoportal1/",
             portal1: "qaautomation",
             portal2: "autoportal",

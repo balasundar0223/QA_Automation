@@ -53,6 +53,7 @@ export class EnrollmentPage extends AdminHomePage {
         clickYesBtn: `//button[text()='Yes']`,
         okBtn: "//button[text()='OK']",
         clickEnrollButton: `//a[contains(@class,'btn') and text()='Enroll']`,
+        goToHome: `//a[text()='Go to Home']`,
         
         //selecting the user for order creation
         selectUserForOrderCreation: (data: string) => `//td[contains(text(),'${data}')]//following::i[contains(@class,'fa-circle icon')][1]`,
@@ -120,6 +121,10 @@ export class EnrollmentPage extends AdminHomePage {
     }
     async clickEnrollBtn() {
         await this.click(this.selectors.enrollBtn, "Enroll", "Button")
+    }
+    async clickGotoHome(){
+        await this.wait("minWait")
+        await this.click(this.selectors.goToHome, "Go to Home", "Button")
     }
     async verifytoastMessage() {
         await this.verification(this.selectors.toastMeassage, "Enrollment")
@@ -268,7 +273,7 @@ export class EnrollmentPage extends AdminHomePage {
     }
     async verifyMaxSeatPopup() {
         await this.wait('mediumWait');
-        await this.verification(this.selectors.seatMaxPopupMsg, "was not successful")
+        await this.verification(this.selectors.seatMaxPopupMsg, "only for 0 users")
         await this.click(this.selectors.okBtn, "Ok", "Button")
     }
     async clickEnrollButton() {

@@ -50,6 +50,8 @@ emailUsed:string="";
         contactSupport:`//span[text()='Contact Support']`,
         mailId:`//textarea[@id='specific_mail']`,
 
+        adminConfigLink:`//a[text()='Admin Configuration']`,
+
 
         
     };
@@ -129,8 +131,16 @@ emailUsed:string="";
   //Max Seat Override
     async clickBusinessRulesEditIcon() {
         await this.wait("mediumWait")
-        await this.validateElementVisibility(this.selectors.businessRulesEditIcon, "Business Rules Edit")
-        await this.click(this.selectors.businessRulesEditIcon, "Business Rules Edit", "Button")
+    try {
+        await this.validateElementVisibility(this.selectors.businessRulesEditIcon, "Business Rules Edit", { timeout: 5000 });
+        await this.click(this.selectors.businessRulesEditIcon, "Business Rules Edit", "Button");
+    } catch (error) {
+           await this.page.locator("//div[text()='Admin site configuration']").click();
+           await this.click(this.selectors.businessRulesEditIcon, "Business Rules Edit", "Button");
+            
+       }
+      // await this.validateElementVisibility(this.selectors.businessRulesEditIcon, "Business Rules Edit");
+            
     }
     async maxSeatOverRideInBusinessRules(data?: string) {
         await this.wait("mediumWait");

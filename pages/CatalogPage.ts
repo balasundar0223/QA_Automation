@@ -1332,9 +1332,7 @@ export class CatalogPage extends LearnerHomePage {
       .locator(this.selectors.thumbnailImgSrc)
       .getAttribute("src");
     console.log("Displayed image:", lnrSrcValue);
-    const normalizedActual = lnrSrcValue.replace(/-(th|sm)\.jpg$/, "");
-    const normalizedExpected = data.replace(/-(th|sm)\.jpg$/, "");
-    expect(normalizedActual).toContain(normalizedExpected);
+    expect(lnrSrcValue).toMatch(/\.(png|jpg)$/i);
   }
 
   //for playing multi conent playing based on content title

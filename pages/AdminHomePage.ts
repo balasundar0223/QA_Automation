@@ -44,7 +44,7 @@ export class AdminHomePage extends AdminLogin {
         assessmentQuestionLink: `//span[text()='Assessment']//parent::div/following-sibling::ul//a[text()='Questions']`,
         assessmentLink: "//a[text()='Assessment']",
         enrollMenu: `//span[text()='Enrollments']`,
-        enrollLink: `//a[text()='Enroll']`,
+        enrollLink: `(//a[text()='Enroll'])[1]`,
         quickAccessIcon: `#dd-icon-wrapper i`,
         quickAccessDD: `button div:text-is('Select Quick Access Buttons To Add Below')`,
         quickAccessValue: `//div[@class='dropdown-menu show'] //a`,
@@ -355,7 +355,7 @@ export class AdminHomePage extends AdminLogin {
     }
 
     public async clickEnroll() {
-
+    await this.wait("minWait");
         await this.click(this.selectors.enrollLink, "Enrollment", "Link")
                 await this.wait("minWait");
     }

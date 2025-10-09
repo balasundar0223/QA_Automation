@@ -49,9 +49,17 @@ test.describe(`Verify that admin able to increase the seats for E-learning and u
                 await adminHome.clickEnroll();
                 await enrollHome.selectBycourse(courseName)
                 await enrollHome.clickSelectedLearner();
-                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
-                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
-                await enrollHome.clickEnrollBtn();
+                       await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                       await enrollHome.clickEnrollBtn(); 
+                       await enrollHome.clickGotoHome()
+       
+                       await adminHome.menuButton()
+                       await adminHome.clickEnrollmentMenu();
+                       await adminHome.clickEnroll();
+                      // await enrollHome.selectBycourse(courseName)
+                       //await enrollHome.clickSelectedLearner();
+                       await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                       await enrollHome.clickEnrollBtn();
                 await enrollHome.verifyMaxSeatOverRidePopup();
                 await enrollHome.verifytoastMessage()
     })
