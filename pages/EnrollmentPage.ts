@@ -113,6 +113,7 @@ export class EnrollmentPage extends AdminHomePage {
 
     }
     async enterSearchUser(data: string) {
+        await this.wait("minWait")
         await this.type(this.selectors.searchcourseOrUser, "Course Name", data)
         const index = await this.page.locator("//div[contains(@id,'lms-scroll-results')]//li").count();
         const randomIndex = Math.floor(Math.random() * index) + 1;

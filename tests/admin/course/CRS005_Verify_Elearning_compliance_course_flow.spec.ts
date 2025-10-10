@@ -51,6 +51,7 @@ test.describe(`Verify Elearning compliance course flow`, async () => {
         await createCourse.addSingleLearnerGroup(user);
         await createCourse.saveAccessButton();
         await editCourse.clickClose();
+        await createCourse.typeDescription("This is a new course by name :" + courseName);
         //await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

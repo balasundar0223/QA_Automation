@@ -1,4 +1,4 @@
-import { expect } from "@playwright/test";
+import { expect, selectors } from "@playwright/test";
 import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from '../../../utils/fakerUtils';
 import { credentials } from "../../../constants/credentialData";
@@ -69,7 +69,7 @@ test.describe(`Verify_that_admin_edit_the_session_details_of_multi_instance_ILT_
         await adminHome.clickEnrollmentMenu();
         await adminHome.clickEnroll();
         await enrollHome.selectByOption("Course");
-        await enrollHome.selectByOption(courseName)
+        await enrollHome.selectBycourse(courseName)
         await enrollHome.clickSelectedLearner();
         await enrollHome.enterSearchUser(credentials.LEARNERUSERNAME.username)
         await enrollHome.clickEnrollBtn();

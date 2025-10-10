@@ -41,6 +41,7 @@ test.describe(`Verify_the_change_class_functionality_E-learning_to_E-learning.sp
         await editCourse.clickClose();
         await editCourse.clickTagMenu();
         tag = await editCourse.selectTags();
+        console.log(tag);
         await editCourse.clickClose();
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
@@ -58,7 +59,7 @@ test.describe(`Verify_the_change_class_functionality_E-learning_to_E-learning.sp
         }
         await addinstance("E-Learning");
         await createCourse.enter("course-title", courseName);
-        await createCourse.selectLanguage("English");
+       // await createCourse.selectLanguage("English");
         await createCourse.typeDescription("This is a new course by name :" + description);
         await createCourse.contentLibrary();//Youtube content is attached here
         await createCourse.clickCatalog();

@@ -89,7 +89,7 @@ export default defineConfig({
         browserName: 'chromium', ...devices['Desktop Chromium'], channel: 'chrome', headless: false,
         viewport: null,
         launchOptions: {
-          slowMo: 200,
+          slowMo: 300,
           args: ["--start-maximized", "--disable-web-security", "--incognito"]
         }
       }

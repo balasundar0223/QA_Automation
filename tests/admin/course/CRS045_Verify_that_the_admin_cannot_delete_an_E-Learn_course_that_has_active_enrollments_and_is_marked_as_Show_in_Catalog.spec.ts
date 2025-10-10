@@ -54,6 +54,7 @@ test.describe(`Verify_that_admin_cannot_delete_single_instance_Elearn_course_wit
         await adminHome.clickCourseLink();
         await createCourse.catalogSearch(courseName);
         await createCourse.clickEditIcon();
+        await createCourse.typeDescription("This is a new course by name :" + description);
         await createCourse.clickHideinCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

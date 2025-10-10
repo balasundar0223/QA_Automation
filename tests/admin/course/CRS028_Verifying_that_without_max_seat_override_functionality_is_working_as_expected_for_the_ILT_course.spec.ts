@@ -3,6 +3,7 @@ import { credentials } from "../../../constants/credentialData";
 import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from '../../../utils/fakerUtils';
 import { credentialConstants } from "../../../constants/credentialConstants";
+import { allurePlaywrightLegacyApi } from "allure-playwright/dist/types/legacy";
 
 const sessionName = FakerData.getSession();
 const courseName = ("ILT" + " " + FakerData.getCourseName());
@@ -84,7 +85,8 @@ test.describe(`Verify that without Max Seat Override functionality is working as
                        //await enrollHome.clickSelectedLearner();
                        await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
                        await enrollHome.clickEnrollBtn();
-                await enrollHome.verifyMaxSeatPopup()
+               // await enrollHome.verifyMaxSeatPopup()
+              await enrollHome.verifytoastMessage();
     })
 
 

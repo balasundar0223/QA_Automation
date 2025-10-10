@@ -199,6 +199,7 @@ export class LearnerDashboardPage extends LearnerHomePage {
       this.selectors.verifyText(data),
       "Certification"
     );
+    await this.wait("maxWait");
     await this.verification(this.selectors.verifyText(data), data);
   }
 

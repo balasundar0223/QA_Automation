@@ -33,6 +33,7 @@ test.describe(`Verify learning admin able to create a Singleinstance E-learning 
         await createCourse.editcourse()
         await createCourse.addsurvey_course()
         await createCourse.addAssesment()
+        
         await createCourse.save_editedcoursedetails()
         await createCourse.verifySuccessMessage()
 

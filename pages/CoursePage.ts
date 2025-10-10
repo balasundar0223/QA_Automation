@@ -1879,6 +1879,7 @@ async handleSaveUntilProceed(maxRetries = 6) {
 
   async clickUpdate() {
     await this.page.locator(this.selectors.updateBtn).scrollIntoViewIfNeeded();
+    await this.wait("minWait");
     await this.click(this.selectors.updateBtn, "update", "field");
     const locator = this.page.locator(this.selectors.willResolveLaterBtn);
     await this.wait("mediumWait");
@@ -1909,12 +1910,17 @@ async handleSaveUntilProceed(maxRetries = 6) {
   }
 
   async save_editedcoursedetails() {
+    await this.wait("minWait");
     await this.click(this.selectors.detailsbtn, "details", "button");
     //await this.clickCatalog();
     await this.validateElementVisibility(
       this.selectors.courseUpdateBtn,
       "button"
     );
+      
+    await this.type(this.selectors.courseDescriptionInput, "Description", "updated description");
+  
+
     await this.click(this.selectors.courseUpdateBtn, "Update", "button");
   }
 
@@ -2869,6 +2875,7 @@ async handleSaveUntilProceed(maxRetries = 6) {
       "Mandatory Selection",
       "Dropdown"
     );
+    await this.wait("maxWait");
   }
 
   async verifyCurrencyNotPresent(currencyName: string): Promise<void> {
