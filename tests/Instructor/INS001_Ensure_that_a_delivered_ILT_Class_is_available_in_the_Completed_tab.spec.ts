@@ -74,11 +74,11 @@ test.describe(`Ensure_that_a_delivered_ILT_Class_is_available_in_the_Completed_t
         await adminHome.clickEnrollmentMenu();
         await adminHome.clickEnroll();
         await enrollHome.selectEnroll();
-        await enrollHome.selectBycourse(courseName)
+        await enrollHome.selectBycourse(courseName);
         await enrollHome.clickSelectedLearner();
-        await enrollHome.enterSearchUser("User")
+        await enrollHome.enterSearchUser("User");
         await enrollHome.clickEnrollBtn();
-        await enrollHome.verifytoastMessage()
+        await enrollHome.verifytoastMessage();
     })
 
     test(`Ensure_that_a_delivered_ILT_Class_is_available_in_the_Completed_tab.spec.ts`, async ({ adminHome, enrollHome, instructorHome }) => {

@@ -52,11 +52,13 @@ export class CompletionCertificationPage extends AdminHomePage {
     async clickPublish() {
         await this.validateElementVisibility(this.selectors.publishBtn, "Publish");
         await this.click(this.selectors.publishBtn, "Publish", "Button");
+         await this.wait('mediumWait');
+
     }
 
 
     async clickProceed() {
-                await this.wait('minWait');
+        await this.wait('maxWait');
         await this.validateElementVisibility(this.selectors.proceedBtn, "Proceed");
         await this.click(this.selectors.proceedBtn, "Proceed", "Button");
     }
