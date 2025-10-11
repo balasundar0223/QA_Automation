@@ -149,7 +149,7 @@ export class LearningPathPage extends AdminHomePage {
     }
 
     async clickProceedBtn() {
-        await this.wait("mediumWait");  //Added by arivu for checking purpose
+        await this.wait("maxWait");  //Added by arivu for checking purpose
         await this.validateElementVisibility(this.selectors.proceedBtn, "Proceed Button");
         await this.click(this.selectors.proceedBtn, "Proceed Button", "Button");
         await this.wait("maxWait"); //Added by arivu for checking purpose

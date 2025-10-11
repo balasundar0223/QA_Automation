@@ -482,6 +482,7 @@ export class UserPage extends AdminHomePage {
     await this.click(this.selectors.impersonateProceedBtn, "Proceed", "Button");
     await this.wait("mediumWait");
     await this.click(this.selectors.okBtn, "OK", "Button");
+    await this.wait("mediumWait");
   }
 
   public async clickLogOutButton() {
@@ -594,4 +595,41 @@ export class UserPage extends AdminHomePage {
     // );
     await this.click(this.selectors.editIcon, "customeradmin", "edit");
   }
+    public async uncheckInheritAddressIfPresent() {
+        const classValue = await this.page.locator('#user-addr1').getAttribute('class');
+
+        // Check if it contains a specific class
+        if (classValue && classValue.includes('form_field_deactived')) {
+            await this.click("//span[text()='Inherit Address From']", "Inherit Address From Checkbox", "Checkbox");
+        } else {
+            console.log("Inherit Address already unchecked")
+            //address inheritance
+        }
+    }
+    //emergency contact inheritance
+    public async uncheckInheritEmergencyContactIfPresent() {
+         const classValue = await this.page.locator('#emrg-cont-name').getAttribute('class');
+
+        // Check if it contains a specific class
+        if (classValue && classValue.includes('form_field_deactived')) {
+            await this.click("//span[text()='Inherit']", "Inherit Address From Checkbox", "Checkbox");
+        } else {
+            console.log("Inherit emergency already unchecked")
+            //address inheritance
+        }
+    }
+
+    //auto generate username
+    public async uncheckAutoGenerateUsernameIfPresent() {
+          const classValue = await this.page.locator('#username').getAttribute('class');
+
+        // Check if it contains a specific class
+        if (classValue && classValue.includes('form_field_deactived')) {
+            await this.click("//span[text()='Auto-Generate']", "Auto-Generate Username Checkbox", "Checkbox");
+        } else {
+            console.log("auto generation already unchecked")
+        
+        }
+}
+  
 }
