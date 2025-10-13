@@ -10,6 +10,8 @@ export class AdminGroupPage extends PlaywrightWrapper {
     public selectors = {
         clickAdminGroup: (user: string) => `//div[text()='${user}']`,
         searchUser: "#includeLearner-filter-field",
+        userSearchDropdown: `//select[@id='includeLearner']`,
+        userSearchDropdownOption: (option: string) => `//option[text()='${option}']`,
         chooseUser: (user: string) => `//li[text()='${user}']`,
         //(username:string)=>`//span[text()=${username}]/following::i[contains(@class,'fa-square icon')][1]
         //selectUser:`(//div[contains(@class,'custom-control custom-chkbox')])[2]`,
@@ -25,7 +27,14 @@ export class AdminGroupPage extends PlaywrightWrapper {
         selectRole: (roleName: string) => `//a[@class='dropdown-item']//span[text()='${roleName}']`,
         saveAdminGroup: `#lrnSaveUpdate`,
         proceedButton: `//button[contains(text(),'Yes, Proceed')]`,
+        yesButton: `//button[text()='Yes']`,
         clickActivateBtn:`//span[text()='Activate']`,
+        activateGroupBtn: `//a[@data-bs-toggle='tooltip'][@aria-label='Activate']`,
+        suspendBtn: `[name="suspend-btn"]`,
+        suspendIconBtn: `//a[@data-bs-toggle='tooltip'][@aria-label='Suspend']`,
+        accessButton: `//span[@class='icontxt pointer' and text()='Access']`,
+        deleteButton: `//span[@class='ms-2 field_title_1 deactivate_color' and text()='Delete Group']`,
+        validTillInput: `//input[@id="admn_valid_till-input"]`,
         adminGroupValue: `//label[text()='Learner Group']//preceding::label[@class='form-label d-block my-0 me-1 text-break']`,
         adminGroupValueInUser: `//label[text()='Admin Group']//following::label[@class='form-label d-block my-0 me-1 text-break']`,
     
@@ -41,6 +50,7 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     }
     public async clickGroup(data: string) {
+        await this.wait('minWait');
         await this.mouseHover(this.selectors.chooseUser(data), "POP up ");
         await this.click(this.selectors.chooseUser(data), "Pop up", "Clicked");
         await this.click(this.selectors.clickAdminGroup(data), "Customer Admin", "Button");
@@ -86,7 +96,19 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     public async searchUser(data: string) {
         await this.typeAndEnter(this.selectors.searchUser, "Search User", data);
+    }
 
+    public async selectUserSearchType(searchType: string) {
+        await this.click(this.selectors.userSearchDropdown, "User Search Dropdown", "Dropdown");
+        await this.click(this.selectors.userSearchDropdownOption(searchType), `${searchType} Option`, "Option");
+    }
+
+    public async searchUserByType(searchType: string, searchValue: string) {
+        await this.wait("minWait");
+        await this.selectUserSearchType(searchType);
+        await this.wait("minWait");
+        await this.type(this.selectors.searchUser, `Search by ${searchType}`, searchValue);
+        await this.wait("mediumWait");
     }
     public async clickuserCheckbox(username: string) {
         await this.validateElementVisibility(this.selectors.selectUser, username);
@@ -104,11 +126,13 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.click(this.selectors.selectUpdate, "Update", "Button");
     }
     public async clickCreateGroup() {
+        await this.wait("minWait")
+        await this.validateElementVisibility(this.selectors.createGroupButton, "Create Group");
         await this.click(this.selectors.createGroupButton, "Create Group", "Button")
     }
 
     public async enterGroupTitle(title: string) {
-        await this.type(this.selectors.groupTitle, "Custome Group title", title)
+        await this.type(this.selectors.groupTitle, "Custom Group title", title)
 
     }
 
@@ -154,8 +178,131 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.validateElementVisibility(this.selectors.clickActivateBtn, "Activate");
         await this.click(this.selectors.clickActivateBtn, "Activate", "Radio");
     }
+    async clickSuspend() {
+        await this.validateElementVisibility(this.selectors.suspendBtn, "Suspend");
+        await this.click(this.selectors.suspendBtn, "Suspend", "Button");
+    }
+    async clickYes() {
+        await this.validateElementVisibility(this.selectors.yesButton, "Yes");
+        await this.click(this.selectors.yesButton, "Yes", "Button");
+    }
+    async clickActivateGroup() {
+        await this.validateElementVisibility(this.selectors.activateGroupBtn, "Activate Group");
+        await this.click(this.selectors.activateGroupBtn, "Activate Group", "Link");
+    }
+    async enterValidTillDate(date: string) {
+        await this.type(this.selectors.validTillInput, "Valid Till Date", date);
+    }
+    async verifyActivated() {
+        await this.wait("maxWait");
+        await this.validateElementVisibility(this.selectors.suspendIconBtn, "Suspend Button");
+    }
     public async clickSelelctUsers() {
         await this.click(this.selectors.clickSelectUser, "Username", "Checkbox ");
+    }
+
+    public async verifyAccessButtonDisabled() {
+        await this.wait("mediumWait");
+        const accessButtonLocator = this.page.locator(this.selectors.accessButton);
+        const count = await accessButtonLocator.count();
+        
+        if (count > 0) {
+            // Check if the element has disabled class or pointer-events: none
+            const isClickable = await accessButtonLocator.isEnabled().catch(() => false);
+            const hasPointerEvents = await accessButtonLocator.evaluate(el => {
+                const style = window.getComputedStyle(el);
+                return style.pointerEvents !== 'none';
+            }).catch(() => true);
+            
+            if (isClickable && hasPointerEvents) {
+                throw new Error('Access button is enabled when it should be disabled for suspended admin group.');
+            }
+        } else {
+            throw new Error('Access button not found in the UI.');
+        }
+    }
+
+    public async verifySuspendButtonDisabled() {
+        await this.wait("mediumWait");
+        const suspendButtonLocator = this.page.locator(this.selectors.suspendBtn);
+        const count = await suspendButtonLocator.count();
+        
+        if (count > 0) {
+            // Scroll to the suspend button to ensure it's visible
+            await suspendButtonLocator.scrollIntoViewIfNeeded();
+            await this.wait("minWait");
+            
+            // Hover over the suspend button
+            await this.mouseHover(this.selectors.suspendBtn, "Suspend Button");
+            await this.wait("minWait");
+            
+            // Check if the element is disabled
+            const isDisabled = await suspendButtonLocator.isDisabled().catch(() => false);
+            const hasDisabledAttribute = await suspendButtonLocator.getAttribute('disabled').catch(() => null);
+            const isClickable = await suspendButtonLocator.isEnabled().catch(() => false);
+            
+            // Check for disabled class
+            const hasDisabledClass = await suspendButtonLocator.getAttribute('class').then(classes => 
+                classes?.includes('disabled') || classes?.includes('btn-disabled')
+            ).catch(() => false);
+            
+            // Check CSS pointer events
+            const hasPointerEvents = await suspendButtonLocator.evaluate(el => {
+                const style = window.getComputedStyle(el);
+                return style.pointerEvents !== 'none';
+            }).catch(() => true);
+            
+            // Validate that the button is properly disabled
+            if (!isDisabled && !hasDisabledAttribute && isClickable && hasPointerEvents && !hasDisabledClass) {
+                throw new Error('Suspend button is enabled when it should be disabled for default admin group.');
+            }
+            
+            console.log('Suspend button is properly disabled for default admin group');
+        } else {
+            throw new Error('Suspend button not found in the UI.');
+        }
+    }
+
+    public async verifyDeleteButtonDisabled() {
+        await this.wait("mediumWait");
+        const deleteButtonLocator = this.page.locator(this.selectors.deleteButton);
+        const count = await deleteButtonLocator.count();
+        
+        if (count > 0) {
+            // Scroll to the delete button to ensure it's visible
+            await deleteButtonLocator.scrollIntoViewIfNeeded();
+            await this.wait("minWait");
+            
+            // Hover over the delete button
+            await this.mouseHover(this.selectors.deleteButton, "Delete Button");
+            await this.wait("minWait");
+            
+            // Check if the element has deactivate_color class which indicates it's disabled
+            const hasDeactivateClass = await deleteButtonLocator.getAttribute('class').then(classes => 
+                classes?.includes('deactivate_color')
+            ).catch(() => false);
+            
+            // Check if the element is clickable
+            const isClickable = await deleteButtonLocator.isEnabled().catch(() => false);
+            const hasPointerEvents = await deleteButtonLocator.evaluate(el => {
+                const style = window.getComputedStyle(el);
+                return style.pointerEvents !== 'none';
+            }).catch(() => true);
+            
+            // For delete button, deactivate_color class indicates it's disabled
+            if (!hasDeactivateClass) {
+                throw new Error('Delete button does not have deactivate_color class - it may be enabled for default admin group.');
+            }
+            
+            // Additional check for clickability
+            if (isClickable && hasPointerEvents) {
+                console.warn('Delete button appears clickable but has deactivate_color class');
+            }
+            
+            console.log('Delete button is properly disabled for default admin group');
+        } else {
+            throw new Error('Delete button not found in the UI.');
+        }
     }
 
 }

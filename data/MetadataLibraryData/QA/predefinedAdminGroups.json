@@ -1,0 +1,44 @@
+[
+    {
+        "groupTitle": "QA_Basic_Admin_Group",
+        "roleName": "QA_Basic_Admin_Role",
+        "description": "Basic admin group for QA testing",
+        "testType": "basic",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Advanced_Admin_Group",
+        "roleName": "QA_Advanced_Admin_Role",
+        "description": "Advanced admin group with extended privileges",
+        "testType": "advanced",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Manager_Group",
+        "roleName": "QA_Manager_Role",
+        "description": "Manager group for management testing",
+        "testType": "manager",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Search_Test_Group",
+        "roleName": "QA_Search_Test_Role",
+        "description": "Group for search functionality testing",
+        "testType": "search",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Export_Test_Group",
+        "roleName": "QA_Advanced_Admin_Role",
+        "description": "Group for export and advanced feature testing",
+        "testType": "export",
+        "isActive": true
+    },
+    {
+        "groupTitle": "Buddy Admin Group",
+        "roleName": "Nia Admin",
+        "description": "Custom admin group created in AG009 for status testing",
+        "testType": "ag009_created",
+        "isActive": true
+    }
+]
