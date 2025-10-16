@@ -1,15 +1,14 @@
 import { test } from "../../../customFixtures/expertusFixture";
+import { AdminGroupManager } from "../../../utils/adminGroupManager";
 import { AdminRoleManager } from "../../../utils/adminRoleManager";
 
 test.describe(`AG011 - System Default Admin Group Restrictions & Policy Validation`, async () => {
     test.describe.configure({ mode: 'serial' })
 
-    let systemDefaultRole: any;
+    let systemDefaultGroup: any;
 
     test.beforeAll(async () => {
-        // Load system_default role data from predefined JSON
-        systemDefaultRole = await AdminRoleManager.getRoleDataByType("system_default");
-        console.log(`Using system default role: ${systemDefaultRole.roleName}`);
+        systemDefaultGroup = await AdminGroupManager.getGroupDataByType("system_default");
     });
 
     test(`Verify whether it does not allow to suspend a default admin Group`, async ({ adminHome, adminGroup }) => {
@@ -22,12 +21,12 @@ test.describe(`AG011 - System Default Admin Group Restrictions & Policy Validati
         await adminHome.menuButton();
         await adminHome.people();
         await adminHome.adminGroup();
-        
-        // Use system_default role name from JSON data
-        await adminGroup.searchAdmin(systemDefaultRole.roleName);
-        await adminGroup.clickGroup(systemDefaultRole.roleName);
+
+        // Use system_default group name from JSON data
+        await adminGroup.searchAdmin(systemDefaultGroup.groupTitle);
+        await adminGroup.clickGroup(systemDefaultGroup.groupTitle);
         await adminGroup.verifySuspendButtonDisabled();
-        console.log(`Default admin group suspension restriction validated for: ${systemDefaultRole.roleName}`);
+        console.log(`Default admin group suspension restriction validated for: ${systemDefaultGroup.groupTitle}`);
     });
 
     test(`Verify whether we cannot delete the Default Admin Groups`, async ({ adminHome, adminGroup }) => {
@@ -40,13 +39,13 @@ test.describe(`AG011 - System Default Admin Group Restrictions & Policy Validati
         await adminHome.menuButton();
         await adminHome.people();
         await adminHome.adminGroup();
-        
-        // Use system_default role name from JSON data
-        await adminGroup.searchAdmin(systemDefaultRole.roleName);
-        await adminGroup.clickGroup(systemDefaultRole.roleName);
+
+        // Use system_default group name from JSON data
+        await adminGroup.searchAdmin(systemDefaultGroup.groupTitle);
+        await adminGroup.clickGroup(systemDefaultGroup.groupTitle);
         await adminGroup.verifyDeleteButtonDisabled();
 
-        console.log(`Default admin group delete restriction validated for: ${systemDefaultRole.roleName}`);
+        console.log(`Default admin group delete restriction validated for: ${systemDefaultGroup.groupTitle}`);
     });
 
 

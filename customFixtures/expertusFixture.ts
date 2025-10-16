@@ -9,6 +9,7 @@ import { UserPage } from '../pages/UserPage'
 import { MetaLibraryPage } from '../pages/MetaLibraryPage'
 import { EditCoursePage } from '../pages/EditCoursePage'
 import { AdminGroupPage } from '../pages/AdminGroupPage'
+import { ExportPage } from '../pages/ExportPage'
 import { OrganizationPage } from '../pages/OrganizationPage'
 import { LocationPage } from '../pages/LocationPage'
 import { CommerceHomePage } from '../pages/CommerceHomePage'
@@ -61,6 +62,7 @@ type expertusFixture = {
     organization: OrganizationPage
     metadatalibrary: MetaLibraryPage
     adminGroup: AdminGroupPage
+    exportPage: ExportPage
     commercehome: CommerceHomePage
     bannerHome: BannerPage
     dataBase: DB
@@ -158,6 +160,10 @@ export const test = baseTest.extend<expertusFixture>({
     adminGroup: async ({ page, context }, use) => {
         const adminGroup = new AdminGroupPage(page, context);
         await use(adminGroup);
+    },
+    exportPage: async ({ page, context }, use) => {
+        const exportPage = new ExportPage(page, context);
+        await use(exportPage);
     },
     organization: async ({ page, context }, use) => {
         const organization = new OrganizationPage(page, context);

@@ -30,8 +30,12 @@ test.describe(`Admin Group and Custom Role Management`, async () => {
         await adminRoleHome.clickSave()
         await adminRoleHome.verifyRole(roleName)
         
-        // Store the created role for AG011 usage
-        await AdminRoleManager.storeCreatedRole(roleName, "Custom admin role created in AG009 with all privileges");
+        // Store the created role for AG011 usage - this role has ALL PRIVILEGES enabled
+        await AdminRoleManager.storeCreatedRole(
+            roleName, 
+            "Custom admin role created in AG009 with ALL PRIVILEGES enabled",
+            "all_privileges"
+        );
     })
 
     test(`Verify whether we can able to create a Admin Group`, async ({ adminHome, adminGroup, createCourse, adminRoleHome }) => {
@@ -52,8 +56,6 @@ test.describe(`Admin Group and Custom Role Management`, async () => {
         await adminGroup.clickProceed();
         await createCourse.verifySuccessMessage();
         
-        // Store the created group for AG011 usage
-        await AdminGroupManager.storeCreatedGroup(groupTitle, roleName, "Custom admin group created in AG009 for status testing");
     });
 
     test(`Verify whether we can edit a admin group`, async ({ adminHome, adminGroup }) => {
@@ -68,15 +70,21 @@ test.describe(`Admin Group and Custom Role Management`, async () => {
         await adminHome.adminGroup();
         await adminGroup.searchAdmin(groupTitle);
         await adminGroup.clickGroup(groupTitle);
-        
         groupTitle = groupTitle + " -E";
         await adminGroup.enterGroupTitle(groupTitle);
-        
         const futureDate = new Date();
         futureDate.setDate(futureDate.getDate() + 30);
         const validTillDate = futureDate.toISOString().split('T')[0];
         await adminGroup.enterValidTillDate(validTillDate);
         await adminGroup.clickUpdate();
+
+        await AdminGroupManager.storeCreatedGroup(
+            groupTitle, 
+            roleName, 
+            "Custom admin group created in AG009 with all privileges for comprehensive testing",
+            "all_privileges"
+        );
+
 
     });
 
@@ -96,6 +104,7 @@ test.describe(`Admin Group and Custom Role Management`, async () => {
         await adminGroup.clickYes();
     });
 
+    
 
     test(`Verify whether the Access button is in disabled state for Suspended Admin Group`, async ({ adminHome, adminGroup }) => {
         test.info().annotations.push(

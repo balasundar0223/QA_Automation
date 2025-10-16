@@ -13,6 +13,7 @@ export class UserPage extends AdminHomePage {
   public selectors = {
     ...this.selectors,
     createUserbtn: `//button[text()='CREATE USER']`,
+    createUserButton: `//a[text()='Create User']`,
     createUserLabel: "//h1[text()='Create User']",
     editUserLabel: "//h1[text()='Edit User']",
     inputField: (name: string) => `//input[@id="${name}"]`,
@@ -140,6 +141,15 @@ export class UserPage extends AdminHomePage {
       "CreateButton"
     );
     await this.click(this.selectors.createUserbtn, "Create User", "Button");
+  }
+
+  async clickCreateUserButton() {
+    await this.wait("minWait");
+    await this.validateElementVisibility(
+      this.selectors.createUserButton,
+      "Create User Link"
+    );
+    await this.click(this.selectors.createUserButton, "Create User", "Link");
   }
 
   async enter(name: string, data: string) {
@@ -328,6 +338,7 @@ export class UserPage extends AdminHomePage {
   }
 
   async editIcon() {
+    await this.wait("minWait"); 
     await this.click(this.selectors.editIcon, "Edit Icon", "Button");
     await this.spinnerDisappear();
   }
@@ -596,40 +607,54 @@ export class UserPage extends AdminHomePage {
     await this.click(this.selectors.editIcon, "customeradmin", "edit");
   }
     public async uncheckInheritAddressIfPresent() {
-        const classValue = await this.page.locator('#user-addr1').getAttribute('class');
+        const inheritCheckbox = this.page.locator("//span[text()='Inherit Address From']");
+        const isVisible = await inheritCheckbox.isVisible().catch(() => false);
+        
+        if (!isVisible) {
+            console.log("Inherit from organization turned off");
+            return;
+        }
 
-        // Check if it contains a specific class
+        const classValue = await this.page.locator('#user-addr1').getAttribute('class');
         if (classValue && classValue.includes('form_field_deactived')) {
             await this.click("//span[text()='Inherit Address From']", "Inherit Address From Checkbox", "Checkbox");
         } else {
-            console.log("Inherit Address already unchecked")
-            //address inheritance
+            console.log("Inherit Address already unchecked");
         }
     }
-    //emergency contact inheritance
+
     public async uncheckInheritEmergencyContactIfPresent() {
-         const classValue = await this.page.locator('#emrg-cont-name').getAttribute('class');
+        const inheritCheckbox = this.page.locator("//span[text()='Inherit']");
+        const isVisible = await inheritCheckbox.isVisible().catch(() => false);
+        
+        if (!isVisible) {
+            console.log("Inherit from organization turned off");
+            return;
+        }
 
-        // Check if it contains a specific class
+        const classValue = await this.page.locator('#emrg-cont-name').getAttribute('class');
         if (classValue && classValue.includes('form_field_deactived')) {
-            await this.click("//span[text()='Inherit']", "Inherit Address From Checkbox", "Checkbox");
+            await this.click("//span[text()='Inherit']", "Inherit Emergency Contact Checkbox", "Checkbox");
         } else {
-            console.log("Inherit emergency already unchecked")
-            //address inheritance
+            console.log("Inherit emergency already unchecked");
         }
     }
 
-    //auto generate username
     public async uncheckAutoGenerateUsernameIfPresent() {
-          const classValue = await this.page.locator('#username').getAttribute('class');
+        const autoGenerateCheckbox = this.page.locator("//span[text()='Auto-Generate']");
+        const isVisible = await autoGenerateCheckbox.isVisible().catch(() => false);
+        
+        if (!isVisible) {
+            console.log("Inherit from organization turned off");
+            return;
+        }
 
-        // Check if it contains a specific class
+        const classValue = await this.page.locator('#username').getAttribute('class');
         if (classValue && classValue.includes('form_field_deactived')) {
             await this.click("//span[text()='Auto-Generate']", "Auto-Generate Username Checkbox", "Checkbox");
         } else {
-            console.log("auto generation already unchecked")
-        
+            console.log("Auto generation already unchecked");
         }
-}
+    }
   
 }

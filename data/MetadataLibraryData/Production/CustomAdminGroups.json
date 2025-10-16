@@ -35,10 +35,29 @@
         "isActive": true
     },
     {
-        "groupTitle": "Buddy Admin Group",
-        "roleName": "Nia Admin",
-        "description": "Custom admin group created in AG009 for status testing",
-        "testType": "ag009_created",
+        "groupTitle": "Lenna Admin Group -E",
+        "roleName": "Margot Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
+        "isActive": true,
+        "createdInTest": "AG009",
+        "usedInTests": [
+            "AG009",
+            "AG011"
+        ]
+    },
+    {
+        "groupTitle": "Joana Admin Group -E",
+        "roleName": "Hulda Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
+        "isActive": true
+    },
+    {
+        "groupTitle": "Gustave Admin Group -E",
+        "roleName": "Trycia Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
         "isActive": true
     }
 ]

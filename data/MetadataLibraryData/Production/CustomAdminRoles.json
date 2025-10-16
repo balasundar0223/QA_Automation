@@ -112,12 +112,21 @@
         "isActive": true
     },
     {
-        "roleName": "Nia Admin",
-        "description": "Custom admin role created in AG009 with all privileges",
+        "roleName": "Hulda Admin",
+        "description": "Custom admin role created in AG009 with ALL PRIVILEGES enabled",
         "privileges": [
             "ALL"
         ],
-        "testType": "ag009_created",
+        "testType": "all_privileges",
+        "isActive": true
+    },
+    {
+        "roleName": "Trycia Admin",
+        "description": "Custom admin role created in AG009 with ALL PRIVILEGES enabled",
+        "privileges": [
+            "ALL"
+        ],
+        "testType": "all_privileges",
         "isActive": true
     }
 ]

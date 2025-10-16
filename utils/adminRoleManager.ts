@@ -9,6 +9,26 @@ import { getItemByProperty } from "./jsonDataHandler";
 export class AdminRoleManager {
     
     /**
+     * Get environment folder based on playwright config
+     * @returns string - Environment folder name
+     */
+    private static getEnvironmentFolder(): string {
+        const { environmentSetup } = require("../playwright.config");
+        
+        switch (environmentSetup) {
+            case "qa":
+                return "QA";
+            case "dev":
+                return "Dev";
+            case "automation":
+                return "Automation";
+            case "qaProduction":
+            default:
+                return "Production";
+        }
+    }
+    
+    /**
      * Check if admin role exists in the UI
      * @param adminRoleHome - AdminRolePage instance
      * @param roleName - Name of the role to check
@@ -76,51 +96,63 @@ export class AdminRoleManager {
     }
 
     /**
-     * Get predefined role data by test type from JSON file
-     * @param testType - Type of test (basic, advanced, manager, search, filter)
+     * Get custom role data by role name from JSON file (environment-aware)
+     * @param roleName - Name of the role to find
+     * @param fileName - Name of the JSON file (optional, defaults to CustomAdminRoles.json)
      * @returns Promise<any> - Role data object
      */
-    static async getRoleDataByType(testType: string): Promise<any> {
-        const role = getItemByProperty("./data/MetadataLibraryData/Production/predefinedAdminRoles.json", "testType", testType);
+    static async getRoleDataByRoleName(roleName: string, fileName: string = "CustomAdminRoles"): Promise<any> {
+        const environmentFolder = this.getEnvironmentFolder();
+        
+        const filePath = `./data/MetadataLibraryData/${environmentFolder}/${fileName}.json`;
+        const role = getItemByProperty(filePath, "roleName", roleName);
         
         if (!role) {
-            throw new Error(`No predefined role found for test type: ${testType}`);
+            throw new Error(`No custom role found for role name: ${roleName} in file: ${filePath}`);
         }
-        
-        return role;
-    }
 
-    /**
+        return role;
+    }    /**
      * Setup multiple admin roles for comprehensive testing
      * @param adminHome - AdminHomePage instance
      * @param adminRoleHome - AdminRolePage instance
-     * @param testTypes - Array of test types to setup roles for
+     * @param roleNames - Array of role names to setup roles for
+     * @param fileName - Optional JSON file name to use
      */
-    static async setupMultipleRoles(adminHome: AdminHomePage, adminRoleHome: AdminRolePage, testTypes: string[]): Promise<void> {
+    static async setupMultipleRoles(adminHome: AdminHomePage, adminRoleHome: AdminRolePage, roleNames: string[], fileName?: string): Promise<void> {
         await adminHome.loadAndLogin("CUSTOMERADMIN");
         
-        for (const testType of testTypes) {
+        for (const roleName of roleNames) {
             try {
-                const roleData = await this.getRoleDataByType(testType);
+                const roleData = await this.getRoleDataByRoleName(roleName, fileName);
                 await this.ensureRoleExists(adminHome, adminRoleHome, roleData);
             } catch (error) {
-                console.error(`Error setting up role for test type '${testType}':`, error);
+                console.error(`Error setting up role for role name '${roleName}':`, error);
             }
         }
     }
 
     /**
-     * Store created role data in predefined JSON for cross-test usage
+     * Store created role data in custom JSON for cross-test usage
      * @param roleName - Name of the created role
      * @param description - Description of the role
      * @param testType - Test type identifier for retrieval
      */
-    static async storeCreatedRole(roleName: string, description: string = "Custom admin role with all privileges", testType: string = "ag009_created"): Promise<void> {
+    static async storeCreatedRole(roleName: string, description: string = "Custom admin role with all privileges", testType: string = "AG009_created"): Promise<void> {
         const fs = require('fs');
-        const rolesPath = './data/MetadataLibraryData/QA/predefinedAdminRoles.json';
+        const environmentFolder = this.getEnvironmentFolder();
+        const rolesPath = `./data/MetadataLibraryData/${environmentFolder}/CustomAdminRoles.json`;
         
         try {
-            const roles = JSON.parse(fs.readFileSync(rolesPath, 'utf8'));
+            let roles = [];
+            
+            // Try to read existing file, if it doesn't exist create empty array
+            try {
+                roles = JSON.parse(fs.readFileSync(rolesPath, 'utf8'));
+            } catch (readError) {
+                console.log(`CustomAdminRoles.json not found in ${environmentFolder}, creating new file`);
+                roles = [];
+            }
             
             const newRole = {
                 "roleName": roleName,
@@ -135,10 +167,12 @@ export class AdminRoleManager {
             if (!exists) {
                 roles.push(newRole);
                 fs.writeFileSync(rolesPath, JSON.stringify(roles, null, 4));
-                console.log(`Role '${roleName}' stored in predefined roles`);
+                console.log(`Role '${roleName}' stored in ${environmentFolder}/CustomAdminRoles.json`);
+            } else {
+                console.log(`Role '${roleName}' already exists in ${environmentFolder}/CustomAdminRoles.json`);
             }
         } catch (error) {
-            console.error(`Error storing role '${roleName}':`, error);
+            console.error(`Error storing role '${roleName}' in ${environmentFolder}:`, error);
         }
     }
 }

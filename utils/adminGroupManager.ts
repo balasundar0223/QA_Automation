@@ -9,6 +9,26 @@ import { getItemByProperty } from "./jsonDataHandler";
 export class AdminGroupManager {
     
     /**
+     * Get environment folder based on playwright config
+     * @returns string - Environment folder name
+     */
+    private static getEnvironmentFolder(): string {
+        const { environmentSetup } = require("../playwright.config");
+        
+        switch (environmentSetup) {
+            case "qa":
+                return "QA";
+            case "dev":
+                return "Dev";
+            case "automation":
+                return "Automation";
+            case "qaProduction":
+            default:
+                return "Production";
+        }
+    }
+    
+    /**
      * Check if admin group exists in the UI
      * @param adminGroup - AdminGroupPage instance
      * @param groupTitle - Name of the group to check
@@ -75,52 +95,55 @@ export class AdminGroupManager {
     }
 
     /**
-     * Get predefined group data by test type from JSON file
-     * @param testType - Type of test (basic, advanced, manager, search, export)
+     * Get custom group data by test type from JSON file (environment-aware)
+     * @param testType - Type of test (basic, advanced, manager, search, export, system_default)
+     * @param fileName - Name of the JSON file (optional, auto-determined based on testType)
      * @returns Promise<any> - Group data object
      */
-    static async getGroupDataByType(testType: string): Promise<any> {
-        const group = getItemByProperty("./data/MetadataLibraryData/Production/predefinedAdminGroups.json", "testType", testType);
+    static async getGroupDataByType(testType: string, fileName?: string): Promise<any> {
+        const environmentFolder = this.getEnvironmentFolder();
+
+        // Auto-determine fileName based on testType if not provided
+        if (!fileName) {
+            if (testType === "system_default" || testType === "default") {
+                fileName = "DefaultAdminGroups.json";
+            } else {
+                fileName = "CustomAdminGroups.json";
+            }
+        }
+
+        const filePath = `./data/MetadataLibraryData/${environmentFolder}/${fileName}`;
+        const group = getItemByProperty(filePath, "testType", testType);
         
         if (!group) {
-            throw new Error(`No predefined group found for test type: ${testType}`);
+            throw new Error(`No custom group found for test type: ${testType} in file: ${filePath}`);
         }
-        
+
         return group;
     }
 
     /**
-     * Setup multiple admin groups for comprehensive testing
-     * @param adminHome - AdminHomePage instance
-     * @param adminGroup - AdminGroupPage instance
-     * @param testTypes - Array of test types to setup groups for
-     */
-    static async setupMultipleGroups(adminHome: AdminHomePage, adminGroup: AdminGroupPage, testTypes: string[]): Promise<void> {
-        await adminHome.loadAndLogin("CUSTOMERADMIN");
-        
-        for (const testType of testTypes) {
-            try {
-                const groupData = await this.getGroupDataByType(testType);
-                await this.ensureGroupExists(adminHome, adminGroup, groupData);
-            } catch (error) {
-                console.error(`Error setting up group for test type '${testType}':`, error);
-            }
-        }
-    }
-
-    /**
-     * Store created group data in predefined JSON for cross-test usage
+     * Store created group data in custom JSON for cross-test usage
      * @param groupTitle - Title of the created group
      * @param roleName - Associated role name
      * @param description - Description of the group
      * @param testType - Test type identifier for retrieval
      */
-    static async storeCreatedGroup(groupTitle: string, roleName: string, description: string = "Custom admin group created for testing", testType: string = "ag009_created"): Promise<void> {
+    static async storeCreatedGroup(groupTitle: string, roleName: string, description: string = "Custom admin group created for testing", testType: string = "AG009"): Promise<void> {
         const fs = require('fs');
-        const groupsPath = './data/MetadataLibraryData/QA/predefinedAdminGroups.json';
+        const environmentFolder = this.getEnvironmentFolder();
+        const groupsPath = `./data/MetadataLibraryData/${environmentFolder}/CustomAdminGroups.json`;
         
         try {
-            const groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+            let groups = [];
+            
+            // Try to read existing file, if it doesn't exist create empty array
+            try {
+                groups = JSON.parse(fs.readFileSync(groupsPath, 'utf8'));
+            } catch (readError) {
+                console.log(`CustomAdminGroups.json not found in ${environmentFolder}, creating new file`);
+                groups = [];
+            }
             
             const newGroup = {
                 "groupTitle": groupTitle,
@@ -135,10 +158,12 @@ export class AdminGroupManager {
             if (!exists) {
                 groups.push(newGroup);
                 fs.writeFileSync(groupsPath, JSON.stringify(groups, null, 4));
-                console.log(`Group '${groupTitle}' stored in predefined groups`);
+                console.log(`Group '${groupTitle}' stored in ${environmentFolder}/CustomAdminGroups.json`);
+            } else {
+                console.log(`Group '${groupTitle}' already exists in ${environmentFolder}/CustomAdminGroups.json`);
             }
         } catch (error) {
-            console.error(`Error storing group '${groupTitle}':`, error);
+            console.error(`Error storing group '${groupTitle}' in ${environmentFolder}:`, error);
         }
     }
 }
