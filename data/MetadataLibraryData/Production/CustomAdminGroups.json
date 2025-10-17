@@ -1,0 +1,63 @@
+[
+    {
+        "groupTitle": "QA_Basic_Admin_Group",
+        "roleName": "QA_Basic_Admin_Role",
+        "description": "Basic admin group for QA testing",
+        "testType": "basic",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Advanced_Admin_Group",
+        "roleName": "QA_Advanced_Admin_Role",
+        "description": "Advanced admin group with extended privileges",
+        "testType": "advanced",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Manager_Group",
+        "roleName": "QA_Manager_Role",
+        "description": "Manager group for management testing",
+        "testType": "manager",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Search_Test_Group",
+        "roleName": "QA_Search_Test_Role",
+        "description": "Group for search functionality testing",
+        "testType": "search",
+        "isActive": true
+    },
+    {
+        "groupTitle": "QA_Export_Test_Group",
+        "roleName": "QA_Advanced_Admin_Role",
+        "description": "Group for export and advanced feature testing",
+        "testType": "export",
+        "isActive": true
+    },
+    {
+        "groupTitle": "Lenna Admin Group -E",
+        "roleName": "Margot Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
+        "isActive": true,
+        "createdInTest": "AG009",
+        "usedInTests": [
+            "AG009",
+            "AG011"
+        ]
+    },
+    {
+        "groupTitle": "Joana Admin Group -E",
+        "roleName": "Hulda Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
+        "isActive": true
+    },
+    {
+        "groupTitle": "Gustave Admin Group -E",
+        "roleName": "Trycia Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
+        "isActive": true
+    }
+]
