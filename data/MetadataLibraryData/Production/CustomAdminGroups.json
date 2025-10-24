@@ -61,8 +61,22 @@
         "isActive": true
     },
     {
-        "groupTitle": "Destiney Admin Group -E",
-        "roleName": "Josephine Admin",
+        "groupTitle": "AG015_Entity_Test_Group",
+        "roleName": "AG015_Entity_Test_Role",
+        "description": "Admin group created for AG015 entity attachment testing - verifies suspend allowed but delete blocked when attached to entities",
+        "testType": "AG015_entity_test",
+        "isActive": true,
+        "createdInTest": "AG015",
+        "testScenario": "suspend_delete_restrictions_with_entity_attachment",
+        "expectedBehavior": {
+            "suspendAllowed": true,
+            "deleteAllowed": false,
+            "reason": "Groups attached to entities (users/organizations) can be suspended but not deleted"
+        }
+    },
+    {
+        "groupTitle": "Davon Admin Group -E",
+        "roleName": "Alexandre Admin",
         "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
         "testType": "all_privileges",
         "isActive": true

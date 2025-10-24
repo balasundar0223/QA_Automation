@@ -1,15 +1,23 @@
-import { Page, BrowserContext } from "@playwright/test";
+import { Page, BrowserContext, Download } from "@playwright/test";
 import { URLConstants } from "../constants/urlConstants";
-import { PlaywrightWrapper } from "../utils/playwright"
+import { PlaywrightWrapper } from "../utils/playwright";
+import { ExportValidator } from "../utils/exportValidator";
+import { ExportPage } from "./ExportPage";
+import * as path from 'path';
+import * as fs from 'fs';
 
 
 export class AdminGroupPage extends PlaywrightWrapper {
 
     static pageUrl = URLConstants.adminURL;
+    private exportPage: ExportPage;
 
     public selectors = {
         clickAdminGroup: (user: string) => `//div[text()='${user}']`,
         searchUser: "#includeLearner-filter-field",
+        userSearchDropdown: `//button[@data-id='includeLearner'][@data-bs-toggle='dropdown']`,
+        userSearchDropdownMain: `(//h6[text()='Select User']//following::div[@class='filter-option-inner'])[1]`,
+        userSearchDropdownOption: (option: string) => ` //a[contains(@class,'dropdown-item')]//following::span[text()='${option}']`,
         chooseUser: (user: string) => `//li[text()='${user}']`,
         //(username:string)=>`//span[text()=${username}]/following::i[contains(@class,'fa-square icon')][1]
         //selectUser:`(//div[contains(@class,'custom-control custom-chkbox')])[2]`,
@@ -25,7 +33,14 @@ export class AdminGroupPage extends PlaywrightWrapper {
         selectRole: (roleName: string) => `//a[@class='dropdown-item']//span[text()='${roleName}']`,
         saveAdminGroup: `#lrnSaveUpdate`,
         proceedButton: `//button[contains(text(),'Yes, Proceed')]`,
+        yesButton: `//button[text()='Yes']`,
         clickActivateBtn:`//span[text()='Activate']`,
+        activateGroupBtn: `//a[@data-bs-toggle='tooltip'][@aria-label='Activate']`,
+        suspendBtn: `[name="suspend-btn"]`,
+        suspendIconBtn: `//a[@data-bs-toggle='tooltip'][@aria-label='Suspend']`,
+        accessButton: `//span[@class='icontxt pointer' and text()='Access']`,
+        deleteButton: `//span[@class='ms-2 field_title_1 deactivate_color' and text()='Delete Group']`,
+        validTillInput: `//input[@id="admn_valid_till-input"]`,
         adminGroupValue: `//label[text()='Learner Group']//preceding::label[@class='form-label d-block my-0 me-1 text-break']`,
         adminGroupValueInUser: `//label[text()='Admin Group']//following::label[@class='form-label d-block my-0 me-1 text-break']`,
         noMatchingResultMessage: `//div[@id='includeuserslist']/div`,
@@ -40,6 +55,7 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     constructor(page: Page, context: BrowserContext) {
         super(page, context);
+        this.exportPage = new ExportPage(page, context);
     }
 
 
@@ -48,6 +64,7 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     }
     public async clickGroup(data: string) {
+        await this.wait('minWait');
         await this.mouseHover(this.selectors.chooseUser(data), "POP up ");
         await this.click(this.selectors.chooseUser(data), "Pop up", "Clicked");
         await this.click(this.selectors.clickAdminGroup(data), "Customer Admin", "Button");
@@ -93,8 +110,17 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     public async searchUser(data: string) {
         await this.typeAndEnter(this.selectors.searchUser, "Search User", data);
-
     }
+
+    public async selectUserSearchType(searchType: string) {
+        // First click on the main dropdown to expand options
+        await this.click(this.selectors.userSearchDropdownMain, "User Search Dropdown", "Dropdown");
+        await this.wait('minWait');
+        // Then click on the specific option
+        await this.click(this.selectors.userSearchDropdownOption(searchType), `${searchType} Option`, "Option");
+    }
+
+
     public async clickuserCheckbox(username: string) {
         await this.validateElementVisibility(this.selectors.selectUser, username);
         await this.click(this.selectors.selectUser, username, "CheckBox");
@@ -112,11 +138,12 @@ export class AdminGroupPage extends PlaywrightWrapper {
     }
     public async clickCreateGroup() {
         await this.wait("minWait")
+        await this.validateElementVisibility(this.selectors.createGroupButton, "Create Group");
         await this.click(this.selectors.createGroupButton, "Create Group", "Button")
     }
 
     public async enterGroupTitle(title: string) {
-        await this.type(this.selectors.groupTitle, "Custome Group title", title)
+        await this.type(this.selectors.groupTitle, "Custom Group title", title)
 
     }
 
@@ -161,6 +188,25 @@ export class AdminGroupPage extends PlaywrightWrapper {
     async clickActivate() {
         await this.validateElementVisibility(this.selectors.clickActivateBtn, "Activate");
         await this.click(this.selectors.clickActivateBtn, "Activate", "Radio");
+    }
+    async clickSuspend() {
+        await this.validateElementVisibility(this.selectors.suspendBtn, "Suspend");
+        await this.click(this.selectors.suspendBtn, "Suspend", "Button");
+    }
+    async clickYes() {
+        await this.validateElementVisibility(this.selectors.yesButton, "Yes");
+        await this.click(this.selectors.yesButton, "Yes", "Button");
+    }
+    async clickActivateGroup() {
+        await this.validateElementVisibility(this.selectors.activateGroupBtn, "Activate Group");
+        await this.click(this.selectors.activateGroupBtn, "Activate Group", "Link");
+    }
+    async enterValidTillDate(date: string) {
+        await this.type(this.selectors.validTillInput, "Valid Till Date", date);
+    }
+    async verifyActivated() {
+        await this.wait("maxWait");
+        await this.validateElementVisibility(this.selectors.suspendIconBtn, "Suspend Button");
     }
     public async clickSelelctUsers() {
         await this.click(this.selectors.clickSelectUser, "Username", "Checkbox ");
@@ -502,6 +548,5 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.wait('minWait');
         await this.click(this.selectors.editGroupButton(groupName), "Edit Group Button", "Button");
     }
-
 
 }

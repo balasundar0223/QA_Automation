@@ -58,7 +58,7 @@ test.describe(`Verify whether the Export Functionality is working correctly`, as
             await createUser.verifyUserCreationSuccessMessage();
             console.log(`PASS: User ${i + 1} created successfully: ${user.username}`);
              if (i < testUsers.length - 1) {
-                await createUser.clickCreateUserButton();
+              await createUser.clickCreateUser();    
             }
         }
 
