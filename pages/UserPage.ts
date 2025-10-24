@@ -13,7 +13,6 @@ export class UserPage extends AdminHomePage {
   public selectors = {
     ...this.selectors,
     createUserbtn: `//button[text()='CREATE USER']`,
-    createUserButton: `//a[text()='Create User']`,
     createUserLabel: "//h1[text()='Create User']",
     editUserLabel: "//h1[text()='Edit User']",
     inputField: (name: string) => `//input[@id="${name}"]`,
@@ -26,6 +25,10 @@ export class UserPage extends AdminHomePage {
     saveButton: "//button[text()='Save']",
     proceedButton: (name: string) =>
       `//footer//following::button[contains(text(),'${name}')]`,
+
+    // Custom Field Selectors - Note: These input boxes are disabled, use inputValue() method for reading values
+    uaidSelector: `(//label[text()='UAID']//following::input)[1]`,
+    uacSelector: `(//label[text()='UAC']//following::input)[1]`,
     searchField: "//input[@id='exp-search-field']",
     rolesBtn: "//input[@id='user-roles-filter-field']",
     rolesList: (roles: string) => `//li[text()='${roles}']`,
@@ -94,7 +97,7 @@ export class UserPage extends AdminHomePage {
     impersonateProceedBtn: "//button[text()='Proceed']",
     okBtn: "//button[text()='OK']",
     logOutBtn: "//div[@class='logout']//a",
-    //Internal
+    //Internal 
     validateUser: (data: string) => `//div[text()='${data}']`,
     //UserPage Enrollment icon
     enrollmentIcon: "(//a[@aria-label='Enrollments'])[1]",
@@ -115,6 +118,58 @@ export class UserPage extends AdminHomePage {
     //for contact support email
     customerAdminUserFromDropdown: `//li[contains(text(),'Arivazhagan P (arivazhaganp)')]`,
     checkContactSupport: `//input[@id='course-contact-support']`,
+
+
+    //address inheritance
+    inheritAddressLabel: "//span[text()='Inherit Address From']",
+    inheritAddressCheckbox: "(//span[text()='Inherit Address From']//preceding-sibling::i)[1]",
+
+    //emergency contact inheritance
+    inheritEmergencyContactLabel: "//span[text()='Inherit']",
+    inheritEmergencyContactCheckbox: "(//span[text()='Inherit']//preceding-sibling::i)[1]",
+
+    //auto generate username
+    autoGenerateUsernameLabel: "//span[text()='Auto-Generate']",
+    autoGenerateUsernameCheckbox: "(//span[text()='Auto-Generate']//preceding-sibling::i)[1]",
+
+    //error message popup
+    errorMessageContainer: "//div[@id='message-container']//li//span",
+    domainErrorContainer: "//div[@id='message-container']//ul",
+
+    //USRT21 selectors
+    employeeIdField: "#user-employee-id",
+    birthDateField: "//input[@id='BirthDate']",
+    otherOrganizationsField: "//input[@id='user-other-orgs-filter-field']",
+    searchOtherOrganizationField: "//input[@id='user-other-orgs']",
+    organizationOption: "div[id^='user-other-orgsresu'] li",
+    associatedGroupsTab: "//span[text()='Associated Groups']",
+    learnerGroupText: "//label[text()='Learner Group :']/following-sibling::div",
+    hierarchyButton: "//a[@aria-label='Hierarchy']",
+    managerInHierarchy: (managerName: string) => `//span[text()='${managerName}']`,
+    hierarchyCloseButton: "//div[@id='hierarchyModal']//button[@aria-label='Close']",
+
+    fieldname: (name: string) => `//input[@id='user-${name}-filter-field']`,
+    clickSearchOption: (list: string) => `(//li[text()='${list}'])[1]`,
+    jobRole:`//input[@id='user-jobrole-filter-field']`,
+    jobRoleList: (roles: string) => `//li[text()='${roles}']`,
+
+    // Filter selectors for USRT21 enhancement
+    filterTrigger: "#admin-filters-trigger",
+    statusCheckbox: (status: string) => `//span[text()='${status}']`,
+    userTypeFilter: "#user-type-filter-field",
+    rolesDropdown: "//button[@data-id='user-roles-filter']",
+    roleOption: (role: string) => `//span[text()='${role}']`,
+    jobRoleFilter: "#user-jobroles-filter-field",
+    departmentFilter: "#user-department-filter-field", 
+    managerFilter: "#user-manager-filter-field",
+    organizationFilter: "#user-organization-filter-field",
+    userHireDateDropdown: "//span[text()='User hire date']//following::button[@data-id='selectid']",
+    hireDateOption: (option: string) => `//span[text()='${option}']`,
+    hireDateFromInput: "#admin-date-filter-from-input",
+    filterLabelDropdown: (label: string) => `(//span[text()='${label}']/following::button[@data-bs-toggle='dropdown'])[1]`,
+    filterDropdownSearch: "//footer//following::input[@aria-label='Search']",
+    filterDropdownOption: (option: string) => `//span[text()='${option}']`,
+
   };
 
   constructor(page: Page, context: BrowserContext) {
@@ -141,15 +196,6 @@ export class UserPage extends AdminHomePage {
       "CreateButton"
     );
     await this.click(this.selectors.createUserbtn, "Create User", "Button");
-  }
-
-  async clickCreateUserButton() {
-    await this.wait("minWait");
-    await this.validateElementVisibility(
-      this.selectors.createUserButton,
-      "Create User Link"
-    );
-    await this.click(this.selectors.createUserButton, "Create User", "Link");
   }
 
   async enter(name: string, data: string) {
@@ -201,6 +247,7 @@ export class UserPage extends AdminHomePage {
       data,
       "List"
     );
+    return data;
   }
 
   async organizationType(data: string) {
@@ -225,6 +272,7 @@ export class UserPage extends AdminHomePage {
       data,
       "List"
     );
+    return data;
   }
   async selectManager(data: string) {
     //  let data = getRandomItemFromFile("../data/peopleDirectManager.json");
@@ -307,6 +355,7 @@ export class UserPage extends AdminHomePage {
       data,
       "List"
     );
+    return data;
   }
 
   async clickSave() {
@@ -338,7 +387,6 @@ export class UserPage extends AdminHomePage {
   }
 
   async editIcon() {
-    await this.wait("minWait"); 
     await this.click(this.selectors.editIcon, "Edit Icon", "Button");
     await this.spinnerDisappear();
   }
@@ -493,7 +541,6 @@ export class UserPage extends AdminHomePage {
     await this.click(this.selectors.impersonateProceedBtn, "Proceed", "Button");
     await this.wait("mediumWait");
     await this.click(this.selectors.okBtn, "OK", "Button");
-    await this.wait("mediumWait");
   }
 
   public async clickLogOutButton() {
@@ -606,55 +653,292 @@ export class UserPage extends AdminHomePage {
     // );
     await this.click(this.selectors.editIcon, "customeradmin", "edit");
   }
-    public async uncheckInheritAddressIfPresent() {
-        const inheritCheckbox = this.page.locator("//span[text()='Inherit Address From']");
-        const isVisible = await inheritCheckbox.isVisible().catch(() => false);
-        
-        if (!isVisible) {
-            console.log("Inherit from organization turned off");
-            return;
-        }
 
-        const classValue = await this.page.locator('#user-addr1').getAttribute('class');
-        if (classValue && classValue.includes('form_field_deactived')) {
-            await this.click("//span[text()='Inherit Address From']", "Inherit Address From Checkbox", "Checkbox");
-        } else {
-            console.log("Inherit Address already unchecked");
-        }
+  //address inheritance
+  public async uncheckInheritAddressIfPresent() {
+    await this.wait("minWait");
+    const inheritAddressLabel = this.page.locator(this.selectors.inheritAddressLabel);
+    if (await inheritAddressLabel.isVisible({ timeout: 5000 }).catch(() => false)) {
+      await this.click(this.selectors.inheritAddressCheckbox, "Inherit Address From Checkbox", "Checkbox");
+    }
+    else {
+      console.log("Inherit Address already unchecked")
+    }
+  }
+
+  //emergency contact inheritance
+  public async uncheckInheritEmergencyContactIfPresent() {
+    const inheritEmergencyContactLabel = this.page.locator(this.selectors.inheritEmergencyContactLabel);
+    if (await inheritEmergencyContactLabel.isVisible({ timeout: 5000 }).catch(() => false)) {
+      await this.click(this.selectors.inheritEmergencyContactCheckbox, "Inherit Emergency Contact Checkbox", "Checkbox");
+    }
+    else {
+      console.log("Inherit Emergency Contact already unchecked")
+    }
+  }
+
+  //auto generate username
+  public async uncheckAutoGenerateUsernameIfPresent() {
+    const autoGenerateUsernameLabel = this.page.locator(this.selectors.autoGenerateUsernameLabel);
+    if (await autoGenerateUsernameLabel.isVisible({ timeout: 5000 }).catch(() => false)) {
+      await this.click(this.selectors.autoGenerateUsernameCheckbox, "Auto-Generate Username Checkbox", "Checkbox");
+    }
+    else {
+      console.log("Auto-Generate Username already unchecked")
+    }
+  }
+
+  // UAID and UAC Custom Field Verification Methods
+  async verifyUAIDFieldExists() {
+    await this.validateElementVisibility(this.selectors.uaidSelector, "UAID Field");
+  }
+
+  async verifyUACFieldExists() {
+    await this.validateElementVisibility(this.selectors.uacSelector, "UAC Field");
+  }
+
+  async getUAIDValue(): Promise<string> {
+    const uaidValue = await this.page.locator(this.selectors.uaidSelector).inputValue();
+    console.log(`UAID value: ${uaidValue}`);
+    return uaidValue;
+  }
+
+  async getUACValue(): Promise<string> {
+    const uacValue = await this.page.locator(this.selectors.uacSelector).inputValue();
+    console.log(`UAC value: ${uacValue}`);
+    return uacValue;
+  }
+
+  async verifyUAIDAutoGenerated(): Promise<string> {
+    await this.verifyUAIDFieldExists();
+    const uaidValue = await this.getUAIDValue();
+
+    if (!uaidValue || uaidValue.trim() === '') {
+      throw new Error("UAID field is empty - auto-generation may not be working");
     }
 
-    public async uncheckInheritEmergencyContactIfPresent() {
-        const inheritCheckbox = this.page.locator("//span[text()='Inherit']");
-        const isVisible = await inheritCheckbox.isVisible().catch(() => false);
-        
-        if (!isVisible) {
-            console.log("Inherit from organization turned off");
-            return;
-        }
+    console.log(`✅ UAID auto-generated successfully: ${uaidValue}`);
+    return uaidValue;
+  }
 
-        const classValue = await this.page.locator('#emrg-cont-name').getAttribute('class');
-        if (classValue && classValue.includes('form_field_deactived')) {
-            await this.click("//span[text()='Inherit']", "Inherit Emergency Contact Checkbox", "Checkbox");
-        } else {
-            console.log("Inherit emergency already unchecked");
-        }
+  async verifyUACAutoGenerated(): Promise<string> {
+    await this.verifyUACFieldExists();
+    const uacValue = await this.getUACValue();
+
+    if (!uacValue || uacValue.trim() === '') {
+      throw new Error("UAC field is empty - auto-generation may not be working");
     }
 
-    public async uncheckAutoGenerateUsernameIfPresent() {
-        const autoGenerateCheckbox = this.page.locator("//span[text()='Auto-Generate']");
-        const isVisible = await autoGenerateCheckbox.isVisible().catch(() => false);
-        
-        if (!isVisible) {
-            console.log("Inherit from organization turned off");
-            return;
-        }
+    console.log(`✅ UAC auto-generated successfully: ${uacValue}`);
+    return uacValue;
+  }
 
-        const classValue = await this.page.locator('#username').getAttribute('class');
-        if (classValue && classValue.includes('form_field_deactived')) {
-            await this.click("//span[text()='Auto-Generate']", "Auto-Generate Username Checkbox", "Checkbox");
-        } else {
-            console.log("Auto generation already unchecked");
-        }
+  async verifyUAIDValueUnchanged(expectedValue: string, context: string = "") {
+    const currentValue = await this.getUAIDValue();
+
+    if (currentValue !== expectedValue) {
+      throw new Error(`UAID value changed${context ? ' ' + context : ''}! Expected: ${expectedValue}, Current: ${currentValue}`);
     }
+
+    console.log(`✅ UAID value unchanged${context ? ' ' + context : ''}: ${currentValue}`);
+  }
+
+  async verifyUACValueUnchanged(expectedValue: string, context: string = "") {
+    const currentValue = await this.getUACValue();
+
+    if (currentValue !== expectedValue) {
+      throw new Error(`UAC value changed${context ? ' ' + context : ''}! Expected: ${expectedValue}, Current: ${currentValue}`);
+    }
+
+    console.log(`✅ UAC value unchanged${context ? ' ' + context : ''}: ${currentValue}`);
+  }
+
+  async verifyBothCustomFieldsAutoGenerated(): Promise<{ uaidValue: string, uacValue: string }> {
+    const uaidValue = await this.verifyUAIDAutoGenerated();
+    const uacValue = await this.verifyUACAutoGenerated();
+
+    console.log("✅ Both UAID and UAC fields are auto-generated successfully");
+    return { uaidValue, uacValue };
+  }
+
+  async verifyBothCustomFieldsUnchanged(expectedUAID: string, expectedUAC: string, context: string = "") {
+    await this.verifyUAIDValueUnchanged(expectedUAID, context);
+    await this.verifyUACValueUnchanged(expectedUAC, context);
+
+    console.log(`✅ Both UAID and UAC values remain unchanged${context ? ' ' + context : ''}`);
+  }
+
+  // Error validation methods for negative testing
+  async verifyErrorMessage(expectedErrorMessage: string) {
+    await this.wait("minWait");
+    await this.validateElementVisibility(this.selectors.errorMessageContainer, "Error Message");
+    const actualErrorMessage = await this.getInnerText(this.selectors.errorMessageContainer);
+
+    // Normalize both strings by removing backslashes and extra spaces for comparison
+    const normalizedActual = actualErrorMessage.replace(/\\/g, '').replace(/\s+/g, ' ').trim();
+    const normalizedExpected = expectedErrorMessage.replace(/\\/g, '').replace(/\s+/g, ' ').trim();
+
+    if (normalizedActual.includes(normalizedExpected) || normalizedActual.toLowerCase().includes(normalizedExpected.toLowerCase())) {
+      console.log(`✅ Expected error message validated: ${expectedErrorMessage}`);
+    } else {
+      throw new Error(`Error message mismatch! Expected: "${expectedErrorMessage}", Actual: "${actualErrorMessage}"`);
+    }
+  }
+
+  async clearField(fieldName: string) {
+    const selector = this.selectors.inputField(fieldName);
+    await this.page.locator(selector).clear();
+  }
+
+  async verifyDomainErrorMessage(expectedErrorMessage: string) {
+    await this.wait("minWait");
+    await this.validateElementVisibility(this.selectors.domainErrorContainer, "Domain Error Message");
+    const actualErrorMessage = await this.getInnerText(this.selectors.domainErrorContainer);
+
+    if (actualErrorMessage.includes(expectedErrorMessage)) {
+      console.log(`✅ Expected domain error message validated: ${expectedErrorMessage}`);
+    } else {
+      throw new Error(`Domain error message mismatch! Expected: "${expectedErrorMessage}", Actual: "${actualErrorMessage}"`);
+    }
+  }
+
+  // USRT21 specific methods
+  async enterEmployeeId(employeeId: string) {
+    await this.type(this.selectors.employeeIdField, "Employee ID", employeeId);
+  }
+
+  async enterBirthDate(birthDate: string) {
+    await this.type(this.selectors.birthDateField, "Birth Date", birthDate);
+  }
+
+  async selectOtherOrganization(organizationName: string) {
+    await this.click(this.selectors.otherOrganizationsField, "Other Organizations", "Input Field");
+    await this.type(this.selectors.searchOtherOrganizationField, "Other Organizations", organizationName);
+    await this.wait("minWait");
+    await this.click(this.selectors.organizationOption, "Organization", "Dropdown");
+    await this.wait("minWait");
+  }
+
+  async clickAssociatedGroups() {
+    await this.click(this.selectors.associatedGroupsTab, "Associated Groups", "Tab");
+  }
+
+  async captureLearnerGroupText(): Promise<string> {
+    const learnerGroupText = await this.getInnerText(this.selectors.learnerGroupText);
+    console.log(`Learner Group: ${learnerGroupText}`);
+    return learnerGroupText;
+  }
+
+  async clickHierarchyButton() {
+    await this.click(this.selectors.hierarchyButton, "Hierarchy", "Button");
+  }
+
+  async verifyManagerInHierarchy(managerName: string) {
+    await this.validateElementVisibility(this.selectors.managerInHierarchy(managerName), `Manager in Hierarchy: ${managerName}`);
+    console.log(`✅ Manager ${managerName} verified in hierarchy`);
+  }
+
+  async closeHierarchyModal() {
+    await this.click(this.selectors.hierarchyCloseButton, "Close Hierarchy Modal", "Button");
+    await this.wait("minWait");
+  }
+
+  async selectOrganization(name: string, data: string) {
+    await this.typeAndEnter(this.selectors.fieldname(name), "field name", data);
+    await this.click(this.selectors.clickSearchOption(data), "search option", "option");
+  }
+
   
+  async selectJobRole() {
+    let data = getRandomItemFromFile(filePath.jobRole);
+    await this.click(this.selectors.jobRole, "Roles", "Button");
+    await this.click(this.selectors.jobRoleList(data), data, "Button");
+    await this.click(this.selectors.jobRole, "Roles", "Button");
+    return data;
+  }
+
+  // USRT21 Filter Methods
+  async clickFilter() {
+    await this.wait("minWait");
+    await this.click(this.selectors.filterTrigger, "Filter", "Button");
+    console.log("✅ Filter panel opened");
+  }
+
+  async selectStatusCheckbox(status: string) {
+    await this.click(this.selectors.statusCheckbox(status), `Status ${status}`, "Checkbox");
+    console.log(`✅ Status ${status} checkbox selected`);
+  }
+
+  async selectFilterUserType(userType: string) {
+    await this.type(this.selectors.userTypeFilter, "User Type Filter", userType);
+    await this.click(this.selectors.clickSearchOption(userType), userType, "Option");
+    console.log(`✅ User type ${userType} selected in filter`);
+  }
+
+  async selectFilterRoles(role: string) {
+    await this.click(this.selectors.rolesDropdown, "Roles Dropdown", "Button");
+    await this.click(this.selectors.roleOption(role), `Role ${role}`, "Option");
+    console.log(`✅ Role ${role} selected in filter`);
+  }
+
+  async selectFilterJobRole(jobRole: string) {
+    await this.type(this.selectors.jobRoleFilter, "Job Role Filter", jobRole);
+    await this.click(this.selectors.clickSearchOption(jobRole), jobRole, "Option");
+    console.log(`✅ Job role ${jobRole} selected in filter`);
+  }
+
+  async selectFilterDepartment(department: string) {
+    await this.type(this.selectors.departmentFilter, "Department Filter", department);
+    await this.click(this.selectors.clickSearchOption(department), department, "Option");
+    console.log(`✅ Department ${department} selected in filter`);
+  }
+
+  async selectFilterManager(manager: string) {
+    await this.type(this.selectors.managerFilter, "Manager Filter", manager);
+    let managerDropdown = "div[id^='user-manager-filter'] li";
+    await this.wait("minWait");
+    await this.click( managerDropdown, "manager", "Dropdown");
+    console.log(`✅ Manager ${manager} selected in filter`);
+  }
+
+  async selectFilterOrganization(organization: string) {
+    await this.type(this.selectors.organizationFilter, "Organization Filter", organization);
+    await this.click(this.selectors.clickSearchOption(organization), organization, "Option");
+    console.log(`✅ Organization ${organization} selected in filter`);
+  }
+
+  async selectHireDateFilter(option: string) {
+    await this.click(this.selectors.userHireDateDropdown, "Hire Date Dropdown", "Button");
+    await this.click(this.selectors.hireDateOption(option), `Hire Date ${option}`, "Option");
+    console.log(`✅ Hire date filter ${option} selected`);
+  }
+
+  async enterHireDateFrom(date: string) {
+    await this.type(this.selectors.hireDateFromInput, "Hire Date From", date);
+    console.log(`✅ Hire date from: ${date} entered`);
+  }
+
+  async selectFilterCountry(country: string) {
+    await this.wait("minWait");
+    await this.click(this.selectors.filterLabelDropdown("Country"), "Country Dropdown", "Button");
+    await this.type(this.selectors.filterDropdownSearch, "Country Search", country);
+    await this.click(this.selectors.filterDropdownOption(country), country, "Option");
+    console.log(`✅ Country ${country} selected in filter`);
+  }
+
+  async selectFilterState(state: string) {
+    await this.wait("minWait");
+    await this.click(this.selectors.filterLabelDropdown("State/Province"), "State Dropdown", "Button");
+    await this.type(this.selectors.filterDropdownSearch, "State Search", state);
+    await this.click(this.selectors.filterDropdownOption(state), state, "Option");
+    console.log(`✅ State ${state} selected in filter`);
+  }
+
+  async clickApply() {
+    // Using the same method from CatalogPage
+    const applyButton = "//button[text()='Apply']";
+    await this.click(applyButton, "Apply", "Button");
+    console.log("✅ Filter applied successfully");
+  }
+
 }

@@ -10,6 +10,7 @@ import { MetaLibraryPage } from '../pages/MetaLibraryPage'
 import { EditCoursePage } from '../pages/EditCoursePage'
 import { AdminGroupPage } from '../pages/AdminGroupPage'
 import { ExportPage } from '../pages/ExportPage';
+
 import { OrganizationPage } from '../pages/OrganizationPage'
 import { LocationPage } from '../pages/LocationPage'
 import { CommerceHomePage } from '../pages/CommerceHomePage'
@@ -31,14 +32,13 @@ import { ManagerPage } from '../pages/ManagerPage'
 import { ReadContentPage } from '../pages/ReadContentPage'
 import { AdminRolePage } from '../pages/AdminRole'
 import { ExcelReader } from '../utils/excelUtils'
-import { logADefectInJira } from '../jira/log-a-defect'
-import { updateJiraIssue } from '../jira/jira-integration'
 import { UniversalSearchPage } from '../pages/UniversalSearchPage'
 import path from 'path'
 import { glob } from 'glob'
 import { SiteAdminPage } from '../pages/SiteAdminPage'
 import { DirectContentLaunch } from '../pages/DirectContentLaunch'
 import {LearningAssignmentPage} from '../pages/LearningAssignmentPage'
+import { CustomFieldPage } from '../pages/CustomFieldPage'
 
 
 let jiraIssueKey: string | undefined;
@@ -62,7 +62,6 @@ type expertusFixture = {
     organization: OrganizationPage
     metadatalibrary: MetaLibraryPage
     adminGroup: AdminGroupPage
-    exportPage: ExportPage
     commercehome: CommerceHomePage
     bannerHome: BannerPage
     dataBase: DB
@@ -80,6 +79,7 @@ type expertusFixture = {
     learnerGroup:LearnerGroupPage
     siteAdmin:SiteAdminPage
     directContent: DirectContentLaunch
+    customFieldHome: CustomFieldPage
 }
 
 export const test = baseTest.extend<expertusFixture>({
@@ -161,10 +161,6 @@ export const test = baseTest.extend<expertusFixture>({
         const adminGroup = new AdminGroupPage(page, context);
         await use(adminGroup);
     },
-    exportPage: async ({ page, context }, use) => {
-        const exportPage = new ExportPage(page, context);
-        await use(exportPage);
-    },
     organization: async ({ page, context }, use) => {
         const organization = new OrganizationPage(page, context);
         await use(organization);
@@ -238,6 +234,11 @@ export const test = baseTest.extend<expertusFixture>({
     directContent: async ({ page, context }, use) => {
         const directContent = new DirectContentLaunch(page, context);
         await use(directContent);
+    },
+
+    customFieldHome: async ({ page, context }, use) => {
+        const customFieldHome = new CustomFieldPage(page, context);
+        await use(customFieldHome);
     }
 
 })

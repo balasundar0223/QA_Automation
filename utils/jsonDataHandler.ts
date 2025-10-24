@@ -18,6 +18,9 @@ interface Data {
   teamUser1?:string;
   teamUser2?:string;
   commerceLearner?: string;
+  portal1User?: string;
+  portal2User?: string;
+  managerInstructorUser?: string;
  
 
 }
@@ -78,31 +81,19 @@ export function saveDataToJsonFile(filename: string, data: any): void {
 // }
 
 function getRandomItemFromFile(filePath: string): string {
-  const dataFilePath = path.join(__dirname, '..', filePath);
+  const dataFilePath = path.join(__dirname, filePath);
   const data: string[] = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
   const randomIndex = Math.floor(Math.random() * data.length);
   return data[randomIndex];
 }
 
-function getAllItemsFromFile(filePath: string): any[] {
-  const dataFilePath = path.join(__dirname, '..', filePath);
-  const data: any[] = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
-  return data;
-}
-
-function getItemByProperty(filePath: string, property: string, value: string): any {
-  const dataFilePath = path.join(__dirname, '..', filePath);
-  const data: any[] = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
-  return data.find(item => item[property] === value);
-}
-
-export { getRandomItemFromFile, getAllItemsFromFile, getItemByProperty };
+export { getRandomItemFromFile };
 
 interface tcData {
   TP019?: string
   TP020?: string
   TP022?: string
-  CRS005?: string
+ CRS005?: string
   CRS006?: string
   CRS007?: string
   CRS010?:string

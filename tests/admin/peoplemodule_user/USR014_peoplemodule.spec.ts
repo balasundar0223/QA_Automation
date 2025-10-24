@@ -35,9 +35,6 @@ test.describe(`People Module Suites`, async () => {
       await adminHome.loadAndLogin("CUSTOMERADMIN");
       await adminHome.clickMenu("User");
       await createUser.verifyCreateUserLabel();
-      await createUser.uncheckInheritAddressIfPresent();
-      await createUser.uncheckInheritEmergencyContactIfPresent();
-      await createUser.uncheckAutoGenerateUsernameIfPresent();
       await createUser.enter("first_name", FakerData.getFirstName());
       await createUser.enter("last_name", FakerData.getLastName());
       await createUser.enter("username", username);

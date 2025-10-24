@@ -146,6 +146,7 @@ export class LearningPathPage extends AdminHomePage {
     async clickSave() {
         await this.click(this.selectors.saveBtn, "Save", "Button");
         await this.wait("minWait");
+        await this.spinnerDisappear();
     }
 
     async clickProceedBtn() {

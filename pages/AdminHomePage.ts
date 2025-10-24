@@ -62,6 +62,8 @@ export class AdminHomePage extends AdminLogin {
 
         //for Direct Content Launch
         directContent:`//a[text()='Direct Content Launch']`,
+           //meta data library option
+        metaLibOption:(data:string)=>`//a[text()='${data}']`,
     };
 
     constructor(page: Page, context: BrowserContext) {
@@ -405,7 +407,22 @@ export class AdminHomePage extends AdminLogin {
             await this.click(this.selectors.directContent, "DirectContentLaunch", "Button");
             await this.page.waitForLoadState('load');
         }
-    
+
+        //Navigate learner side from admin page
+        public async navigateToLearner() {
+            await this.wait("minWait");
+            await this.page.locator(`#exp_logo`).click();
+            await this.page.waitForLoadState('load');
+            await this.spinnerDisappear();
+        }
+
+        public async metaDataLibraryOption(data: string) {
+        await this.wait("minWait")
+        await this.validateElementVisibility(this.selectors.metaLibOption(data), "Meta Data Library");
+        await this.mouseHover(this.selectors.metaLibOption(data), "meta data library");
+        await this.click(this.selectors.metaLibOption(data), "meta data library", "Button");
+        await this.spinnerDisappear();
+    }
 
 }
 

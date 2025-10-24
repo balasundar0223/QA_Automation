@@ -30,7 +30,6 @@ export default defineConfig({
     video: 'on',
     ignoreHTTPSErrors: true,
     bypassCSP: true,
-    acceptDownloads: true, // Enable file downloads
   },
 
   // testMatch: [
