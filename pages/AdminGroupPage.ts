@@ -49,7 +49,9 @@ export class AdminGroupPage extends PlaywrightWrapper {
         errorMessageGeneral: `//div[contains(text(),'Group Name already exists')] | //*[contains(@class,'alert-danger')] | //*[contains(@class,'error')] | //*[contains(@class,'text-danger')][contains(text(),'Group Name already exists')]`,
         exportIcon:`(//button[contains(@class,'export')]/i)[1]`,
         exportAs:(filetype: string)=>  `(//span[text()='Export as ${filetype}'])[1]`,
-        addedUsers:`//h6[text()='ADDED USERS']/following-sibling::div[@class='slimScrollDiv']//span`
+        addedUsers:`//h6[text()='ADDED USERS']/following-sibling::div[@class='slimScrollDiv']//span`,
+        editGroupButton: (groupName: string) => `(//div[text()='${groupName}']/following::a[@aria-label='Edit'])[1]`
+
     }
 
     constructor(page: Page, context: BrowserContext) {
@@ -541,6 +543,11 @@ export class AdminGroupPage extends PlaywrightWrapper {
         console.log(`FAIL: User '${username}' not found in admin group`);
         console.log(`Current users in group: ${addedUsers.map(u => u.username).join(', ')}`);
         return false;
+    }
+
+    async editAdminGroup(groupName: string) {
+        await this.wait('minWait');
+        await this.click(this.selectors.editGroupButton(groupName), "Edit Group Button", "Button");
     }
 
 }
