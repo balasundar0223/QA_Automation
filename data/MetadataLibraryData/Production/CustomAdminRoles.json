@@ -128,5 +128,14 @@
         ],
         "testType": "all_privileges",
         "isActive": true
+    },
+    {
+        "roleName": "Josephine Admin",
+        "description": "Custom admin role created in AG009 with ALL PRIVILEGES enabled",
+        "privileges": [
+            "ALL"
+        ],
+        "testType": "all_privileges",
+        "isActive": true
     }
 ]

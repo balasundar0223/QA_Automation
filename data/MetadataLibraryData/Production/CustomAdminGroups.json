@@ -59,5 +59,12 @@
         "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
         "testType": "all_privileges",
         "isActive": true
+    },
+    {
+        "groupTitle": "Destiney Admin Group -E",
+        "roleName": "Josephine Admin",
+        "description": "Custom admin group created in AG009 with all privileges for comprehensive testing",
+        "testType": "all_privileges",
+        "isActive": true
     }
 ]
