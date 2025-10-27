@@ -79,6 +79,7 @@ type expertusFixture = {
     siteAdmin:SiteAdminPage
     directContent: DirectContentLaunch
     customFieldHome: CustomFieldPage
+    exportPage: ExportPage
 }
 
 export const test = baseTest.extend<expertusFixture>({
@@ -93,6 +94,12 @@ export const test = baseTest.extend<expertusFixture>({
     adminHome: async ({ page, context }, use,) => {
         const adminHome = new AdminHomePage(page, context);
         await use(adminHome);
+    },
+
+
+    exportPage: async ({ page, context }, use) => {
+        const exportPage = new ExportPage(page, context);
+        await use(exportPage);
     },
 
     learnerLogin: async ({ page, context }, use) => {

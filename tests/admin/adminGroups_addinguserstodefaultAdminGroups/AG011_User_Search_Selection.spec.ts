@@ -90,7 +90,7 @@ test.describe(`AG011 - Comprehensive User Management & Admin Group Assignment`, 
             
             // Click Create User for next iteration, but not for the last user
             if (i < testUsers.length - 1) {
-                await createUser.clickCreateUserButton();
+                await createUser.clickCreateUser();
             }
         }
         
