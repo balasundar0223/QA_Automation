@@ -132,6 +132,20 @@ export class UserPage extends AdminHomePage {
     autoGenerateUsernameLabel: "//span[text()='Auto-Generate']",
     autoGenerateUsernameCheckbox: "(//span[text()='Auto-Generate']//preceding-sibling::i)[1]",
 
+    //merge user functionality
+    mergeUserBtn: "//span[text()='MERGE USER']",
+    primaryUserSearch: "#exp-search-primary-field",
+    secondaryUserSearch: "#exp-search-secondary-field",
+    userRadioBtn: "//span[text()='Active']//following::i[contains(@class,'fa-circle')]",
+    selectBtn: "#merger-user-btn-select",
+    mergeConfirmationMessage: "//span[text()='This action cannot be reversed. Are you sure you want to merge accounts?.']",
+    continueBtn: "//button[text()='continue']",
+    mergeSuccessMessage: "//span[text()='Merge process has been initiated. You will receive an email with the status of the process.']",
+    mergeOkBtn: "//button[text()='OK']",
+    noMatchingResultMessage: "//div[text()='No matching result found.']",
+    swapIcon: "//i[contains(@class,'merge_user_swap pointer')]",
+    deleteSecondaryUserIcon: "(//span[text()='SECONDARY USER']//following::i[contains(@class,'fa-trash-can')])[1]",
+
     //error message popup
     errorMessageContainer: "//div[@id='message-container']//li//span",
     domainErrorContainer: "//div[@id='message-container']//ul",
@@ -150,7 +164,7 @@ export class UserPage extends AdminHomePage {
 
     fieldname: (name: string) => `//input[@id='user-${name}-filter-field']`,
     clickSearchOption: (list: string) => `(//li[text()='${list}'])[1]`,
-    jobRole:`//input[@id='user-jobrole-filter-field']`,
+    jobRole: `//input[@id='user-jobrole-filter-field']`,
     jobRoleList: (roles: string) => `//li[text()='${roles}']`,
 
     // Filter selectors for USRT21 enhancement
@@ -160,7 +174,7 @@ export class UserPage extends AdminHomePage {
     rolesDropdown: "//button[@data-id='user-roles-filter']",
     roleOption: (role: string) => `//span[text()='${role}']`,
     jobRoleFilter: "#user-jobroles-filter-field",
-    departmentFilter: "#user-department-filter-field", 
+    departmentFilter: "#user-department-filter-field",
     managerFilter: "#user-manager-filter-field",
     organizationFilter: "#user-organization-filter-field",
     userHireDateDropdown: "//span[text()='User hire date']//following::button[@data-id='selectid']",
@@ -169,6 +183,7 @@ export class UserPage extends AdminHomePage {
     filterLabelDropdown: (label: string) => `(//span[text()='${label}']/following::button[@data-bs-toggle='dropdown'])[1]`,
     filterDropdownSearch: "//footer//following::input[@aria-label='Search']",
     filterDropdownOption: (option: string) => `//span[text()='${option}']`,
+    createButton: `//a[text()='Create User']`,
 
   };
 
@@ -848,7 +863,7 @@ export class UserPage extends AdminHomePage {
     await this.click(this.selectors.clickSearchOption(data), "search option", "option");
   }
 
-  
+
   async selectJobRole() {
     let data = getRandomItemFromFile(filePath.jobRole);
     await this.click(this.selectors.jobRole, "Roles", "Button");
@@ -897,7 +912,7 @@ export class UserPage extends AdminHomePage {
     await this.type(this.selectors.managerFilter, "Manager Filter", manager);
     let managerDropdown = "div[id^='user-manager-filter'] li";
     await this.wait("minWait");
-    await this.click( managerDropdown, "manager", "Dropdown");
+    await this.click(managerDropdown, "manager", "Dropdown");
     console.log(`✅ Manager ${manager} selected in filter`);
   }
 
@@ -939,6 +954,109 @@ export class UserPage extends AdminHomePage {
     const applyButton = "//button[text()='Apply']";
     await this.click(applyButton, "Apply", "Button");
     console.log("✅ Filter applied successfully");
+  }
+
+  public async createBtn() {
+    await this.wait("minWait");
+    await this.click(this.selectors.createButton, "Create User", "Button");
+  }
+
+  // Merge User Methods
+  async clickMergeUser() {
+    await this.wait("mediumWait");
+    await this.click(this.selectors.mergeUserBtn, "Merge User", "Button");
+    console.log("✅ Clicked Merge User button");
+  }
+
+  async searchAndSelectPrimaryUser(username: string) {
+    await this.wait("mediumWait");
+    await this.type(this.selectors.primaryUserSearch, "Primary User Search", username);
+    await this.keyboardAction(this.selectors.primaryUserSearch, "Enter", "Search Field", username);
+    await this.wait("minWait");
+    await this.click(this.selectors.userRadioBtn, "Primary User Radio Button", "Radio");
+    await this.click(this.selectors.selectBtn, "Select Primary User", "Button");
+    console.log(`✅ Selected primary user: ${username}`);
+  }
+
+  async searchAndSelectSecondaryUser(username: string) {
+    await this.wait("mediumWait");
+    await this.type(this.selectors.secondaryUserSearch, "Secondary User Search", username);
+    await this.keyboardAction(this.selectors.secondaryUserSearch, "Enter", "Search Field", username);
+    await this.wait("minWait");
+    await this.click(this.selectors.userRadioBtn, "Secondary User Radio Button", "Radio");
+    await this.click(this.selectors.selectBtn, "Select Secondary User", "Button");
+    console.log(`✅ Selected secondary user: ${username}`);
+  }
+
+  async initiateMergeProcess() {
+    await this.wait("mediumWait");
+    await this.click(this.selectors.selectBtn, "Merge User", "Button");
+    console.log("✅ Initiated merge process");
+  }
+
+  async verifyMergeConfirmationMessage() {
+    await this.wait("mediumWait");
+    await this.validateElementVisibility(this.selectors.mergeConfirmationMessage, "Merge Confirmation Message");
+    const messageText = await this.page.locator(this.selectors.mergeConfirmationMessage).textContent();
+    if (messageText?.includes("This action cannot be reversed. Are you sure you want to merge accounts?.")) {
+      console.log("✅ Merge confirmation message verified");
+      await this.wait("minWait");
+      await this.click(this.selectors.continueBtn, "Continue", "Button");
+      console.log("✅ Clicked Continue on merge popup");
+    } else {
+      throw new Error("Merge confirmation message not found or incorrect");
+    }
+  }
+  async verifyMergeSuccessMessage() {
+    await this.wait("mediumWait");
+    await this.validateElementVisibility(this.selectors.mergeSuccessMessage, "Merge Success Message");
+    const messageText = await this.page.locator(this.selectors.mergeSuccessMessage).textContent();
+    if (messageText?.includes("Merge process has been initiated. You will receive an email with the status of the process.")) {
+      console.log("✅ Merge success message verified");
+      await this.wait("minWait");
+      await this.click(this.selectors.mergeOkBtn, "OK", "Button");
+      console.log("✅ Clicked OK on merge success message");
+    } else {
+      throw new Error("Merge success message not found or incorrect");
+    }
+  }
+
+  async searchSecondaryUserAndVerifyNoResult(username: string) {
+    await this.wait("mediumWait");
+    await this.type(this.selectors.secondaryUserSearch, "Secondary User Search", username);
+    await this.keyboardAction(this.selectors.secondaryUserSearch, "Enter", "Search Field", username);
+    await this.wait("mediumWait");
+    await this.validateElementVisibility(this.selectors.noMatchingResultMessage, "No Matching Result Message");
+    const messageText = await this.page.locator(this.selectors.noMatchingResultMessage).textContent();
+    if (messageText?.includes("No matching result found.")) {
+      console.log(`✅ Verified 'No matching result found' message for user: ${username}`);
+    } else {
+      throw new Error("No matching result found message not displayed or incorrect");
+    }
+  }
+
+  async clickDeleteSecondaryUser() {
+    await this.wait("mediumWait");
+    await this.click(this.selectors.deleteSecondaryUserIcon, "Delete Secondary User", "Button");
+    console.log("✅ Clicked delete icon for secondary user");
+  }
+
+  async clickSwapUsers() {
+    await this.wait("mediumWait");
+    await this.click(this.selectors.swapIcon, "Swap Users", "Button");
+    console.log("✅ Clicked swap icon to swap primary and secondary users");
+  }
+
+  async verifySecondaryUserDeleted() {
+    await this.wait("mediumWait");
+    // Check if secondary user search field is empty or available for new selection
+    const secondarySearchField = this.page.locator(this.selectors.secondaryUserSearch);
+    const isEmpty = await secondarySearchField.inputValue();
+    if (isEmpty === "" || isEmpty === null) {
+      console.log("✅ Secondary user successfully deleted - search field is empty");
+    } else {
+      console.log("⚠️ Secondary user may not be completely deleted");
+    }
   }
 
 }

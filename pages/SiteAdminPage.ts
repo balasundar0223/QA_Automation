@@ -32,6 +32,10 @@ emailUsed:string="";
        // saveBtn: `//button[text()='save' or text()='SAVE']`,
         //addressKey:(data: string)=>`//label[text()='${data}']//following-sibling::input`,
 
+        //For merge user
+        mergeUserToggle: `(//*[@class="col Merge users"]/div/label/i)[1]`,
+        okButton: `//button[text()='OK']`,
+
         //Password Policy:-
         passwordPolicyEditIcon: `//span[text()='Password Policy']/following::i[1]`,
         maxWrongAttempts: `//input[@id='max_wrong_attempts']`,
@@ -124,6 +128,21 @@ emailUsed:string="";
         }
         else {
             console.log("Address verification already enabled");
+        }
+    }
+
+    //For Merge User Enable
+    async mergeUserVerification() {
+        await this.wait("mediumWait")
+        const button = this.page.locator(this.selectors.mergeUserToggle);
+        const isDisabled = await button.isDisabled();
+        if (isDisabled) {
+            await this.page.locator(this.selectors.mergeUserToggle).click();
+            await this.wait("minWait")
+            await this.click(this.selectors.okButton, "OK", "Button")
+        }
+        else {
+            console.log("Merge user already enabled");
         }
     }
 
