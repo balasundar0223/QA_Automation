@@ -5,7 +5,11 @@ import { FakerData } from '../../../utils/fakerUtils';
 import { credentialConstants } from "../../../constants/credentialConstants";
 
 const courseName = ("VC" + " " + FakerData.getCourseName());
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 test.describe(`Verify that without Max Seat Override functionality is working as expected for the VC course`, async () => {
     test.describe.configure({ mode: "serial" });
     test(`Verifying that without Max Seat Override functionality is working as expected for the VC course`, async ({ siteAdmin,adminHome,learnerHome}) => {
@@ -67,6 +71,20 @@ test.describe(`Verify that without Max Seat Override functionality is working as
                 await adminHome.clickEnrollmentMenu();
                 await adminHome.clickEnroll();
                 await enrollHome.selectBycourse(courseName)
+<<<<<<< HEAD
+                await enrollHome.clickSelectedLearner();
+                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifyMaxSeatPopup()
+                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifytoastMessage()
+                await enrollHome.clickEnrollButton()
+                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifyMaxSeatPopup()
+=======
                  await enrollHome.clickSelectedLearner();
                        await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
                        await enrollHome.clickEnrollBtn(); 
@@ -93,6 +111,7 @@ test.describe(`Verify that without Max Seat Override functionality is working as
                 // await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
                 // await enrollHome.clickEnrollBtn();
               //  await enrollHome.verifyMaxSeatPopup()
+>>>>>>> origin/master
     })
 
 

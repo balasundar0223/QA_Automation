@@ -8,8 +8,13 @@ export async function getAdminAPI() {
     const context = await browser.newContext();
     const page = await context.newPage();
 
+<<<<<<< HEAD
+   await page.goto('https://qa.expertusoneqa.com/api/v2/simulator'); // Navigate to a page
+  // await page.goto('https://lms.expertusoneqa.cloud/api/v2/simulator'); // Navigate to a page
+=======
   // await page.goto('https://qa.expertusoneqa.com/api/v2/simulator'); // Navigate to a page
    await page.goto('https://qaautomation.expertusoneqa.cloud/api/v2/simulator'); // Navigate to a page
+>>>>>>> origin/master
     await page.waitForTimeout(5000);
     await page.locator("//span[text()='Admin']").click();
     await page.waitForTimeout(5000);
@@ -41,8 +46,13 @@ export async function getLearnerAPI() {
     const context = await browser.newContext();
     const page = await context.newPage();
 
+<<<<<<< HEAD
+    await page.goto('https://qa.expertusoneqa.com/api/v2/simulator'); // Navigate to a page
+    //await page.goto('https://lms.expertusoneqa.cloud/api/v2/simulator'); // Navigate to a page
+=======
    // await page.goto('https://qa.expertusoneqa.com/api/v2/simulator'); // Navigate to a page
     await page.goto('https://qaautomation.expertusoneqa.cloud/api/v2/simulator'); // Navigate to a page
+>>>>>>> origin/master
     await page.waitForTimeout(5000);
     await page.locator("//span[text()='Learner']").click();
     await page.waitForTimeout(5000);

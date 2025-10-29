@@ -42,10 +42,17 @@ test.describe(`Verify_that_the_admin_cannot_delete_an_ILT_class_with_active_enro
         tag = await editCourse.selectTags();
         console.log(tag);
         await editCourse.clickClose();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
         // await createCourse.verifySuccessMessage();
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         addInstancepost = await createCourse.visiblityOfaddInstance()
         expect(addInstancepost).not.toBe(addInstancepre)
         await createCourse.addInstances();

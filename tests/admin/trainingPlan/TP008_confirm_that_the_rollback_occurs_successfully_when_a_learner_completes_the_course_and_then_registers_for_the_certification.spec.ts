@@ -85,7 +85,10 @@ test.describe(`confirm_that_the_rollback_occurs_successfully_when_a_learner_comp
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
            await learningPath.description(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

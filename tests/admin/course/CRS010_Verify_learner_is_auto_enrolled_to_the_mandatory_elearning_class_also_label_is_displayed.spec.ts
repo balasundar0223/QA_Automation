@@ -42,10 +42,16 @@ test.describe(`Verify Elearning mandatory course flow`, async () => {
         await createCourse.addSingleLearnerGroup(user);
         await createCourse.saveAccessButton();
         await createCourse. crsAccessSettings();
+<<<<<<< HEAD
+      //  await createCourse. clickSave();
+        await editCourse.clickClose();
+        await createCourse.clickCatalog();
+=======
       // await createCourse. clickSave();
        // await editCourse.clickClose();
        // await createCourse.clickCatalog();
        await createCourse.typeDescription("This is a new course by name :" + courseName);
+>>>>>>> origin/master
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
 

@@ -39,7 +39,10 @@ test.describe(`Certification_with_single_instance_behavior_Enrolled_tab`, async 
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
                 await createCourse.typeDescription(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
@@ -72,12 +75,18 @@ test.describe(`Certification_with_single_instance_behavior_Enrolled_tab`, async 
         await learningPath.verifySuccessMessage();
         await learningPath.clickEditCertification();
         await createCourse.clickCompletionCertificate();
+<<<<<<< HEAD
+        await createCourse.clickCertificateCheckBox();
+        await createCourse.clickAdd();
+        await createCourse.clickCatalog();
+=======
 
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
            await learningPath.description(description);
         await createCourse.clickCatalog();
         
+>>>>>>> origin/master
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
 

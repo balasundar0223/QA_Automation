@@ -24,7 +24,11 @@ test.describe(`Confirm that Admin Order creation functions correctly and as expe
         await createCourse.verifyCreateUserLabel("CREATE COURSE");
         await createCourse.enter("course-title", courseName);
         await createCourse.selectLanguage("English");
+<<<<<<< HEAD
+        await createCourse.typeDescription(description);
+=======
         await createCourse.typeDescription(description); 
+>>>>>>> origin/master
         await createCourse.enterPrice(price)
         await createCourse.selectCurrency();
         await createCourse.contentLibrary()

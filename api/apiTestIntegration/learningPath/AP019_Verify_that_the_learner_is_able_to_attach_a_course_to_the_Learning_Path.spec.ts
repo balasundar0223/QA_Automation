@@ -114,7 +114,10 @@ test.describe(`TC074_Verify_the_Enforce_Sequence_flow_1`, async () => {
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
          await learningPath.description(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

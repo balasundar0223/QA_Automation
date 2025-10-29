@@ -42,10 +42,17 @@ test.describe(`Verify_that_admin_can_delete_multi_instance_ILT_VC_course`, async
         tag = await editCourse.selectTags();
         console.log(tag);
         await editCourse.clickClose();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
         // await createCourse.verifySuccessMessage();
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         addInstancepost = await createCourse.visiblityOfaddInstance()
         expect(addInstancepost).not.toBe(addInstancepre)
         await createCourse.addInstances();
@@ -114,10 +121,17 @@ test.describe(`Verify_that_admin_can_delete_multi_instance_ILT_VC_course`, async
         tag = await editCourse.selectTags();
         console.log(tag);
         await editCourse.clickClose();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
         // await createCourse.verifySuccessMessage();
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         addInstancepost = await createCourse.visiblityOfaddInstance()
         expect(addInstancepost).not.toBe(addInstancepre)
         await createCourse.addInstances();

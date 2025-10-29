@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { test as baseTest } from '@playwright/test'
+=======
 import {    test as baseTest } from '@playwright/test'
+>>>>>>> origin/master
 import { AdminLogin } from '../pages/AdminLogin'
 import { AdminHomePage } from '../pages/AdminHomePage'
 import { LearnerLogin } from '../pages/LearnerLogin'
@@ -9,8 +13,11 @@ import { UserPage } from '../pages/UserPage'
 import { MetaLibraryPage } from '../pages/MetaLibraryPage'
 import { EditCoursePage } from '../pages/EditCoursePage'
 import { AdminGroupPage } from '../pages/AdminGroupPage'
+<<<<<<< HEAD
+=======
 import { ExportPage } from '../pages/ExportPage';
 
+>>>>>>> origin/master
 import { OrganizationPage } from '../pages/OrganizationPage'
 import { LocationPage } from '../pages/LocationPage'
 import { CommerceHomePage } from '../pages/CommerceHomePage'
@@ -32,13 +39,22 @@ import { ManagerPage } from '../pages/ManagerPage'
 import { ReadContentPage } from '../pages/ReadContentPage'
 import { AdminRolePage } from '../pages/AdminRole'
 import { ExcelReader } from '../utils/excelUtils'
+<<<<<<< HEAD
+import { logADefectInJira } from '../jira/log-a-defect'
+import { updateJiraIssue } from '../jira/jira-integration'
+=======
+>>>>>>> origin/master
 import { UniversalSearchPage } from '../pages/UniversalSearchPage'
 import path from 'path'
 import { glob } from 'glob'
 import { SiteAdminPage } from '../pages/SiteAdminPage'
 import { DirectContentLaunch } from '../pages/DirectContentLaunch'
 import {LearningAssignmentPage} from '../pages/LearningAssignmentPage'
+<<<<<<< HEAD
+
+=======
 import { CustomFieldPage } from '../pages/CustomFieldPage'
+>>>>>>> origin/master
 
 let jiraIssueKey: string | undefined;
 // import { LearnerCoursePage } from '../pages/LearnerCoursePage'
@@ -78,8 +94,11 @@ type expertusFixture = {
     learnerGroup:LearnerGroupPage
     siteAdmin:SiteAdminPage
     directContent: DirectContentLaunch
+<<<<<<< HEAD
+=======
     customFieldHome: CustomFieldPage
     exportPage: ExportPage
+>>>>>>> origin/master
 }
 
 export const test = baseTest.extend<expertusFixture>({
@@ -96,12 +115,15 @@ export const test = baseTest.extend<expertusFixture>({
         await use(adminHome);
     },
 
+<<<<<<< HEAD
+=======
 
     exportPage: async ({ page, context }, use) => {
         const exportPage = new ExportPage(page, context);
         await use(exportPage);
     },
 
+>>>>>>> origin/master
     learnerLogin: async ({ page, context }, use) => {
         const lnLogin = new LearnerLogin(page, context);
         // await lnLogin.learnerLogin(credentialConstants.LEARNERUSERNAME, credentialConstants.PASSWORD);
@@ -240,11 +262,14 @@ export const test = baseTest.extend<expertusFixture>({
     directContent: async ({ page, context }, use) => {
         const directContent = new DirectContentLaunch(page, context);
         await use(directContent);
+<<<<<<< HEAD
+=======
     },
 
     customFieldHome: async ({ page, context }, use) => {
         const customFieldHome = new CustomFieldPage(page, context);
         await use(customFieldHome);
+>>>>>>> origin/master
     }
 
 })

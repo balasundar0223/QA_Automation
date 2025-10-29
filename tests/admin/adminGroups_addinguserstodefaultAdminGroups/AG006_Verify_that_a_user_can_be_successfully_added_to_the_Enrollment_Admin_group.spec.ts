@@ -45,7 +45,7 @@ test.describe(`Verify_that_a_user_can_be_successfully_added_to_the_Enrollment_Ad
             await createUser.enter("user-mobile", FakerData.getMobileNumber());
             await createUser.clickRolesButton("Manager")
             await createUser.clickSave();
-         //   await createUser.clickProceed("Proceed");
+
             await createUser.verifyUserCreationSuccessMessage();
         }
     });

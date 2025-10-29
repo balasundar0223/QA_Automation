@@ -21,6 +21,9 @@ export class AdminRolePage extends AdminHomePage {
         //   searchField: `//input[contains(@id,'exp-search')]`,
         searchField: `//input[contains(@id,'exp-search')]`,
         selectRole: `//div[contains(@id,'exp-search-lms-scroll-results')]//li`,
+<<<<<<< HEAD
+        selectEnrollmentRole:`//label[@for='Enrollments-create']`
+=======
         selectEnrollmentRole:`//label[@for='Enrollments-create']`,
         alertMessage: `//div[contains(@class,'alert alert-dismissible')]//span`,
         editIcon: (roleName: string) => `(//span[text()='${roleName}']//following::span[@aria-label='Edit'])[1]`,
@@ -30,6 +33,7 @@ export class AdminRolePage extends AdminHomePage {
         viewIcon: (module: string) => `(//label[@for='${module}-view']//i)[2]`,
         editPrivilegeCheckbox: (module: string) => `(//label[@for='${module}-edit']//i)[2]`, 
         createIcon: (module: string) => `(//label[@for='${module}-create']//i)[2]`,
+>>>>>>> origin/master
 
     };
     constructor(page: Page, context: BrowserContext) {
@@ -76,6 +80,8 @@ export class AdminRolePage extends AdminHomePage {
     public async verifyRole(roleName: string) {
         await this.verification(this.selectors.createdRole, roleName)
     }
+<<<<<<< HEAD
+=======
 
     public async verifyAlertMessage(expectedMessage: string) {
         await this.wait("mediumWait");
@@ -148,6 +154,7 @@ export class AdminRolePage extends AdminHomePage {
             return false;
         }
     }
+>>>>>>> origin/master
 }
 
 

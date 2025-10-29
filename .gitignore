@@ -12,4 +12,4 @@ node_modules/
 /allure-results
 
 # Ignore files with sensitive information
-jira/jira-integration.ts
+/jira/jira-integration.ts

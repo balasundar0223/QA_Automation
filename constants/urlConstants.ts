@@ -5,6 +5,10 @@ switch (environmentSetup) {
     case "automation":
         URLConstants = {
             adminURL: "https://qaautomation.expertusoneqa.cloud/backdoor",
+<<<<<<< HEAD
+            // adminURL:"https://qaprod1.expertusoneqa.cloud/backdoor/",
+=======
+>>>>>>> origin/master
             leanerURL: "https://automation.expertusoneqa.in/learner/e1internal/",
             learnerportal: "https://automation.expertusoneqa.in/learner/learnerportal/",
             learnerportal2: "https://automation.expertusoneqa.in/learner/learnerportal2/",
@@ -44,9 +48,15 @@ switch (environmentSetup) {
         break;
     case "qaProduction":
         URLConstants = {
+<<<<<<< HEAD
+            adminURL: "https://qaautomation.expertusoneqa.cloud/backdoor",
+            leanerURL: "https://qaautomation.expertusoneqa.cloud/learner/qaautomation/",
+            learnerportal: "https://qaautomation.expertusoneqa.cloud/learner/autoportal/",
+=======
             adminURL: "https://newprod.expertusoneqa.in/backdoor",
             leanerURL: "https://newprod.expertusoneqa.in/learner/newprod/",
             learnerportal: "https://automation.expertusoneqa.in/learner/learnerportal/",
+>>>>>>> origin/master
             learnerportal2: "https://qaautomation.expertusoneqa.cloud/learner/autoportal1/",
             portal1: "qaautomation",
             portal2: "autoportal",

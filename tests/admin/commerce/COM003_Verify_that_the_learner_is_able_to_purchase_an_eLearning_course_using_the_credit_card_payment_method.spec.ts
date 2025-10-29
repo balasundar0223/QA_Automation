@@ -59,7 +59,11 @@ test(`Elearning course creation`, async ({ createCourse, adminHome, createUser }
         await createUser.enter("email", FakerData.getEmail());
         await createUser.enter("user-phone", FakerData.getMobileNumber());
         await createUser.clickSave();
+<<<<<<< HEAD
+        await createUser.clickProceed("Proceed");
+=======
        // await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
         await createUser.verifyUserCreationSuccessMessage();
     }
 
@@ -73,8 +77,13 @@ test(`Login as a learner and verify payment method(Credit card)`, async ({ learn
         { type: `Test Description`, description: `Verify from learner side` }
 
     );
+<<<<<<< HEAD
+    await learnerHome.basicLogin(commerceLearner, "portal1");
+    await learnerHome.termsAndConditionScroll();
+=======
     await learnerHome.basicLogin(commerceLearner, "default");
   //  await learnerHome.termsAndConditionScroll();
+>>>>>>> origin/master
     await learnerHome.clickCatalog();
     await catalog.mostRecent();
     await catalog.searchCatalog(courseName);

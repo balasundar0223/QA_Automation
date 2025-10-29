@@ -73,7 +73,11 @@ test.describe(`Creating a course and attached equivalence & prerequisitw in the 
         await createCourse.providerDropdown()
         await createCourse.selectTotalDuration();
         await createCourse.typeAdditionalInfo();
+<<<<<<< HEAD
+        await createCourse.contentLibrary("samplevideo");
+=======
         await createCourse.contentLibrary();
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickSave();
         await createCourse.clickProceed();
@@ -90,8 +94,12 @@ test.describe(`Creating a course and attached equivalence & prerequisitw in the 
         await createCourse.clickCourseOption("Equivalence")
         await createCourse.addEquivalenceCourse(equivalenceCoursename);
         await createCourse.clickDetailButton();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+=======
         await createCourse.typeDescription("This is a course by name :" + description);
        // await createCourse.clickCatalog();
+>>>>>>> origin/master
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
         await contentHome.gotoListing();

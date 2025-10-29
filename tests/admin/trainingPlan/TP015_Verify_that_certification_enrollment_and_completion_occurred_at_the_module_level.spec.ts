@@ -84,7 +84,10 @@ test.describe(`Verify that certification enrollment and completion occurred at t
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
            await learningPath.description(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
@@ -92,7 +95,11 @@ test.describe(`Verify that certification enrollment and completion occurred at t
 
     })
 
+<<<<<<< HEAD
+    test.skip(`Confirm that a learner can successfully register for and complete a certification through a module`, async ({ learnerHome, catalog }) => {
+=======
     test(`Confirm that a learner can successfully register for and complete a certification through a module`, async ({ learnerHome, catalog }) => {
+>>>>>>> origin/master
 
         test.info().annotations.push(
             { type: `Author`, description: `Tamilvanan` },

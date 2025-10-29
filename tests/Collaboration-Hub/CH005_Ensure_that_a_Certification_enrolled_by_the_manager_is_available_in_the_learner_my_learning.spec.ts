@@ -67,7 +67,10 @@ test.describe(`Confirm that Manager enrollment functions correctly and as expect
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a Certification to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+=======
         await learnerHome.selectCollaborationHub();
+>>>>>>> origin/master
         await managerHome.enterSearchCourse(createdCode);
         await managerHome.clickGuideTeamIcon(title);
         await enrollHome.selectEnroll();

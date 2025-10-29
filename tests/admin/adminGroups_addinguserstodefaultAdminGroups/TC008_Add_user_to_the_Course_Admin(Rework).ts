@@ -46,7 +46,11 @@ test.describe(`TC008_Add user to the Course Admin`, async () => {
             await createUser.enter("user-mobile", FakerData.getMobileNumber());
             await createUser.clickRolesButton("Manager")
             await createUser.clickSave();
+<<<<<<< HEAD
+            await createUser.clickProceed("Proceed");
+=======
        //     await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
             await createUser.verifyUserCreationSuccessMessage();
         }
     });

@@ -4,6 +4,11 @@ import { readDataFromCSV } from '../../../utils/csvUtil';
 import { FakerData } from '../../../utils/fakerUtils';
 import { updateFieldsInJSON } from '../../../utils/jsonDataHandler';
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> origin/master
 const username = FakerData.getUserId();
 test.describe(`Verify_that_user_can_be_successfully_created_with_internal_and_external_org_types`, async () => {
     test.describe.configure({ mode: 'parallel' })
@@ -23,9 +28,12 @@ test.describe(`Verify_that_user_can_be_successfully_created_with_internal_and_ex
         await adminHome.user();
         await createUser.clickCreateUser();
         await createUser.verifyCreateUserLabel();
+<<<<<<< HEAD
+=======
              await createUser.uncheckInheritAddressIfPresent();
             await createUser.uncheckInheritEmergencyContactIfPresent();
             await createUser.uncheckAutoGenerateUsernameIfPresent();
+>>>>>>> origin/master
         await createUser.enter("first_name", FakerData.getFirstName());
         await createUser.enter("last_name", FakerData.getLastName());
         await createUser.enter("username", username);
@@ -37,8 +45,15 @@ test.describe(`Verify_that_user_can_be_successfully_created_with_internal_and_ex
         await createUser.organizationType("Internal")
         await createUser.selectUserType("usertype")
         await createUser.selectjobTitle("jobtitle");
+<<<<<<< HEAD
+        await createUser.selectManager(credentials.MANAGERNAME.username)
+        await createUser.clickSave();
+     //   await createUser.clickProceed("Proceed");
+      //  await createUser.verifyUserCreationSuccessMessage();
+=======
         await createUser.clickSave();
         await createUser.verifyUserCreationSuccessMessage();
+>>>>>>> origin/master
     }
     )
 
@@ -63,9 +78,12 @@ test.describe(`Verify_that_user_can_be_successfully_created_with_internal_and_ex
         await adminHome.user();
         await createUser.clickCreateUser();
         await createUser.verifyCreateUserLabel();
+<<<<<<< HEAD
+=======
                 await createUser.uncheckInheritAddressIfPresent();
             await createUser.uncheckInheritEmergencyContactIfPresent();
             await createUser.uncheckAutoGenerateUsernameIfPresent();
+>>>>>>> origin/master
         await createUser.enter("first_name", FakerData.getFirstName());
         await createUser.enter("last_name", FakerData.getLastName());
         await createUser.enter("username", exusername);
@@ -77,8 +95,15 @@ test.describe(`Verify_that_user_can_be_successfully_created_with_internal_and_ex
         await createUser.organizationType("External")
         await createUser.selectUserType("usertype")
         await createUser.selectjobTitle("jobtitle");
+<<<<<<< HEAD
+        await createUser.selectManager("manager")
+        await createUser.clickSave();
+      //  await createUser.clickProceed("Proceed");
+     //   await createUser.verifyUserCreationSuccessMessage();
+=======
         await createUser.clickSave();
        await createUser.verifyUserCreationSuccessMessage();
+>>>>>>> origin/master
     }
     )
 

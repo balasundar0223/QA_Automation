@@ -28,13 +28,20 @@ test(`Learner signup with mandatory field alone`, async ({ learnerLogin }) => {
        }
 })
 
+<<<<<<< HEAD
+test('Login as a signedup user', async ({ learnerLogin }) => {
+=======
 test('Login as a signedup user', async ({ learnerLogin ,learnerHome}) => {
+>>>>>>> origin/master
      test.info().annotations.push(
             { type: `Author`, description: `Arivazhagan P` },  
         );
     await learnerLogin.basicLogin(username, "Default")
+<<<<<<< HEAD
+=======
      //await learnerHome.termsAndConditionScroll();
 
+>>>>>>> origin/master
 })
 
 test('Verify signedup user exists in the admin side', async ({ adminHome, createUser }) => {

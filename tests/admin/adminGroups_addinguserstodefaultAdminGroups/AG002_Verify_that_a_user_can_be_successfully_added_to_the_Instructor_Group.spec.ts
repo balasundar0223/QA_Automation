@@ -45,7 +45,11 @@ test.describe(`Verify_that_a_user_can_be_successfully_added_to_the_Instructor_Gr
             await createUser.enter("user-mobile", FakerData.getMobileNumber());
             await createUser.clickRolesButton("Instructor");
             await createUser.clickSave();
+<<<<<<< HEAD
+            // await createUser.clickProceed("Proceed");
+=======
            // await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
             await createUser.verifyUserCreationSuccessMessage();
         }
 

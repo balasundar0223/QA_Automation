@@ -36,7 +36,11 @@ test.describe(`Ensure_that_a_course_recommended_by_the_manager_is_available_in_t
             { type: `Test Description`, description: `Ensure that the manager can successfully recommend a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+       // await learnerHome.selectCollaborationHub();
+=======
        await learnerHome.selectCollaborationHub();
+>>>>>>> origin/master
         await managerHome.enterSearchCourse(courseName);
         await managerHome.clickrecommendIcon(courseName)
         await managerHome.verifydirectandIndirect("Direct Report")

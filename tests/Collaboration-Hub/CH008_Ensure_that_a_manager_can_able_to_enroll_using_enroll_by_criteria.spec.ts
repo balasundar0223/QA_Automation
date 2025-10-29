@@ -43,14 +43,22 @@ test.describe(`Ensure that a manager can enroll a team member based on specific 
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+=======
         await learnerHome.selectCollaborationHub();
+>>>>>>> origin/master
         await managerHome.enterSearchCourse(createdCode);
         await managerHome.clickGuideTeamIcon(courseName);
         await enrollHome.selectEnroll();
         await enrollHome.clickSelectedLearner();
         await enrollHome.enrollByCriteria("By Reportees","Direct","Virtual")
+<<<<<<< HEAD
+         await enrollHome.clickEnrollBtn();
+         await enrollHome.verifytoastMessage()
+=======
         await enrollHome.clickEnrollBtn();
         await enrollHome.verifytoastMessage()
+>>>>>>> origin/master
     })
 
 
@@ -60,17 +68,28 @@ test.describe(`Ensure that a manager can enroll a team member based on specific 
             { type: `TestCase`, description: `Verifying team member side after enrolled by specific criteria` },
             { type: `Test Description`, description: `Verifying team member side after enrolled by specific criteria` }
         );
+<<<<<<< HEAD
+        await learnerHome.learnerLogin("TEAMUSER2", "DefaultPortal");
+        await catalog.clickMyLearning();
+        await catalog.searchMyLearning(courseName);
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
         await learnerHome.learnerLogin("TEAMUSER1", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
        // await catalog.verifyEnrolledCourseByCODE(createdCode);
         await catalog.clickCourseInMyLearning(courseName);
+>>>>>>> origin/master
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
         await catalog.clickMyLearning();
         await catalog.clickCompletedButton();
         await catalog.searchMyLearning(courseName);
         await catalog.verifyCompletedCourse(courseName);
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
     })
 
 })

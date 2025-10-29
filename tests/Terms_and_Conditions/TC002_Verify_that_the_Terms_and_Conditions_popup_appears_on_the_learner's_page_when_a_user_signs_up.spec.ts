@@ -11,6 +11,18 @@ const val = fname + " " + lname
 const zcode = FakerData.getPinCode();
 const eMail = FakerData.getEmail();
 
+<<<<<<< HEAD
+test(`Learner signup with mandatory field alone`, async ({ learnerLogin }) => {
+       const csvFilePath = './data/US_address.csv';
+       const data = await readDataFromCSV(csvFilePath);
+
+
+     for (const row of data) {
+           const { country,state,timezone,address1,address2,city,zipcode } = row;
+           await learnerLogin.learnerSignUP("Default", fname, lname, username,eMail,country,state,timezone,address1,address2,city,zipcode)
+           await learnerLogin.clickCreatedAccount();
+       }
+=======
 
 test(`Learner signup with mandatory field alone`, async ({ learnerLogin }) => {
       const csvFilePath = './data/US_address.csv';
@@ -21,6 +33,7 @@ test(`Learner signup with mandatory field alone`, async ({ learnerLogin }) => {
             await learnerLogin.learnerSignUP("Default", fname, lname, username,eMail,country,state,timezone,address1,address2,city,zipcode)
             await learnerLogin.clickCreatedAccount();
         }
+>>>>>>> origin/master
 })
 
 test('Login as a signedup user and handling Terms and conditions popup', async ({ learnerLogin,learnerHome }) => {

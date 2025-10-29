@@ -9,7 +9,11 @@ const courseName = FakerData.getCourseName();
 const sessionName = FakerData.getSession();
 const description = FakerData.getDescription();
 let createdCode: any
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 const pageUrl = URLConstants.adminURL;
 test.describe(`Confirm that admin able to create recurring session for ILT course`, () => {
     test.describe.configure({ mode: "serial" });

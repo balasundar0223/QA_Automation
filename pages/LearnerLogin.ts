@@ -14,7 +14,12 @@ const firstName = "#first_name";
 const last_name = "#last_name";
 const user_name = "#user_name";
 const password = "#password";
+<<<<<<< HEAD
+// const confpass = "#confirmpassword";
+const confpass ="//input[@id='confirmpassword']";
+=======
 const confpass = "//input[@id='confirmpassword']";
+>>>>>>> origin/master
 const zipcode = "#zip_code";
 const createAccount = "//button[text()='Create Account']";
 const email = "#email";
@@ -37,9 +42,12 @@ const dropdownOption = (data: string) => `//span[text()='${data}']`;
 const passwordAttemptErrMsg =
     `//span[text()='Your account has been temporarily locked after 3 unsuccessful login attempts. Please try again later.']`
 
+<<<<<<< HEAD
+=======
  //Landing page verification
  const pageName = (data: string) => `(//h1[text()='${data}'])[1]`;
 
+>>>>>>> origin/master
 export class LearnerLogin extends PlaywrightWrapper {
 
 
@@ -393,10 +401,16 @@ export class LearnerLogin extends PlaywrightWrapper {
         throw error;
     }
 
+<<<<<<< HEAD
+
+
+
+=======
 async verifyLandingPage(page:string) {
     await this.wait("minWait");
     await this.verification(pageName(page), page);
 }
+>>>>>>> origin/master
 
 
 

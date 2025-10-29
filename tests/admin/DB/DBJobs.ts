@@ -262,6 +262,9 @@ async function course_session_details() {
 
 }
 
+<<<<<<< HEAD
+export { courseEnrollmentCron,programEnrollmentCron, certificationExpiry_CronJob, updatecronForBanner,catalogDetail, course_session_details,updatetableForAnnoncement, updateCertificationComplianceFlow, updateSingleInstanceAutoRegister,passwordHistoryStatusUpdate}
+=======
 //DB Verification for user GUID in customer_custom_id
 async function verifyUserGuidInDatabase(userId: string, expectedGuid: string) {
     try {
@@ -288,3 +291,4 @@ async function verifyUserGuidInDatabase(userId: string, expectedGuid: string) {
 }
 
 export { courseEnrollmentCron,programEnrollmentCron, certificationExpiry_CronJob, updatecronForBanner,catalogDetail, course_session_details,updatetableForAnnoncement, updateCertificationComplianceFlow, updateSingleInstanceAutoRegister,passwordHistoryStatusUpdate,verifyUserGuidInDatabase}
+>>>>>>> origin/master

@@ -1,5 +1,10 @@
 import { test } from "../../../customFixtures/expertusFixture";
 import { FakerData } from "../../../utils/fakerUtils";
+<<<<<<< HEAD
+import { URLConstants } from "../../../constants/urlConstants";
+
+=======
+>>>>>>> origin/master
 
 let courseName = FakerData.getCourseName();
 const description = FakerData.getDescription();

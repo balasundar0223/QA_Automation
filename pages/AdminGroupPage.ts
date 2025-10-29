@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import { Page, BrowserContext } from "@playwright/test";
+import { URLConstants } from "../constants/urlConstants";
+import { PlaywrightWrapper } from "../utils/playwright"
+=======
 import { Page, BrowserContext, Download } from "@playwright/test";
 import { URLConstants } from "../constants/urlConstants";
 import { PlaywrightWrapper } from "../utils/playwright";
@@ -5,19 +10,26 @@ import { ExportValidator } from "../utils/exportValidator";
 import { ExportPage } from "./ExportPage";
 import * as path from 'path';
 import * as fs from 'fs';
+>>>>>>> origin/master
 
 
 export class AdminGroupPage extends PlaywrightWrapper {
 
     static pageUrl = URLConstants.adminURL;
+<<<<<<< HEAD
+=======
     private exportPage: ExportPage;
+>>>>>>> origin/master
 
     public selectors = {
         clickAdminGroup: (user: string) => `//div[text()='${user}']`,
         searchUser: "#includeLearner-filter-field",
+<<<<<<< HEAD
+=======
         userSearchDropdown: `//button[@data-id='includeLearner'][@data-bs-toggle='dropdown']`,
         userSearchDropdownMain: `(//h6[text()='Select User']//following::div[@class='filter-option-inner'])[1]`,
         userSearchDropdownOption: (option: string) => ` //a[contains(@class,'dropdown-item')]//following::span[text()='${option}']`,
+>>>>>>> origin/master
         chooseUser: (user: string) => `//li[text()='${user}']`,
         //(username:string)=>`//span[text()=${username}]/following::i[contains(@class,'fa-square icon')][1]
         //selectUser:`(//div[contains(@class,'custom-control custom-chkbox')])[2]`,
@@ -33,6 +45,16 @@ export class AdminGroupPage extends PlaywrightWrapper {
         selectRole: (roleName: string) => `//a[@class='dropdown-item']//span[text()='${roleName}']`,
         saveAdminGroup: `#lrnSaveUpdate`,
         proceedButton: `//button[contains(text(),'Yes, Proceed')]`,
+<<<<<<< HEAD
+        clickActivateBtn:`//span[text()='Activate']`,
+        adminGroupValue: `//label[text()='Learner Group']//preceding::label[@class='form-label d-block my-0 me-1 text-break']`,
+        adminGroupValueInUser: `//label[text()='Admin Group']//following::label[@class='form-label d-block my-0 me-1 text-break']`,
+        selectOrganization:`//i[@class='fa fa-duotone fa-arrow-up-right-from-square icon_14_1']`,
+        searchOrganization:`//input[contains(@id,'org-exp-search')]`,
+        checkOrganization:`//i[@class='fa-duotone fa-square icon_14_1 me-1']`,
+        SaveOk:`//button[text()='OK']`,
+        clickYes:`//button[text()='Yes']`
+=======
         yesButton: `//button[text()='Yes']`,
         clickActivateBtn:`//span[text()='Activate']`,
         activateGroupBtn: `//a[@data-bs-toggle='tooltip'][@aria-label='Activate']`,
@@ -51,11 +73,15 @@ export class AdminGroupPage extends PlaywrightWrapper {
         addedUsers:`//h6[text()='ADDED USERS']/following-sibling::div[@class='slimScrollDiv']//span`,
         editGroupButton: (groupName: string) => `(//div[text()='${groupName}']/following::a[@aria-label='Edit'])[1]`
 
+>>>>>>> origin/master
     }
 
     constructor(page: Page, context: BrowserContext) {
         super(page, context);
+<<<<<<< HEAD
+=======
         this.exportPage = new ExportPage(page, context);
+>>>>>>> origin/master
     }
 
 
@@ -64,7 +90,10 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     }
     public async clickGroup(data: string) {
+<<<<<<< HEAD
+=======
         await this.wait('minWait');
+>>>>>>> origin/master
         await this.mouseHover(this.selectors.chooseUser(data), "POP up ");
         await this.click(this.selectors.chooseUser(data), "Pop up", "Clicked");
         await this.click(this.selectors.clickAdminGroup(data), "Customer Admin", "Button");
@@ -110,6 +139,10 @@ export class AdminGroupPage extends PlaywrightWrapper {
 
     public async searchUser(data: string) {
         await this.typeAndEnter(this.selectors.searchUser, "Search User", data);
+<<<<<<< HEAD
+
+    }
+=======
     }
 
     public async selectUserSearchType(searchType: string) {
@@ -121,6 +154,7 @@ export class AdminGroupPage extends PlaywrightWrapper {
     }
 
 
+>>>>>>> origin/master
     public async clickuserCheckbox(username: string) {
         await this.validateElementVisibility(this.selectors.selectUser, username);
         await this.click(this.selectors.selectUser, username, "CheckBox");
@@ -137,13 +171,20 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.click(this.selectors.selectUpdate, "Update", "Button");
     }
     public async clickCreateGroup() {
+<<<<<<< HEAD
+=======
         await this.wait("minWait")
         await this.validateElementVisibility(this.selectors.createGroupButton, "Create Group");
+>>>>>>> origin/master
         await this.click(this.selectors.createGroupButton, "Create Group", "Button")
     }
 
     public async enterGroupTitle(title: string) {
+<<<<<<< HEAD
+        await this.type(this.selectors.groupTitle, "Custome Group title", title)
+=======
         await this.type(this.selectors.groupTitle, "Custom Group title", title)
+>>>>>>> origin/master
 
     }
 
@@ -189,6 +230,8 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.validateElementVisibility(this.selectors.clickActivateBtn, "Activate");
         await this.click(this.selectors.clickActivateBtn, "Activate", "Radio");
     }
+<<<<<<< HEAD
+=======
     async clickSuspend() {
         await this.validateElementVisibility(this.selectors.suspendBtn, "Suspend");
         await this.click(this.selectors.suspendBtn, "Suspend", "Button");
@@ -208,10 +251,24 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.wait("maxWait");
         await this.validateElementVisibility(this.selectors.suspendIconBtn, "Suspend Button");
     }
+>>>>>>> origin/master
     public async clickSelelctUsers() {
         await this.click(this.selectors.clickSelectUser, "Username", "Checkbox ");
     }
 
+<<<<<<< HEAD
+    public async assignOrganization(data:string) {
+        await this.click(this.selectors.selectOrganization, "Assign Organization", "Button");
+        await this.typeAndEnter(this.selectors.searchOrganization, "Search Organization", data);
+        await this.click(this.selectors.checkOrganization,"Organization","Checkbox");
+        await this.click(this.selectors.SaveOk,"OK Button","Button");
+    }
+
+    async clickYes(){
+        await this.click(this.selectors.clickYes,"Yes Button","Button");
+        await this.wait("minWait")
+    }
+=======
     public async verifyAccessButtonDisabled() {
         await this.wait("mediumWait");
         const accessButtonLocator = this.page.locator(this.selectors.accessButton);
@@ -549,4 +606,5 @@ export class AdminGroupPage extends PlaywrightWrapper {
         await this.click(this.selectors.editGroupButton(groupName), "Edit Group Button", "Button");
     }
 
+>>>>>>> origin/master
 }

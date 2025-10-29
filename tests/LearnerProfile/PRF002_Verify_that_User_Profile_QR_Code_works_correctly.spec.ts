@@ -7,14 +7,22 @@ const Jimp = require("jimp");
 const QrCode = require("qrcode-reader");
 const courseName = FakerData.getCourseName();
 const description = FakerData.getDescription();
+<<<<<<< HEAD
+    const courseAdmin: any = FakerData.getUserId()
+=======
 const courseAdmin: any = FakerData.getUserId()
+>>>>>>> origin/master
 test.describe(`QR code reading user profile.`, async () => {
 test.describe.configure({ mode: "serial" });
 //let adminGroupsInAccess: string[] = [];
 //let adminGroups: string[] = [];
 const courseAdmin: any = FakerData.getUserId()
 
+<<<<<<< HEAD
+  test(`Verify that User Profile QR Code works correctly`, async ({ learnerHome,learnerGroup, page, profile ,createUser,adminHome,createCourse,adminGroup}) => {
+=======
   test(`Verify that User Profile QR Code works correctly`, async ({ learnerHome, page,createUser,adminHome}) => {
+>>>>>>> origin/master
     test.info().annotations.push(
       { type: `Author`, description: `MANIKANDAN_V` },
       { type: `TestCase`, description: `Verify that UserProfile QR_Code` },
@@ -43,6 +51,18 @@ const courseAdmin: any = FakerData.getUserId()
     await createUser.enter("email", actual_learneremail);
     const actual_learnerphone =  FakerData.getMobileNumber();
     await createUser.enter("user-phone",actual_learnerphone);
+<<<<<<< HEAD
+    await createUser.typeAddress("Address 1", FakerData.getAddress());
+    await createUser.typeAddress("Address 2", FakerData.getAddress());
+    await createUser.select("Country", country);
+    await createUser.select("State/Province", state);
+    await createUser.select("Time Zone", timezone);
+    await createUser.select("Currency", currency);
+    await createUser.enter("user-city", city);
+    await createUser.enter("user-zipcode", zipcode);
+    await createUser.clickSave();
+    await learnerHome.basicLogin(courseAdmin, "portal1");
+=======
     // await createUser.typeAddress("Address 1", FakerData.getAddress());
     // await createUser.typeAddress("Address 2", FakerData.getAddress());
     // await createUser.select("Country", country);
@@ -54,6 +74,7 @@ const courseAdmin: any = FakerData.getUserId()
     await createUser.clickSave();
     await learnerHome.basicLogin(courseAdmin, "default");
    //await learnerHome.termsAndConditionScroll();
+>>>>>>> origin/master
     await learnerHome.clickmyprofile();
     const qrLink = await learnerHome.captureAndReadQRCode();
     console.log("QR Code Value:", qrLink);

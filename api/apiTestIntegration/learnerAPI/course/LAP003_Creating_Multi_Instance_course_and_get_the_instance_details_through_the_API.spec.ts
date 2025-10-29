@@ -50,11 +50,18 @@ test.describe(`Creating a `, async () => {
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
     //    await createCourse.typeDescription(description);
     //     await createCourse.clickCatalog();
     //     await createCourse.clickUpdate();
     //     await createCourse.verifySuccessMessage();
     //     await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         await createCourse.addInstances();
 
         async function addinstance(deliveryType: string) {

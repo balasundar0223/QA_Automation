@@ -49,6 +49,11 @@ test.describe(`Verify that admin able to increase the seats for E-learning and u
                 await adminHome.clickEnroll();
                 await enrollHome.selectBycourse(courseName)
                 await enrollHome.clickSelectedLearner();
+<<<<<<< HEAD
+                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                await enrollHome.clickEnrollBtn();
+=======
                        await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
                        await enrollHome.clickEnrollBtn(); 
                        await enrollHome.clickGotoHome()
@@ -60,6 +65,7 @@ test.describe(`Verify that admin able to increase the seats for E-learning and u
                        //await enrollHome.clickSelectedLearner();
                        await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
                        await enrollHome.clickEnrollBtn();
+>>>>>>> origin/master
                 await enrollHome.verifyMaxSeatOverRidePopup();
                 await enrollHome.verifytoastMessage()
     })
@@ -95,7 +101,10 @@ test.describe(`Verify that admin able to increase the seats for E-learning and u
         await createCourse.catalogSearch(courseName)
         await createCourse.clickEditIcon();
         await createCourse.setSeatsMax('3')
+<<<<<<< HEAD
+=======
         await createCourse.typeDescription("This is a new course by name :" + description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

@@ -38,9 +38,12 @@ test(`Verify that user address validation functionality working as expected for 
         await adminHome.user();
         await createUser.clickCreateUser();
         await createUser.verifyCreateUserLabel()
+<<<<<<< HEAD
+=======
              await createUser.uncheckInheritAddressIfPresent();
             await createUser.uncheckInheritEmergencyContactIfPresent();
             await createUser.uncheckAutoGenerateUsernameIfPresent();
+>>>>>>> origin/master
         await createUser.enter("first_name", FakerData.getFirstName());
         await createUser.enter("last_name", FakerData.getLastName());
         await createUser.enter("username", courseAdmin);
@@ -62,8 +65,13 @@ test(`Verify that user address validation functionality working as expected for 
 
     for (const row of data) {
         const { country,state,timezone,address1,address2,city,zipcode } = row;
+<<<<<<< HEAD
+        await learnerHome.basicLogin(courseAdmin, "portal1");
+        await learnerHome.termsAndConditionScroll();
+=======
         await learnerHome.basicLogin(courseAdmin, "default");
        //await learnerHome.termsAndConditionScroll();
+>>>>>>> origin/master
         await profile.clickProfile();
         await profile.preferenceTab();
         await profile.typeAddress("Address 1",address1 );

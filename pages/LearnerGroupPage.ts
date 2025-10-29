@@ -11,7 +11,11 @@ export class LearnerGroupPage extends PlaywrightWrapper {
         createGroupbtn: `//button[text()='CREATE GROUP']`,
         clickSelectLearner: `//button[@id="AddUserSave"]`,
         clickAccess: `(//span[text()='Access'])[1]`,
+<<<<<<< HEAD
+        adminGroupWrapper: `(//label[contains(text(),'Admin Group')]/following::div)[1]`,
+=======
         adminGroupWrapper: `//label[contains(text(),'Admin Group')]/following::div[1]`,
+>>>>>>> origin/master
         adminGroupsearch: `//label[text()='Admin Group']/following::input[@type='search']`,
         adminGroupLink: (adminGroup: string) => `(//label[text()='Admin Group']//following::span[text()='${adminGroup}'])[1]`,
         okButton: `//button[text()='OK']`,

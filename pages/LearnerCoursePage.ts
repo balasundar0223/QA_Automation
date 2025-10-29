@@ -13,14 +13,21 @@ export class LearnerCoursePage extends CatalogPage {
         submitAnswers: `(//span[text()='Submit my Answers'])[2]`,
         contentProgressStatus: `//span[text()='100%']`,
         reEnrollBtn: `//button[text()='re-enroll']`,
+<<<<<<< HEAD
+        reEnrollPopUp: `//span[contains(text(),"You've previously been enrolled within the same course")]//parent::div//following-sibling::div/button[text()='re-enroll']`,
+=======
         reEnrollPopUp: `//span[contains(text(),"You are attempting to retake a class of the same course that you have already completed. Would you like to proceed?")]//parent::div//following-sibling::div/button[text()='Yes']`,
+>>>>>>> origin/master
         requestClass: `//span[text()='REQUEST CLASS']`,
         messageTOadmin: `//textarea[@id='reqclsmsg']`,
         submitButton: `//button[@id='reqcls-btn-submit']`,
         closeButton: `//div[contains(@id,'simplemodal')]//i[contains(@class,'fa-duotone fa-times icon')]`,
         reEnrolledCourses: (index: number) => `//button[text()='re-enroll']/following::span[contains(@class,'field_title')][${index}]`,
+<<<<<<< HEAD
+=======
         sessionConflictPopup:`//div[contains(@class,'justify-content-center')]//span[contains(text(),'Session has conflict')]`,
         yesBtn:`//button[text()='Yes']`
+>>>>>>> origin/master
 
     };
 
@@ -32,7 +39,11 @@ export class LearnerCoursePage extends CatalogPage {
         const videoSeq = this.selectors.contentPlaySeq
         const length = await this.page.locator(this.selectors.contentPlaySeq).count();
         const randomIndex = Math.floor(Math.random() * length) + 1;
+<<<<<<< HEAD
+        await this.click(this.selectors.conentSeqOption(2), "All contents", "Checkbox")
+=======
         await this.click(this.selectors.conentSeqOption(2), "All contents", "Checkb ox")
+>>>>>>> origin/master
     }
 
     public async clickfirstcontent() {
@@ -62,8 +73,16 @@ export class LearnerCoursePage extends CatalogPage {
     }
 
     async clickReEnroll() {
+<<<<<<< HEAD
+
+        await this.click(this.selectors.reEnrollBtn, "ReEnroll", "Button");
+        await this.validateElementVisibility(this.selectors.reEnrollPopUp, "ReEnroll");
+        await this.click(this.selectors.reEnrollPopUp, "ReEnroll", "Button");
+
+=======
         await this.wait("minWait")
         await this.click(this.selectors.reEnrollBtn, "ReEnroll", "Button");
+>>>>>>> origin/master
     }
 
     async verifyRequestClass() {
@@ -85,6 +104,10 @@ export class LearnerCoursePage extends CatalogPage {
         for (let i = 1; i <= count; i++) {
             return await this.getInnerText(this.selectors.reEnrolledCourses(i))
         }
+<<<<<<< HEAD
+
+
+=======
     }
     async reEnrollPopup(){
         await this.wait("minWait")
@@ -95,5 +118,6 @@ export class LearnerCoursePage extends CatalogPage {
             await this.click(this.selectors.yesBtn,"Yes","Button")
             await this.wait("maxWait")
         }
+>>>>>>> origin/master
     }
 }

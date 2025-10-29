@@ -2,7 +2,11 @@ import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from "../../../utils/fakerUtils";
 
 const customAdmin: any = FakerData.getUserId();
+<<<<<<< HEAD
+let adminGroupName: string = "DemoAdmin"
+=======
 let adminGroupName: string = "AG Mesh Content"
+>>>>>>> origin/master
 test(`Create User and assigning Group to the User`, async ({ adminHome, createCourse, createUser, adminGroup }) => {
     test.info().annotations.push(
         { type: 'Author', description: 'Ajay Michael' },
@@ -19,7 +23,11 @@ test(`Create User and assigning Group to the User`, async ({ adminHome, createCo
     await createUser.enter("user-password", "Welcome1@");
     await createUser.clickRolesButton("Manager");
     await createUser.clickSave();
+<<<<<<< HEAD
+    await createUser.clickProceed("Proceed");
+=======
     //await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
     await createUser.verifyUserCreationSuccessMessage();
     await adminHome.menuButton();
     await adminHome.people();

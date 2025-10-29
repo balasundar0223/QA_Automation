@@ -39,10 +39,17 @@ test.describe(`Verify_that_the_admin_can_cancel_an_VC_class_with_active_enrollme
         tag = await editCourse.selectTags();
         console.log(tag);
         await editCourse.clickClose();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
         // await createCourse.verifySuccessMessage();
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         await createCourse.addInstances();
 
         async function addinstance(deliveryType: string) {

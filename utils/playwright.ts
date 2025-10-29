@@ -384,7 +384,11 @@ export abstract class PlaywrightWrapper {
     }
 
 
+<<<<<<< HEAD
+    async validateElementVisibility(locator: any, elementName: string) {
+=======
     async validateElementVisibility(locator: any, elementName: string, p0?: { timeout: number; }) {
+>>>>>>> origin/master
         try {
             const element = this.page.locator(locator);
             await this.page.waitForSelector(locator, { state: 'attached', timeout: 40000, strict: true });
@@ -430,6 +434,15 @@ export abstract class PlaywrightWrapper {
         try {
             switch (waitType) {
                 case 'minWait':
+<<<<<<< HEAD
+                    await this.page.waitForTimeout(2000);
+                    break;
+                case 'mediumWait':
+                    await this.page.waitForTimeout(5000);
+                    break;
+                case 'maxWait':
+                    await this.page.waitForTimeout(10000);
+=======
                     await this.page.waitForTimeout(1000);
                     break;
                 case 'mediumWait':
@@ -437,6 +450,7 @@ export abstract class PlaywrightWrapper {
                     break;
                 case 'maxWait':
                     await this.page.waitForTimeout(5000);
+>>>>>>> origin/master
                     break;
                 default:
                     console.log("Invalid wait type provided.");
@@ -452,6 +466,15 @@ export abstract class PlaywrightWrapper {
         await this.wait('minWait');
         const spinner = this.page.locator("[class='p-3'] svg");
         try {
+<<<<<<< HEAD
+            await expect.soft(spinner).toHaveCount(0, { timeout: 60000 });
+            console.log("Expected element is disabled");
+        } catch (error) {
+            console.log("Spinner is still present or assertion failed. Continuing execution.");
+        }
+    }
+
+=======
              await Promise.race([
             spinner.first().waitFor({ state: 'detached', timeout: 60000 }),
             expect(spinner).toBeHidden({ timeout: 60000 })
@@ -462,6 +485,7 @@ export abstract class PlaywrightWrapper {
     }
 
 
+>>>>>>> origin/master
     async typeText(locator: string, name: string, data: Promise<string | null>) {
         const resolvedData = await data;
         await test.step(`Textbox ${name} filled with data: ${resolvedData}`, async () => {

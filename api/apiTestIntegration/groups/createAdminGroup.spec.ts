@@ -13,7 +13,11 @@ let title1: any;
 let status = "active";
 let admin_roles:any=[];
 
+<<<<<<< HEAD
+let included_users=credentials.LEARNERUSERNAME.username;
+=======
 let included_users= FakerData.getUserId()
+>>>>>>> origin/master
 //let valid_till: any= getFutureDate()
 let valid_till: any= "10/05/2035"   //MM/DD/YYYY format
 
@@ -36,6 +40,8 @@ test.beforeAll('Generate Access Tokken', async () => {
 
 test.describe(`Verify the privileges and search functionality`, async () => {
     test.describe.configure({ mode: 'serial' })
+<<<<<<< HEAD
+=======
     test(`Creating an user for AdminGroup API`, async ({ adminHome, editCourse, createUser, learnerHome, adminRoleHome, adminGroup, createCourse, contentHome, learnerGroup }) => {
     test.info().annotations.push(
         { type: `Author`, description: `Tamilvanan` },
@@ -58,6 +64,7 @@ test.describe(`Verify the privileges and search functionality`, async () => {
            // await contentHome.gotoListing();
     });
 
+>>>>>>> origin/master
     test(`Verify the Custom role creation with all privileges `, async ({ adminHome, adminGroup, adminRoleHome }) => {
         test.info().annotations.push(
             { type: `Author`, description: `Arivazhagan P` },

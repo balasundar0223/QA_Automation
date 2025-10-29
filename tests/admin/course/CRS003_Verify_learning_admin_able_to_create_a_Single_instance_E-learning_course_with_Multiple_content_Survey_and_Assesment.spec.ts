@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import path from "path";
+=======
  import path from "path";
+>>>>>>> origin/master
 import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from "../../../utils/fakerUtils"
 
@@ -33,7 +37,10 @@ test.describe(`Verify learning admin able to create a Singleinstance E-learning 
         await createCourse.editcourse()
         await createCourse.addsurvey_course()
         await createCourse.addAssesment()
+<<<<<<< HEAD
+=======
         
+>>>>>>> origin/master
         await createCourse.save_editedcoursedetails()
         await createCourse.verifySuccessMessage()
 

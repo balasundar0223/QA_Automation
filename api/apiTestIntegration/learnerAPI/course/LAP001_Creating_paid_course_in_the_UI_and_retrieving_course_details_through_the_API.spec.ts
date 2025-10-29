@@ -42,7 +42,11 @@ test.describe(`Creating a paid course in the UI and retrieving course details th
         await createCourse.selectCurrency();
         await createCourse.selectTotalDuration();
         await createCourse.typeAdditionalInfo();
+<<<<<<< HEAD
+        await createCourse.contentLibrary("samplevideo");
+=======
         await createCourse.contentLibrary();
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickSave();
         await createCourse.clickProceed();
@@ -52,8 +56,12 @@ test.describe(`Creating a paid course in the UI and retrieving course details th
         await editCourse.clickTagMenu();
         tag = await editCourse.selectTags();
         await editCourse.clickClose();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+=======
         await createCourse.typeDescription("This is a course by name :" + description);
       //  await createCourse.clickCatalog();
+>>>>>>> origin/master
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
         await contentHome.gotoListing();

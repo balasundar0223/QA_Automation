@@ -17,19 +17,35 @@ let roleName1:any;
 
 
 
+<<<<<<< HEAD
+let included_users=credentials.LEARNERUSERNAME.username;
+=======
 let included_users= FakerData.getUserId()
+>>>>>>> origin/master
 //let valid_till: any= getFutureDate()
 let valid_till: any= "10/05/2035"   //MM/DD/YYYY format
 
 
+<<<<<<< HEAD
+//title = "AG"+'_'+ FakerData.getCategory();
+//code = "AG"+generateCode();
+=======
 title = "AG"+'_'+ FakerData.getCategory();
 code = "AG"+generateCode();
+>>>>>>> origin/master
 title1= "AG"+' '+FakerData.getCategory();
 //roleName = FakerData.getFirstName() + "role"
 roleName1 = FakerData.getFirstName() + "role"
 
  //admin_roles=roleName,roleName1;
+<<<<<<< HEAD
+ //Hot code values:-
+title="DebugGroup66";
+code="AG_006666";
+roleName="Registrar";
+=======
 roleName = FakerData.getFirstName() + " role";
+>>>>>>> origin/master
 
 
 test.beforeAll('Generate Access Tokken', async () => {
@@ -40,6 +56,9 @@ test.beforeAll('Generate Access Tokken', async () => {
 
 test.describe(`Verify the privileges and search functionality`, async () => {
     test.describe.configure({ mode: 'serial' })
+<<<<<<< HEAD
+    test.skip(`Verify the Custom role creation with all privileges `, async ({ adminHome, adminRoleHome }) => {
+=======
     test(`Creating an user for AdminGroup API`, async ({ adminHome, editCourse, createUser, learnerHome, adminRoleHome, adminGroup, createCourse, contentHome, learnerGroup }) => {
     test.info().annotations.push(
         { type: `Author`, description: `Tamilvanan` },
@@ -62,6 +81,7 @@ test.describe(`Verify the privileges and search functionality`, async () => {
         //    await contentHome.gotoListing();
     });
     test(`Verify the Custom role creation with all privileges `, async ({ adminHome, adminRoleHome }) => {
+>>>>>>> origin/master
         test.info().annotations.push(
             { type: `Author`, description: `Arivazhagan P` },
             { type: `Testcase`, description: `Verify the Custom role creation` },
@@ -77,7 +97,11 @@ test.describe(`Verify the privileges and search functionality`, async () => {
         await adminRoleHome.clickSave()
         await adminRoleHome.verifyRole(roleName)
     })
+<<<<<<< HEAD
+test.skip(`2_Verify the Custom role creation with all privileges `, async ({ adminHome, adminRoleHome }) => {
+=======
 test(`2_Verify the Custom role creation with all privileges `, async ({ adminHome, adminRoleHome }) => {
+>>>>>>> origin/master
         test.info().annotations.push(
             { type: `Author`, description: `Arivazhagan P` },
             { type: `Testcase`, description: `Verify the Custom role creation` },
@@ -102,9 +126,15 @@ test('Verify that a group can be created using the `createGroupAPI`', async () =
     console.log("Debug1:"+' '+code); 
 });
 
+<<<<<<< HEAD
+test.skip('Verify that a group can be created with users and validity using the `updateGroupAPI`', async () => {
+
+    await updateAdminGroup_fn(updateAdminGroup(title1,code,"active",included_users,valid_till), { Authorization: access_token });   
+=======
 test('Verify that a group can be created with users and validity using the `updateGroupAPI`', async () => {
 
     await updateAdminGroup_fn(updateAdminGroup(title1,code,"active",roleName1,included_users,valid_till), { Authorization: access_token });   
+>>>>>>> origin/master
     console.log("Group created successfully with included users and valid till date");
         console.log("Debug2:"+' '+code); 
     console.log(included_users);

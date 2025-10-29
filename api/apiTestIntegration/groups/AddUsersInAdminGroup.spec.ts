@@ -23,8 +23,13 @@ code1 = "AG" + '_' + generateCode();
 //const roleName = FakerData.getFirstName() + "_role"
 //const roleName1 = FakerData.getFirstName() + "_role"
 
+<<<<<<< HEAD
+const roleName="Donald_role";
+const roleName1="Emma_role";
+=======
 const roleName=FakerData.getFirstName() + " AdminRole"
 const roleName1=FakerData.getFirstName() + " AdminRole"
+>>>>>>> origin/master
 
 
 

@@ -51,8 +51,12 @@ test.describe(`Confirm that Admin enrollments functions correctly and as expecte
         await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
+<<<<<<< HEAD
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
        // await catalog.verifyEnrolledCourseByCODE(createdCode);
                 await catalog.clickCourseInMyLearning(courseName);
+>>>>>>> origin/master
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
         await catalog.clickMyLearning();

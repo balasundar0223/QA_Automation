@@ -53,7 +53,10 @@ export class EnrollmentPage extends AdminHomePage {
         clickYesBtn: `//button[text()='Yes']`,
         okBtn: "//button[text()='OK']",
         clickEnrollButton: `//a[contains(@class,'btn') and text()='Enroll']`,
+<<<<<<< HEAD
+=======
         goToHome: `//a[text()='Go to Home']`,
+>>>>>>> origin/master
         
         //selecting the user for order creation
         selectUserForOrderCreation: (data: string) => `//td[contains(text(),'${data}')]//following::i[contains(@class,'fa-circle icon')][1]`,
@@ -65,7 +68,12 @@ export class EnrollmentPage extends AdminHomePage {
         paymentMethodDropdown: `//label[text()='Payment Method']//following::div[@id='wrapper-state']`,
         paymentMethod: (option: string) => `//span[text()='${option}']`,
         orderSuccessMsg: `//section[contains(@class,'lms-success')]//h3`,
+<<<<<<< HEAD
+
+
+=======
         loadMoreBtn: `//button[text()='Load More']`,
+>>>>>>> origin/master
 
 
     };
@@ -108,12 +116,18 @@ export class EnrollmentPage extends AdminHomePage {
 
     }
     async clickSelectedLearner() {
+<<<<<<< HEAD
+=======
         await this.wait("minWait")
+>>>>>>> origin/master
         await this.click(this.selectors.selectedLearners, "Select Learners", "Button")
 
     }
     async enterSearchUser(data: string) {
+<<<<<<< HEAD
+=======
         await this.wait("minWait")
+>>>>>>> origin/master
         await this.type(this.selectors.searchcourseOrUser, "Course Name", data)
         const index = await this.page.locator("//div[contains(@id,'lms-scroll-results')]//li").count();
         const randomIndex = Math.floor(Math.random() * index) + 1;
@@ -123,10 +137,13 @@ export class EnrollmentPage extends AdminHomePage {
     async clickEnrollBtn() {
         await this.click(this.selectors.enrollBtn, "Enroll", "Button")
     }
+<<<<<<< HEAD
+=======
     async clickGotoHome(){
         await this.wait("minWait")
         await this.click(this.selectors.goToHome, "Go to Home", "Button")
     }
+>>>>>>> origin/master
     async verifytoastMessage() {
         await this.verification(this.selectors.toastMeassage, "Enrollment")
     }
@@ -188,6 +205,12 @@ export class EnrollmentPage extends AdminHomePage {
     }
     //Enrollment by manager
 
+<<<<<<< HEAD
+    async changeEnrollmentStatus(code: string, data: string) {
+        await this.validateElementVisibility(this.selectors.enrollementSts(code), "View/Update Status");
+        await this.click(this.selectors.enrollementSts(code), "View/Update Statusr", "Dropdown")
+        await this.page.locator(this.selectors.enrollORCancel(data)).last().click({ force: true });
+=======
 
     async changeEnrollmentStatus(code: string, data: string) {
         await this.wait("mediumWait")
@@ -215,6 +238,7 @@ export class EnrollmentPage extends AdminHomePage {
         }
         // After all attempts, if not found, throw error
         throw new Error(`Enrollment status code '${code}' not found after loading all pages.`);
+>>>>>>> origin/master
     }
     //Enrollment by manager
 
@@ -297,7 +321,11 @@ export class EnrollmentPage extends AdminHomePage {
     }
     async verifyMaxSeatPopup() {
         await this.wait('mediumWait');
+<<<<<<< HEAD
+        await this.verification(this.selectors.seatMaxPopupMsg, "was not successful")
+=======
         await this.verification(this.selectors.seatMaxPopupMsg, "only for 0 users")
+>>>>>>> origin/master
         await this.click(this.selectors.okBtn, "Ok", "Button")
     }
     async clickEnrollButton() {
@@ -305,6 +333,14 @@ export class EnrollmentPage extends AdminHomePage {
         await this.click(this.selectors.clickEnrollButton, "Enroll Button", "Button")
     }
 
+<<<<<<< HEAD
+
+
+
+
+
+}    
+=======
    async selectclassBtn(){
         await this.validateElementVisibility(this.selectors.selectClassBtn, "Select Class Button");
         await this.click(this.selectors.selectClassBtn, "Select Class Button", "Button")
@@ -329,3 +365,4 @@ export class EnrollmentPage extends AdminHomePage {
         await this.click(this.selectors.enrollBtn, "Select Course", "Button");
     }
 }
+>>>>>>> origin/master

@@ -50,7 +50,7 @@ test.describe(`Verify_that_a_user_can_be_successfully_created_and_added_to_the_S
             await createUser.enter("user-mobile", FakerData.getMobileNumber());
             await createUser.clickRolesButton(rowData?.roles)
             await createUser.clickSave();
-         //   await createUser.clickProceed("Proceed");
+
             await createUser.verifyUserCreationSuccessMessage();
         }
     });

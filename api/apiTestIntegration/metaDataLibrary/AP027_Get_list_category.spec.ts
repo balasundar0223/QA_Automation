@@ -14,7 +14,11 @@ test.beforeAll('Generate Access Tokken', async () => {
 });
 
    const categoryName: any = "API" + FakerData.getCategory();
+<<<<<<< HEAD
+    test.skip(`Ensure that a new category can be created successfully`, async ({ adminHome, createCourse,metadatalibrary }) => {
+=======
     test(`Ensure that a new category can be created successfully`, async ({ adminHome, createCourse,metadatalibrary }) => {
+>>>>>>> origin/master
         test.info().annotations.push(
             { type: 'Author', description: 'Tamilvanan' },
             { type: 'TestCase', description: 'Ensure that a new category can be created successfully' },

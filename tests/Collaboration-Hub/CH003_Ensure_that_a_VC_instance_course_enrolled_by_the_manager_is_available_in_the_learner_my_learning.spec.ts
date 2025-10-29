@@ -58,7 +58,10 @@ test.describe(`Confirm that Admin enrollments functions correctly and as expecte
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+=======
         await learnerHome.selectCollaborationHub();
+>>>>>>> origin/master
         await managerHome.enterSearchCourse(createdCode);
         await managerHome.clickGuideTeamIcon(courseName);
         await enrollHome.selectEnroll();
@@ -78,8 +81,12 @@ test.describe(`Confirm that Admin enrollments functions correctly and as expecte
         await learnerHome.learnerLogin("TEAMUSER1", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
+<<<<<<< HEAD
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
        // await catalog.verifyEnrolledCourseByCODE(createdCode);
                await catalog.clickCourseInMyLearning(courseName);
+>>>>>>> origin/master
         // await catalog.clickLaunchButton();
         // await catalog.saveLearningStatus();
         // await catalog.clickMyLearning();

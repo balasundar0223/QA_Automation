@@ -108,6 +108,10 @@ test(`Verify to enrolled program in Learner side`, async ({ learnerHome, dashboa
     await dashboard.clickLearningPath_And_Certification();
     await dashboard.clickCertificationLink();
     await dashboard.searchCertification(createdCode);
+<<<<<<< HEAD
+    await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
   //  await catalog.verifyEnrolledCourseByCODE(createdCode);
+>>>>>>> origin/master
 
 })

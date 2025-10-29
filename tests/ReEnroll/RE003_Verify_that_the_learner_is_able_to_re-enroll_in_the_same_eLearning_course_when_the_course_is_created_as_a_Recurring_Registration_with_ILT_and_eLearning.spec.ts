@@ -5,7 +5,10 @@ import { credentials } from "../../constants/credentialData";
 
 
 const courseName = FakerData.getCourseName();
+<<<<<<< HEAD
+=======
 const instanceName= FakerData.getCourseName();
+>>>>>>> origin/master
 const elCourseName = FakerData.getCourseName() + "E-learning";
 const sessionName = FakerData.getSession();
 const description = FakerData.getDescription();
@@ -47,7 +50,11 @@ test.describe(`TC103 Verify future Class recurring Registration`, async () => {
         await editCourse.clickClose();
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
+<<<<<<< HEAD
+        // await createCourse.verifySuccessMessage();   by bala 
+=======
         // await createCourse.verifySuccessMessage();
+>>>>>>> origin/master
         // await createCourse.clickEditCourseTabs();
         addInstancepost = await createCourse.visiblityOfaddInstance()
         expect(addInstancepost).not.toBe(addInstancepre)
@@ -58,7 +65,10 @@ test.describe(`TC103 Verify future Class recurring Registration`, async () => {
             await createCourse.clickCreateInstance();
         }
         await addinstance("Classroom");
+<<<<<<< HEAD
+=======
          await createCourse.enter("course-title", instanceName);
+>>>>>>> origin/master
         await createCourse.enterSessionName(sessionName);
         await createCourse.setMaxSeat();
         await createCourse.enterDateValue();
@@ -80,7 +90,11 @@ test.describe(`TC103 Verify future Class recurring Registration`, async () => {
         await createCourse.editcourse();
         await editCourse.clickBusinessRule();
         await editCourse.clickcheckAllowRecReg();
+<<<<<<< HEAD
+        await createCourse.clickUpdate();
+=======
         //await createCourse.clickUpdate();
+>>>>>>> origin/master
     })
 
     test(`Verification from learner site`, async ({ learnerHome, learnerCourse, catalog }) => {
@@ -105,7 +119,10 @@ test.describe(`TC103 Verify future Class recurring Registration`, async () => {
         await learnerCourse.clickReEnroll();
         await catalog.clickSelectcourse(elCourseName);
         await catalog.clickEnroll();
+<<<<<<< HEAD
+=======
         await learnerCourse.reEnrollPopup();
+>>>>>>> origin/master
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
         // await catalog.clickMyLearning();

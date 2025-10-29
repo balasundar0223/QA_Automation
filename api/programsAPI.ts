@@ -45,6 +45,13 @@ export async function attachCoursestotp(crs_code:any,prgm_code:any,authorization
 
 
 export async function updateProgramEnrollment(code: any, userName: string, authorization: any) {
+<<<<<<< HEAD
+    let response = await postRequest(updateEnrollmentForProgram(code, userName, "completed"), endPointURL, authorization);
+    console.log(response.data);
+    await assertStatus(response.status, 200);
+    await assertResponse(response.data.status, "success");
+}
+=======
     const response = await postRequest(updateEnrollmentForProgram(code, userName, "completed"), endPointURL, authorization);
     console.log(response.data);
 
@@ -55,6 +62,7 @@ export async function updateProgramEnrollment(code: any, userName: string, autho
     await assertResponse(actualStatus, "success");
 }
 
+>>>>>>> origin/master
 export async function enrollCourseForProgram(code: any,courseCode:string, userName: string, authorization: any) {
     let response = await postRequest(createCourseEnrollmentForProgram(code, courseCode,userName), endPointURL, authorization);
     console.log(response.data);

@@ -60,7 +60,10 @@ test.describe(`Verify able to recommend the TPcourses to users`, async () => {
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
           await createCourse.typeDescription(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
@@ -73,7 +76,11 @@ test.describe(`Verify able to recommend the TPcourses to users`, async () => {
             { type: `Test Description`, description: `Ensure that the manager can successfully recommend a tp to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+    //    await learnerHome.selectCollaborationHub();
+=======
        await learnerHome.selectCollaborationHub();
+>>>>>>> origin/master
     //    await createCourse.clickCatalog();
         await learnerHome.clickCatalog();
         await managerHome.enterSearchCourse(title);

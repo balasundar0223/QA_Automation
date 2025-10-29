@@ -59,8 +59,13 @@ test.describe(`TC109 One profile`, async () => {
             { type: 'Test Description', description: "Verifying user open One Profile Training Summary" }
         );
 
+<<<<<<< HEAD
+        await learnerHome.basicLogin(username, "Portal");
+        await learnerHome.termsAndConditionScroll();
+=======
         await learnerHome.basicLogin(username, "DefaultPortal");
       //  await learnerHome.termsAndConditionScroll();
+>>>>>>> origin/master
         await profile.clickProfile();
         await profile.oneProfile();
 

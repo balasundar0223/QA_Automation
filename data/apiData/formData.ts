@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+import { FakerData } from "../../utils/fakerUtils";
+=======
 import { FakerData, getCurrentDateFormatted } from "../../utils/fakerUtils";
+>>>>>>> origin/master
 import apiName from "./api_Name.json"
 import { getRandomItemFromFile } from "../../utils/jsonDataHandler";
 import { credentials } from "./apiUtil";
@@ -39,6 +43,8 @@ export let userCreationData = (username: string) => ({
     response_fields: ["result", "UserId"]
 });
 
+<<<<<<< HEAD
+=======
 export let userCreationWithGuidData = (username: string) => ({
     user_id: userId,
     first_name: FakerData.getFirstName(),
@@ -59,6 +65,7 @@ export let updateCustomGuidData = (username: string, createdUserId: string, upda
     response_fields: ["result", "UserId"]
 });
 
+>>>>>>> origin/master
 export const getLearnerUser = (userId?: any) => ({
     user_id: userId,
     api_name: apiName.getUserDetail,
@@ -73,7 +80,11 @@ export const updateUserData = (userName: any) => ({
     last_name: FakerData.getLastName(),
     username: userName,
     email: FakerData.getEmail(),
+<<<<<<< HEAD
+    response_fields: ["result", "UserId"]
+=======
     response_fields: ["result", "user_id"]
+>>>>>>> origin/master
 });
 
 export function generateCode() {
@@ -125,11 +136,19 @@ export const listUser = (userName: string) => ({
     response_fields: ["result", "UserId", "first_name", "last_name", "username", "email", "country", "country_name"]
 })
 
+<<<<<<< HEAD
+export const createOrganizations = (orgName: string) => ({
+
+    user_id: userId,
+    Name: orgName,
+    Code : "ORG" + '_' + generateCode(),
+=======
 export const createOrganizations = (orgName: string,code:string) => ({
 
     user_id: userId,
     Name: orgName,
     Code:code,
+>>>>>>> origin/master
     Description: FakerData.getDescription(),
     Type: organizationType,
     Status: 1,
@@ -411,7 +430,11 @@ export let userUpdationDataWithOptional = (username: string, role?: "manager" | 
 export const createCourseEnrollmentForProgram = (code: any, courseCode: string, enrollUser: string) => ({
     user_id: userId,
     Program_code: code,
+<<<<<<< HEAD
+    course_code: courseCode,
+=======
     instance_code: courseCode,
+>>>>>>> origin/master
     username: enrollUser,
     api_name: apiName.createCourseEnrollmentForProgram,
     response_fields: ["result"]
@@ -436,10 +459,16 @@ export const createEnrollmentForProgram = (code: any, enrollUser: string) => ({
 })
 export const updateEnrollmentForProgram = (code: any, enrollUser: string, statusValue: "cancel" | "completed") => ({
     user_id: userId,
+<<<<<<< HEAD
+    Program_code: code,
+    username: enrollUser,
+    status: statusValue,
+=======
     program_code: code,
     username: enrollUser,
     status: statusValue,
     completion_date:getCurrentDateFormatted(),
+>>>>>>> origin/master
     api_name: apiName.updateProgramEnrollment,
     response_fields: ["result"]
 })
@@ -449,7 +478,11 @@ export const updateOrganizations = (org_Code: string,description:string) => ({
     user_id: userId,
     Code: org_Code,
     Description:description,
+<<<<<<< HEAD
+    api_name: apiName.editOrganizations,
+=======
     api_name: apiName.updateOrganizations,
+>>>>>>> origin/master
     response_fields: ["result"]
 })
 
@@ -499,7 +532,11 @@ if (pcategory) {
     name: name,
     description: description,
     parent_code: pcategory,
+<<<<<<< HEAD
+    api_name: apiName.editCategory,
+=======
     api_name: apiName.updateCategory,
+>>>>>>> origin/master
     response_fields: ["result"]
     };
 } else {
@@ -508,7 +545,11 @@ if (pcategory) {
         code: code,
         name: name,
         description: description,
+<<<<<<< HEAD
+        api_name: apiName.editCategory,
+=======
         api_name: apiName.updateCategory,
+>>>>>>> origin/master
         response_fields: ["result"]
     };
 }
@@ -575,6 +616,8 @@ export let addUsersInAdminGroup =(uname:any,admingrpcode:any,action:"add"|"remov
    action:action,
    api_name: apiName.manageUserInAdminGroup,
    response_fields: ["result"]
+<<<<<<< HEAD
+=======
 })
 
 export let addOrganizationInAdminGroup =(orgCode:any,admingrpcode:any,action:"add"|"remove") => ({
@@ -584,4 +627,5 @@ export let addOrganizationInAdminGroup =(orgCode:any,admingrpcode:any,action:"ad
    action:action,
    api_name: apiName.manageOrganizationInAdminGroup,
    response_fields: ["result"]
+>>>>>>> origin/master
 })

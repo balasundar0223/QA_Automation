@@ -55,7 +55,11 @@ test.describe(`Verify_that_when_the_business_rule_is_unchecked_a_completed_cours
         await catalog.clickEnroll();
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
+<<<<<<< HEAD
+        //await learnerCourse.clickReEnroll();
+=======
         await learnerCourse.clickReEnroll();
+>>>>>>> origin/master
         await learnerCourse.verifyRequestClass();
 
     })

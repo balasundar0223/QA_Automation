@@ -42,8 +42,12 @@ test.describe(`Verify that course should be created as multiple instance when IL
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+=======
                 await createCourse.typeDescription(description);
      //   await createCourse.clickCatalog();
+>>>>>>> origin/master
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();
         await createCourse.clickEditCourseTabs();

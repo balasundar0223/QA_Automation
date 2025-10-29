@@ -58,8 +58,12 @@ export class LearnerHomePage extends LearnerLogin {
         userEmail:'//div[text()="Email :"]/following-sibling::div[1]',
         userphone:'//div[text()="Phone :"]/following-sibling::div[1]',
 
+<<<<<<< HEAD
+        organizationInProfile:(orgname:string)=>`//h4[text()='${orgname} ']`
+=======
 
         instrctor: `//a/span[text()='Instructor']`,
+>>>>>>> origin/master
 
     };
 
@@ -238,7 +242,10 @@ export class LearnerHomePage extends LearnerLogin {
         await this.spinnerDisappear();
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
     async clickApprove(courseName: string) {
         //  await this.spinnerDisappear();
         await this.wait("mediumWait")
@@ -396,12 +403,20 @@ public async clickmyprofile()
     await this.wait("mediumWait");
  }
 
+<<<<<<< HEAD
+async verifyMappedOrganization(orgname:string,expectedOrgname:string){
+    await this.verification(this.selectors.organizationInProfile(orgname),expectedOrgname);
+}
+
+
+=======
  async selectInstructor() {
         await this.click(this.selectors.adminmenuIcon, "Admin Menu", "Icon")
         await this.validateElementVisibility(this.selectors.instrctor, "Instructor")
         await this.click(this.selectors.instrctor, "Instructor", "Option");
         await this.spinnerDisappear();
     }
+>>>>>>> origin/master
 
 
 

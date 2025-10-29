@@ -3,13 +3,20 @@ import { credentials } from "../../../constants/credentialData";
 import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from '../../../utils/fakerUtils';
 import { credentialConstants } from "../../../constants/credentialConstants";
+<<<<<<< HEAD
+=======
 import { allurePlaywrightLegacyApi } from "allure-playwright/dist/types/legacy";
+>>>>>>> origin/master
 
 const sessionName = FakerData.getSession();
 const courseName = ("ILT" + " " + FakerData.getCourseName());
 const description = FakerData.getDescription();
 let createdCode: any
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 test.describe(`Verify that without Max Seat Override functionality is working as expected for the ILT course`, async () => {
     test.describe.configure({ mode: "serial" });
     test(`Verifying that without Max Seat Override functionality is working as expected for the ILT course`, async ({ siteAdmin,adminHome,learnerHome}) => {
@@ -73,6 +80,19 @@ test.describe(`Verify that without Max Seat Override functionality is working as
                 await adminHome.clickEnroll();
                 await enrollHome.selectBycourse(courseName)
                 await enrollHome.clickSelectedLearner();
+<<<<<<< HEAD
+                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifyMaxSeatPopup()
+                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifytoastMessage()
+                await enrollHome.clickEnrollButton()
+                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifyMaxSeatPopup()
+=======
               //  await enrollHome.clickSelectedLearner();
                        await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
                        await enrollHome.clickEnrollBtn(); 
@@ -87,6 +107,7 @@ test.describe(`Verify that without Max Seat Override functionality is working as
                        await enrollHome.clickEnrollBtn();
                // await enrollHome.verifyMaxSeatPopup()
               await enrollHome.verifytoastMessage();
+>>>>>>> origin/master
     })
 
 

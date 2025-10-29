@@ -48,7 +48,11 @@ test.describe('Testing UserCEUAPI Functionality', () => {
     
         });
 
+<<<<<<< HEAD
+        test.skip(`Verify Updated Location`, async ({ adminHome, location }) => {
+=======
         test(`Verify Updated Location`, async ({ adminHome, location }) => {
+>>>>>>> origin/master
             test.info().annotations.push(
                 { type: `Author`, description: `Tamilvanan` },
                 { type: `TestCase`, description: `Verify Updated Location` },

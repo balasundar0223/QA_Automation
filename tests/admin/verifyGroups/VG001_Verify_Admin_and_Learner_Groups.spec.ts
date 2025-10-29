@@ -68,7 +68,11 @@ test(`Creating user with seperate Admin and Learner groups`, async ({ adminHome,
         await createUser.enter("user-mobile", FakerData.getMobileNumber());
         // await createUser.clickRolesButton("Manager")
         await createUser.clickSave();
+<<<<<<< HEAD
+        await createUser.clickProceed("Proceed");
+=======
        // await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
         await createUser.verifyUserCreationSuccessMessage();
         await contentHome.gotoListing();
     }
@@ -191,7 +195,10 @@ test(`Creating course and Verifying created groups`, async ({ adminHome, bannerH
 
     // await adminHome.singleUserLogin(courseAdmin);
     await learnerHome.basicLogin(courseAdmin, "portal1");
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
     // await learnerHome.selectAdmin();
 
     //creating content
@@ -294,7 +301,10 @@ test(`Creating Certification and Verifying created groups`, async ({ adminHome, 
     const title = FakerData.getCourseName();
 
     await learnerHome.basicLogin(courseAdmin, "portal1");
+<<<<<<< HEAD
+=======
     
+>>>>>>> origin/master
     await adminHome.menuButton();
     await adminHome.clickLearningMenu();
     await adminHome.clickCertification();

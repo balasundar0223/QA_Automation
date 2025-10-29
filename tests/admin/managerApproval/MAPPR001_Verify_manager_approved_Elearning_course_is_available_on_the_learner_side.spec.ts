@@ -37,7 +37,11 @@ test.describe(`Verify manager approved Elearning course is available on the lear
         await createCourse.verifySuccessMessage();
         await createCourse.clickEditCourseTabs();
         await editCourse.clickManagerApproval();
+<<<<<<< HEAD
+        await editCourse.verifyInheritanceMessage();
+=======
         // await editCourse.verifyInheritanceMessage();
+>>>>>>> origin/master
         await editCourse.verifyapprovaluserType("Internal Users")
         await editCourse.verifyinternalManager("Direct Manager")
         await editCourse.verifyapprovaluserType("External Users")
@@ -53,7 +57,11 @@ test.describe(`Verify manager approved Elearning course is available on the lear
             { type: `TestCase`, description: `Ensure that a learner is able to register for a course that requires manager approval` },
             { type: `Test Description`, description: `Ensure that a learner is able to register for a course that requires manager approval` }
         );
+<<<<<<< HEAD
+        await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
+=======
         await learnerHome.learnerLogin("TEAMUSER1", "DefaultPortal");
+>>>>>>> origin/master
         await learnerHome.clickCatalog();
         await catalog.mostRecent();
         await catalog.searchCatalog(courseName);
@@ -99,7 +107,11 @@ test.describe(`Verify manager approved Elearning course is available on the lear
             { type: `TestCase`, description: `Verify manager approved Elearning course is available on the learner side` },
             { type: `Test Description`, description: `Verify manager approved Elearning course is available on the learner side` }
         );
+<<<<<<< HEAD
+        await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
+=======
         await learnerHome.learnerLogin("TEAMUSER1", "DefaultPortal");
+>>>>>>> origin/master
         await learnerHome.clickMyLearning();
         await catalog.searchMyLearning(courseName);
         await catalog.verifyCompletedCourse(courseName);

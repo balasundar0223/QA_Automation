@@ -1,5 +1,9 @@
 import { URLConstants } from "../data/apiData/apiUtil";
+<<<<<<< HEAD
+import { userCreationData, getLearnerUser, updateUserData, listUser, listofUser } from "../data/apiData/formData";
+=======
 import { userCreationData, userCreationWithGuidData, updateCustomGuidData, getLearnerUser, updateUserData, listUser, listofUser } from "../data/apiData/formData";
+>>>>>>> origin/master
 import { postRequest } from "../utils/requestUtils";
 import { assertStatus, assertResponse } from "../utils/verificationUtils";
 import { generateOauthToken } from "./accessToken"
@@ -26,6 +30,8 @@ export async function userCreation(userData: any, authorization: any) {
     }
 }
 
+<<<<<<< HEAD
+=======
 export async function userCreationWithGuid(userData: any, authorization: any) {
     try {
         let response = await postRequest(userData, endPointURL, authorization);
@@ -52,6 +58,7 @@ export async function updateCustomGuid(userData: any, authorization: any) {
     }
 }
 
+>>>>>>> origin/master
 export async function getUserDetail(retrivied_userID: any, authorization: any) {
     let response = await postRequest(getLearnerUser(retrivied_userID), learnerEndPointUrl, authorization);
     await assertStatus(response.status, 200);
@@ -64,7 +71,11 @@ export async function getUserDetail(retrivied_userID: any, authorization: any) {
 export async function updateUser(username: any, authorization: any) {
     let response = await postRequest(updateUserData(username), endPointURL, authorization);
     await assertStatus(response.status, 200);
+<<<<<<< HEAD
+    await assertResponse(response.data.status, "success");
+=======
     //await assertResponse(response.data.result, "success");
+>>>>>>> origin/master
     //await assertResponse(response.data.message, "Request Successful");
     return response.data
 }

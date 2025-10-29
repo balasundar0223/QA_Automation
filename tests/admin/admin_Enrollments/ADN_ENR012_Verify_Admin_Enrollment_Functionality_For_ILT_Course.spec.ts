@@ -10,7 +10,11 @@ const sessionName = FakerData.getSession();
 const elCourseName = ("Elearning" + " " + FakerData.getCourseName());
 const description = FakerData.getDescription();
 let createdCode: any
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 test.describe(`Confirm that Admin enrollments functions correctly and as expected for ILT course`, () => {
     test.describe.configure({ mode: "serial" });
     test(`Creation of ILT Course`, async ({ adminHome, createCourse, editCourse,enrollHome,contentHome }) => {
@@ -75,7 +79,11 @@ test.describe(`Confirm that Admin enrollments functions correctly and as expecte
         await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
+<<<<<<< HEAD
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
        // await catalog.verifyEnrolledCourseByCODE(createdCode);
                await catalog.clickCourseInMyLearning(courseName);
+>>>>>>> origin/master
     })
 })

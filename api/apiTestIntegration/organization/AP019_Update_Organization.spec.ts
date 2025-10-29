@@ -29,8 +29,12 @@ test.describe(`Update organizations through API`, async () => {
         await organization.organizationMenu()
         await organization.createOrganization();
         await organization.enterName(OrgName);
+<<<<<<< HEAD
+        await organization.typeDropdown();
+=======
         await organization.selectOrgType("Internal");
 
+>>>>>>> origin/master
         await organization.typeDescription();
         await organization.clickSave();
         await CompletionCertification.clickProceed();

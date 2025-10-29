@@ -15,7 +15,11 @@ test(`Ensure_that_users_are_retrieved_accurately_based_on_the_applied_filter ${v
         { type: `Test Description`, description: `Ensure_that_users_are_retrieved_accurately_based_on_the_applied_filter` }
     );
     await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+  //  await learnerHome.selectCollaborationHub();
+=======
    await learnerHome.selectCollaborationHub();
+>>>>>>> origin/master
     await managerHome.clickFilter(value.reportee);
     await managerHome.verifyReportee(value.user,value.reportee) 
     })

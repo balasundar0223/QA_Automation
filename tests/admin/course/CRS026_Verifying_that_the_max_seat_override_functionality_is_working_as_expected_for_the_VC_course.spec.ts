@@ -5,7 +5,11 @@ import { FakerData } from '../../../utils/fakerUtils';
 import { credentialConstants } from "../../../constants/credentialConstants";
 
 const courseName = ("VC" + " " + FakerData.getCourseName());
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 test.describe(`Verify that the Max Seat Override functionality is working as expected for the VC course`, async () => {
     test.describe.configure({ mode: "serial" });
     test(`Verifying that the Max Seat Override functionality is working as expected for the VC course`, async ({ siteAdmin,adminHome,learnerHome}) => {
@@ -67,6 +71,12 @@ test.describe(`Verify that the Max Seat Override functionality is working as exp
         await adminHome.clickEnroll();
         await enrollHome.selectBycourse(courseName)
         await enrollHome.clickSelectedLearner();
+<<<<<<< HEAD
+                await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+                await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
+                await enrollHome.clickEnrollBtn();
+                await enrollHome.verifyMaxSeatOverRidePopup();
+=======
                        await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
                        await enrollHome.clickEnrollBtn(); 
                        await enrollHome.clickGotoHome()
@@ -79,6 +89,7 @@ test.describe(`Verify that the Max Seat Override functionality is working as exp
                        await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
                        await enrollHome.clickEnrollBtn();
                // await enrollHome.verifyMaxSeatOverRidePopup();
+>>>>>>> origin/master
                 await enrollHome.verifytoastMessage()
     })
 

@@ -18,9 +18,12 @@ interface Data {
   teamUser1?:string;
   teamUser2?:string;
   commerceLearner?: string;
+<<<<<<< HEAD
+=======
   portal1User?: string;
   portal2User?: string;
   managerInstructorUser?: string;
+>>>>>>> origin/master
  
 
 }

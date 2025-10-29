@@ -1,12 +1,19 @@
 import { credentialConstants } from "../../../constants/credentialConstants";
+<<<<<<< HEAD
+=======
 import { credentials } from "../../../constants/credentialData";
+>>>>>>> origin/master
 import { test } from "../../../customFixtures/expertusFixture";
 import { FakerData } from "../../../utils/fakerUtils";
 
 const courseName = FakerData.getCourseName();
 const sessionName = FakerData.getSession();
 const description = FakerData.getDescription();
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME;
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 const price = FakerData.getPrice();
 
 //test.describe(`TC122_Verify_certification_priced_flow`, async () => {

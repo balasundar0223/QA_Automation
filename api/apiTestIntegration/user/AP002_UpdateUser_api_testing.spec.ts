@@ -30,7 +30,11 @@ test.describe(`AP002_UpdateUser_api_testing`, async () => {
     });
 
     test('Update the  User ', async () => {
+<<<<<<< HEAD
+        let updatedUser = await updateUser(userName, { Authorization: access_token });
+=======
         let updatedUser = await updateUser(createUserName, { Authorization: access_token });
+>>>>>>> origin/master
         console.log(updatedUser);
 
     });

@@ -1,7 +1,10 @@
 {
     "createUser": "userCreation",
+<<<<<<< HEAD
+=======
     "userCreationWithGuid": "userCreationWithGuid",
     "updateCustomGuid": "updateCustomGuid",
+>>>>>>> origin/master
     "updateUser": "updateUser",
     "getUserDetail":"getUserDetails",
     "createCEUType":"createCEUType",
@@ -25,7 +28,11 @@
     "listInstanceFromCourse":"listInstanceFromCourse",
     "attachCourses":"attachCourses",
     "updateProgramEnrollment":"updateProgramEnrollment",
+<<<<<<< HEAD
+    "editOrganizations":"editOrganizations",
+=======
     "updateOrganizations":"updateOrganizations",
+>>>>>>> origin/master
     "createCourseEnrollmentForProgram":"createCourseEnrollmentForProgram",
     "createAdminGroup":"createAdminGroup",
     "updateAdminGroup":"updateAdminGroup",
@@ -34,6 +41,10 @@
     "ListTags":"ListTags",
     "listCategory":"listCategory",
     "createCategory":"createCategory",
+<<<<<<< HEAD
+    "editCategory":"editCategory"
+=======
     "updateCategory":"updateCategory"
+>>>>>>> origin/master
 
 }

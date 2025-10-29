@@ -32,10 +32,13 @@ emailUsed:string="";
        // saveBtn: `//button[text()='save' or text()='SAVE']`,
         //addressKey:(data: string)=>`//label[text()='${data}']//following-sibling::input`,
 
+<<<<<<< HEAD
+=======
         //For merge user
         mergeUserToggle: `(//*[@class="col Merge users"]/div/label/i)[1]`,
         okButton: `//button[text()='OK']`,
 
+>>>>>>> origin/master
         //Password Policy:-
         passwordPolicyEditIcon: `//span[text()='Password Policy']/following::i[1]`,
         maxWrongAttempts: `//input[@id='max_wrong_attempts']`,
@@ -54,7 +57,19 @@ emailUsed:string="";
         contactSupport:`//span[text()='Contact Support']`,
         mailId:`//textarea[@id='specific_mail']`,
 
+<<<<<<< HEAD
+          disabledAddressInheritance:`//span[text()='Address Inheritance And Emergency Contact']/preceding-sibling::i[@class='fa-duotone fa-toggle-off icon_26_1']`,
+        enabledAddressInheritance:`//span[text()='Address Inheritance And Emergency Contact']/preceding-sibling::i[@class='fa-duotone fa-toggle-on icon_26_1']`,
+
+        checkInheritAddress:`(//span[text()='Inherit Address']/preceding-sibling::i)[2]`,
+        checkEmergencyContact:`(//span[text()='Emergency Contact']/preceding-sibling::i)[2]`,
+
+        SAVE:`//button[text()='OK']`,
+
+        clickEditAddressInheritance:`//i[@data-bs-target='#AddressInheritanceAndEmergencyContact-content']`,
+=======
         adminConfigLink:`//a[text()='Admin Configuration']`,
+>>>>>>> origin/master
 
 
         
@@ -131,6 +146,8 @@ emailUsed:string="";
         }
     }
 
+<<<<<<< HEAD
+=======
     //For Merge User Enable
     async mergeUserVerification() {
         await this.wait("mediumWait")
@@ -146,10 +163,15 @@ emailUsed:string="";
         }
     }
 
+>>>>>>> origin/master
 
   //Max Seat Override
     async clickBusinessRulesEditIcon() {
         await this.wait("mediumWait")
+<<<<<<< HEAD
+        await this.validateElementVisibility(this.selectors.businessRulesEditIcon, "Business Rules Edit")
+        await this.click(this.selectors.businessRulesEditIcon, "Business Rules Edit", "Button")
+=======
     try {
         await this.validateElementVisibility(this.selectors.businessRulesEditIcon, "Business Rules Edit", { timeout: 5000 });
         await this.click(this.selectors.businessRulesEditIcon, "Business Rules Edit", "Button");
@@ -160,6 +182,7 @@ emailUsed:string="";
        }
       // await this.validateElementVisibility(this.selectors.businessRulesEditIcon, "Business Rules Edit");
             
+>>>>>>> origin/master
     }
     async maxSeatOverRideInBusinessRules(data?: string) {
         await this.wait("mediumWait");
@@ -229,7 +252,34 @@ emailUsed:string="";
             await this.click(this.selectors.save,"save","button")
         }
     }
+<<<<<<< HEAD
+    public async enableAddressInheritance(){
+             const button = this.page.locator(this.selectors.disabledAddressInheritance)
+        const isToggleEnabled=await button.isChecked();
+
+        if(!isToggleEnabled){
+            await this.wait("minWait");
+            await this.click(this.selectors.disabledAddressInheritance,"enable","toggle");
+             await this.click(this.selectors.SAVE,"save","button");
+            await this.click(this.selectors.clickEditAddressInheritance,"edit","button");
+            await this.click(this.selectors.checkInheritAddress,"check","checkbox");
+            await this.click(this.selectors.checkEmergencyContact,"check","checkbox");
+            await this.click(this.selectors.save,"save","button");
+            await this.wait("minWait");
+
+            await this.page.reload();
+        }
+    else{
+        console.log("Address Inheritance is already enabled");
+        
+    }}
+
+        
+ 
+}
+=======
  
 }
 
 
+>>>>>>> origin/master

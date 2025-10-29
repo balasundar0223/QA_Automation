@@ -52,11 +52,18 @@ test.describe(`TC053 Verify that course should be created as multiple instance w
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
         await createCourse.typeDescription(description);
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
         // await createCourse.verifySuccessMessage();
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         await createCourse.addInstances();
 
         async function addinstance(deliveryType: string) {

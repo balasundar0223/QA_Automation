@@ -1,5 +1,8 @@
 import { credentialConstants } from "../../../constants/credentialConstants";
+<<<<<<< HEAD
+=======
 import { credentials } from "../../../constants/credentialData";
+>>>>>>> origin/master
 import { test } from "../../../customFixtures/expertusFixture";
 import { readDataFromCSV } from "../../../utils/csvUtil";
 import { FakerData } from "../../../utils/fakerUtils";
@@ -8,7 +11,11 @@ import { updateFieldsInJSON } from "../../../utils/jsonDataHandler";
 const courseName = FakerData.getCourseName();
 const sessionName = FakerData.getSession();
 const description = FakerData.getDescription();
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME;
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 const price = FakerData.getPrice();
 const commerceLearner: any = FakerData.getUserId()
 
@@ -60,7 +67,11 @@ test(`Elearning Course and User Creation`, async ({ createCourse, adminHome, cre
         await createUser.enter("email", FakerData.getEmail());
         await createUser.enter("user-phone", FakerData.getMobileNumber());
         await createUser.clickSave();
+<<<<<<< HEAD
+        await createUser.clickProceed("Proceed");
+=======
         //await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
         await createUser.verifyUserCreationSuccessMessage();
     }
 
@@ -74,8 +85,13 @@ test(`Verify_that_the_learner_is_able_to_cancel_the_eLearning_course_purchased_u
         { type: `Test Description`, description: `Verify_that_the_learner_is_able_to_cancel_the_eLearning_course_purchased_using_a_credit_card.spec.ts` }
 
     );
+<<<<<<< HEAD
+    await learnerHome.basicLogin(commerceLearner, "portal1");
+    await learnerHome.termsAndConditionScroll();
+=======
     await learnerHome.basicLogin(commerceLearner, "default");
    // await learnerHome.termsAndConditionScroll();
+>>>>>>> origin/master
     await learnerHome.clickCatalog();
     await catalog.mostRecent();
     await catalog.searchCatalog(courseName);

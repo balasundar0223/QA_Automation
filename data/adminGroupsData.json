@@ -1,4 +1,21 @@
 {
+<<<<<<< HEAD
+  "managerName": "Tommie.Koelpin67@hotmail.com",
+  "adminName": "Jane Smith",
+  "learnerAdmin": "Marilyne64@gmail.com",
+  "courseAdmin": "Daisha.Reynolds@yahoo.com",
+  "customAdmin": "Amina8@yahoo.com",
+  "peopleAdmin": "Rosemary72@gmail.com",
+  "commerceAdmin": "Elyssa_Lang37@hotmail.com",
+  "enrollAdmin": "Lavada.Kuhic@yahoo.com",
+  "internalUser": "Genoveva.Conn@hotmail.com",
+  "externalUser": "Jean91@yahoo.com",
+  "teamUser1": "Rickey.Farrell92@yahoo.com",
+  "teamUser2": "Silas23@hotmail.com",
+  "instructorName": "Clair_Trantow@gmail.com",
+  "talentAdmin": "Brisa41@gmail.com",
+  "commonUser": "Robert_Kuhn@hotmail.com"
+=======
   "managerName": "Jeffrey79@yahoo.com",
   "adminName": "admin",
   "learnerAdmin": "Brenna95@hotmail.com",
@@ -32,4 +49,5 @@
   "portal1User": "Austyn50@yahoo.com",
   "portal2User": "Bernard.Nitzsche@yahoo.com",
   "managerInstructorUser": "Javier.Nader1@yahoo.com"
+>>>>>>> origin/master
 }

@@ -36,10 +36,14 @@ test(`Verify that user address validation functionality working as expected for 
         await adminHome.people();
         await adminHome.user();
         await createUser.clickCreateUser();    
+<<<<<<< HEAD
+        await createUser.verifyCreateUserLabel();    
+=======
         await createUser.verifyCreateUserLabel();   
              await createUser.uncheckInheritAddressIfPresent();
             await createUser.uncheckInheritEmergencyContactIfPresent();
             await createUser.uncheckAutoGenerateUsernameIfPresent(); 
+>>>>>>> origin/master
         await createUser.enter("first_name", FakerData.getFirstName());
         await createUser.enter("last_name", FakerData.getLastName());
         await createUser.enter("username", FakerData.getUserId());
@@ -55,7 +59,11 @@ test(`Verify that user address validation functionality working as expected for 
         await createUser.verifyUserAddress();
         await createUser.clickSave();               
     //  await createUser.clickProceed("Proceed");
+<<<<<<< HEAD
+     await createUser.verifyUserCreationSuccessMessage();
+=======
     //  await createUser.verifyUserCreationSuccessMessage();
+>>>>>>> origin/master
     }
     }
 )

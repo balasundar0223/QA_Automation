@@ -33,6 +33,10 @@ test.describe(`Certification_enroll_and_completion_with_single_instance.spec`, a
         await createCourse.clickCatalog();
         await createCourse.clickSave();
         await createCourse.clickProceed();
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/master
         await createCourse.verifySuccessMessage();
 
     })
@@ -66,7 +70,10 @@ test.describe(`Certification_enroll_and_completion_with_single_instance.spec`, a
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
                     await learningPath.description(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

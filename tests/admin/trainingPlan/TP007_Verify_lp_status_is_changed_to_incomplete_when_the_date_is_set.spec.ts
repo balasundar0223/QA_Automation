@@ -80,7 +80,10 @@ test.describe(`Verify_lp_status_is_changed_to_incomplete_when_the_date_is_set.sp
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+=======
            await learningPath.description(description);
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickUpdate();
         await createCourse.verifySuccessMessage();

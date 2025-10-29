@@ -8,6 +8,29 @@ let endPointURL = URLConstants.adminEndPointUrl
 let description= FakerData.getDescription();
 
 
+<<<<<<< HEAD
+export async function createOrganization(orgName: string, authorization: any) {
+    let response = await postRequest(createOrganizations(orgName), endPointURL, authorization);
+    console.log(response.data);
+  //   await assertStatus(response.status, 200);
+  //   await assertResponse(response.data.status, "success");
+  //  /*  await assertResponse(response.data.message, "Request Successful");
+  //   await assertResponse(response.data.data.result, "success"); */
+  //   return response.data.data.org_id
+
+}
+
+export async function listOrganization(orgName: string, authorization: any) {
+    let response = await postRequest(listofOrganization(orgName), endPointURL, authorization);
+    console.log(response.data.data);
+    await assertStatus(response.status, 200);
+  /*   await assertResponse(response.data.status, "success");
+    await assertResponse(response.data.message, "Request Successful"); */
+    const orgNames = response.data.data.results.map(org => org.name);
+    return orgNames;
+}
+
+=======
 export async function createOrganization(orgName: string, code: string, authorization: any) {
     const response = await postRequest(createOrganizations(orgName, code), endPointURL, authorization);
 
@@ -40,6 +63,7 @@ export async function listOrganization(orgName: string, authorization: any) {
 }
 
 
+>>>>>>> origin/master
 export async function listOrganizationData(authorization: any) {
   let response = await postRequest(listofOrganizationData, endPointURL, authorization);
   console.log(response.data.data);

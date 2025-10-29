@@ -43,7 +43,11 @@ test.describe(`TC108 Add Profile Image`, async () => {
             await createUser.enter("user-mobile", FakerData.getMobileNumber());
             await createUser.userProfileUpload()
             await createUser.clickSave();
+<<<<<<< HEAD
+            await createUser.clickProceed("Proceed");
+=======
           //  await createUser.clickProceed("Proceed");
+>>>>>>> origin/master
             await createUser.verifyUserCreationSuccessMessage();
 
         }

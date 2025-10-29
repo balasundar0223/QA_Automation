@@ -44,7 +44,11 @@ export class AdminHomePage extends AdminLogin {
         assessmentQuestionLink: `//span[text()='Assessment']//parent::div/following-sibling::ul//a[text()='Questions']`,
         assessmentLink: "//a[text()='Assessment']",
         enrollMenu: `//span[text()='Enrollments']`,
+<<<<<<< HEAD
+        enrollLink: `//a[text()='Enroll']`,
+=======
         enrollLink: `(//a[text()='Enroll'])[1]`,
+>>>>>>> origin/master
         quickAccessIcon: `#dd-icon-wrapper i`,
         quickAccessDD: `button div:text-is('Select Quick Access Buttons To Add Below')`,
         quickAccessValue: `//div[@class='dropdown-menu show'] //a`,
@@ -62,9 +66,24 @@ export class AdminHomePage extends AdminLogin {
 
         //for Direct Content Launch
         directContent:`//a[text()='Direct Content Launch']`,
+<<<<<<< HEAD
+
+        hoverOrgFromQuickAccess:(module:string)=>`//div[text()='${module}']`,
+       
+
+        adminhome:`//span[text()='Admin Home']` ,
+         clickEditOrganization:(createmodule:string)=> `(//div[text()='${createmodule}']/following::div[text()='Edit'])[1]`,
+                clickEditIconOfCreatedOrganization:(orgName:string)=>`(//div[text()='${orgName}']/following::a[@aria-label='Edit'])[1]`,
+
+        clickCreateOrganization:(createmodule:string)=> `(//div[text()='${createmodule}']/following::div[text()='Create'])[1]`,
+
+        
+           };
+=======
            //meta data library option
         metaLibOption:(data:string)=>`//a[text()='${data}']`,
     };
+>>>>>>> origin/master
 
     constructor(page: Page, context: BrowserContext) {
         super(page, context);
@@ -138,7 +157,10 @@ export class AdminHomePage extends AdminLogin {
 
     public async menuButton() {
         await this.wait("minWait");
+<<<<<<< HEAD
+=======
         await this.page.keyboard.press('PageUp');
+>>>>>>> origin/master
         await this.page.waitForLoadState('load');
         await this.spinnerDisappear();
         await this.mouseHover(this.selectors.menu, "Menu");
@@ -278,14 +300,22 @@ export class AdminHomePage extends AdminLogin {
         await this.validateElementVisibility(this.selectors.metaLearningLink, "Learning");
         await this.mouseHover(this.selectors.metaLearningLink, "Learning");
         await this.click(this.selectors.metaLearningLink, "Learning", "Button");
+<<<<<<< HEAD
+        await this.spinnerDisappear();
+=======
         // await this.spinnerDisappear();
+>>>>>>> origin/master
     }
 
     public async metaGeneralLink() {
         await this.validateElementVisibility(this.selectors.metaGeneralLink, "Learning");
         await this.mouseHover(this.selectors.metaGeneralLink, "Learning");
         await this.click(this.selectors.metaGeneralLink, "Learning", "Button");
+<<<<<<< HEAD
+        await this.spinnerDisappear();
+=======
         // await this.spinnerDisappear();
+>>>>>>> origin/master
     }
     async enter(name: string, data: string) {
         await this.wait("mediumWait")
@@ -358,9 +388,14 @@ export class AdminHomePage extends AdminLogin {
     }
 
     public async clickEnroll() {
+<<<<<<< HEAD
+        await this.wait("minWait");
+        await this.click(this.selectors.enrollLink, "Enrollment", "Link")
+=======
     await this.wait("minWait");
         await this.click(this.selectors.enrollLink, "Enrollment", "Link")
                 await this.wait("minWait");
+>>>>>>> origin/master
     }
 
     public async clickAdminRole() {
@@ -407,6 +442,29 @@ export class AdminHomePage extends AdminLogin {
             await this.click(this.selectors.directContent, "DirectContentLaunch", "Button");
             await this.page.waitForLoadState('load');
         }
+<<<<<<< HEAD
+public async createModuleFromQuickAccess(module:string,createmodule:string) {
+            await this.mouseHover(this.selectors.hoverOrgFromQuickAccess(module), "module");
+            await this.wait("minWait");
+            await this.click(this.selectors.clickCreateOrganization(createmodule), "Create module", "Button");
+
+        }
+
+
+    async editModuleFromQuickAccess(module:string,createmodule:string){
+              await this.mouseHover(this.selectors.hoverOrgFromQuickAccess(module), "module");
+            await this.wait("minWait");
+            await this.click(this.selectors.clickEditOrganization(createmodule), "Create module", "Button");
+ 
+        }
+     
+        async clickAdminHome(){
+            await this.click(this.selectors.adminhome,"Admin Home","Link");
+        }
+
+    
+    
+=======
 
         //Navigate learner side from admin page
         public async navigateToLearner() {
@@ -423,6 +481,7 @@ export class AdminHomePage extends AdminLogin {
         await this.click(this.selectors.metaLibOption(data), "meta data library", "Button");
         await this.spinnerDisappear();
     }
+>>>>>>> origin/master
 
 }
 

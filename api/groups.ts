@@ -32,6 +32,8 @@ export async function addUsersInAdminGroup_fn(grpData1:any,authorization: any){
         await assertStatus(response.status, 200);
         await assertResponse(response.data.status, "success");
         await assertResponse(response.data.message, "user has been updated successfully");
+<<<<<<< HEAD
+=======
 }
 
 export async function addOrganizationInAdminGroup_fn(grpData1:any,authorization: any){
@@ -40,4 +42,5 @@ export async function addOrganizationInAdminGroup_fn(grpData1:any,authorization:
         await assertStatus(response.status, 200);
         await assertResponse(response.data.status, "success");
         await assertResponse(response.data.message, "organization has been updated successfully");
+>>>>>>> origin/master
 }

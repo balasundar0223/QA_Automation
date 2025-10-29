@@ -38,13 +38,21 @@ export class UniversalSearchPage extends LearnerHomePage {
         //  await this.wait("mediumWait")
         await this.click(this.selectors.univ_SearchbyDropdownClick, "Universal Search By", "Dropdown")
         await this.click(this.selectors.univ_Searchby(value), "Universal Search By", "Dropdown")
+<<<<<<< HEAD
+        await this.wait("mediumWait")
+=======
         await this.wait("maxWait")
+>>>>>>> origin/master
     }
 
     async univSearchClear() {
         await this.wait("minWait")
         await this.click(this.selectors.univ_SearchClear, "Universal Search By", "Dropdown")
+<<<<<<< HEAD
+        await this.wait("mediumWait")
+=======
       await this.wait("maxWait")
+>>>>>>> origin/master
 
     }
 

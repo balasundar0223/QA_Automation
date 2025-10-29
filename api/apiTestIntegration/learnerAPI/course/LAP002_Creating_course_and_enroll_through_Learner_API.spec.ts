@@ -53,7 +53,11 @@ test.describe(`Creating a course and enroll through the Learner API`, async () =
         await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(createdCode);
+<<<<<<< HEAD
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
       //  await catalog.verifyEnrolledCourseByCODE(createdCode);
+>>>>>>> origin/master
     })
     
 })

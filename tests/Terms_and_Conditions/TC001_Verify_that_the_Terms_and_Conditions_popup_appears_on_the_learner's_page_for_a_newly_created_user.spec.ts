@@ -46,6 +46,10 @@ test(`Creating a new user from admin side`, async ({ adminHome, editCourse, crea
         await createUser.enter("user-zipcode", zipcode);
         await createUser.enter("user-mobile", FakerData.getMobileNumber());
         await createUser.clickSave();
+<<<<<<< HEAD
+        // await createUser.clickProceed("Proceed");
+=======
+>>>>>>> origin/master
         await createUser.verifyUserCreationSuccessMessage();
         await contentHome.gotoListing();
     }
@@ -59,7 +63,11 @@ test(`Verifying Terms and Conditions popup present on the learner page`, async (
 
     );
 
+<<<<<<< HEAD
+    await learnerHome.basicLogin(courseAdmin, "portal1");
+=======
     await learnerHome.basicLogin(courseAdmin, "defaultportal");
+>>>>>>> origin/master
     await learnerHome.termsAndConditionScroll();
    
 });

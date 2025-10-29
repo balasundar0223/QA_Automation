@@ -146,11 +146,18 @@ export class LearningPathPage extends AdminHomePage {
     async clickSave() {
         await this.click(this.selectors.saveBtn, "Save", "Button");
         await this.wait("minWait");
+<<<<<<< HEAD
+    }
+
+    async clickProceedBtn() {
+        await this.wait("mediumWait");  //Added by arivu for checking purpose
+=======
         await this.spinnerDisappear();
     }
 
     async clickProceedBtn() {
         await this.wait("maxWait");  //Added by arivu for checking purpose
+>>>>>>> origin/master
         await this.validateElementVisibility(this.selectors.proceedBtn, "Proceed Button");
         await this.click(this.selectors.proceedBtn, "Proceed Button", "Button");
         await this.wait("maxWait"); //Added by arivu for checking purpose
@@ -376,5 +383,21 @@ export class LearningPathPage extends AdminHomePage {
             await this.wait("minWait")
         }
 
+<<<<<<< HEAD
+        async BusinessRule(){
+        await this.wait("minWait")
+        await this.click(this.selectors.BusinessRule, "BusinessRule", "Button")
+}
+
+async RecurringRegistration() {
+    await this.wait('mediumWait')
+    await this.validateElementVisibility(this.selectors.RecurringRegistration, "RecurringRegistration")
+    await this.mouseHover(this.selectors.RecurringRegistration, "RecurringRegistration")
+    await this.wait('minWait')
+    await this.click(this.selectors.RecurringRegistration, "RecurringRegistration", "checkbox")
+    await this.click(this.selectors.savebuttonrecurring, "savebuttonrecurring", "Button")
+}
+=======
         
+>>>>>>> origin/master
 }

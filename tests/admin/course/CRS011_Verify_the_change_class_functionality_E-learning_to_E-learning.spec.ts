@@ -41,16 +41,26 @@ test.describe(`Verify_the_change_class_functionality_E-learning_to_E-learning.sp
         await editCourse.clickClose();
         await editCourse.clickTagMenu();
         tag = await editCourse.selectTags();
+<<<<<<< HEAD
+=======
         console.log(tag);
+>>>>>>> origin/master
         await editCourse.clickClose();
         await createCourse.clickCompletionCertificate();
         await createCourse.clickCertificateCheckBox();
         await createCourse.clickAdd();
+<<<<<<< HEAD
+        await createCourse.clickCatalog();
+        await createCourse.clickUpdate();
+        await createCourse.verifySuccessMessage();
+        await createCourse.clickEditCourseTabs();
+=======
         //         await createCourse.typeDescription(description);
         // await createCourse.clickCatalog();
         // await createCourse.clickUpdate();
         // await createCourse.verifySuccessMessage();
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         await createCourse.addInstances();
 
         async function addinstance(deliveryType: string) {
@@ -59,7 +69,11 @@ test.describe(`Verify_the_change_class_functionality_E-learning_to_E-learning.sp
         }
         await addinstance("E-Learning");
         await createCourse.enter("course-title", courseName);
+<<<<<<< HEAD
+        await createCourse.selectLanguage("English");
+=======
        // await createCourse.selectLanguage("English");
+>>>>>>> origin/master
         await createCourse.typeDescription("This is a new course by name :" + description);
         await createCourse.contentLibrary();//Youtube content is attached here
         await createCourse.clickCatalog();

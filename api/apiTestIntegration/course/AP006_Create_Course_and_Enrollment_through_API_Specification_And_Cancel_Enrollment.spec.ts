@@ -33,7 +33,11 @@ test.describe(`Creating a course in the UI, enrolling through the API, and final
         await createCourse.enter("course-title", courseName);
         await createCourse.selectLanguage("English");
         await createCourse.typeDescription("This is a new course by name :" + description);
+<<<<<<< HEAD
+        await createCourse.contentLibrary("samplevideo");
+=======
         await createCourse.contentLibrary();
+>>>>>>> origin/master
         await createCourse.clickCatalog();
         await createCourse.clickSave();
        await createCourse.clickProceed();
@@ -50,10 +54,17 @@ test.describe(`Creating a course in the UI, enrolling through the API, and final
     })
 
     test(`Verify to Complete Course in Learner side`, async ({ learnerHome, catalog }) => {
+<<<<<<< HEAD
+        await learnerHome.learnerLogin("LEARNERUSERNAME", "Portal1");
+        await catalog.clickMyLearning();
+        await catalog.searchMyLearning(createdCode);
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
         await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(createdCode);
       //  await catalog.verifyEnrolledCourseByCODE(createdCode);
+>>>>>>> origin/master
 
     })
 

@@ -15,7 +15,11 @@ const elCourseName2 = ("Elearning" + " " + FakerData.getCourseName());
             { type: `Author`, description: `Tamilvanan` },
             { type: `TestCase`, description: `Verify_that_the_learner_is_able_to_re-enroll_after_completing_Instance_1_of_a_multi-instance_eLearning_course` },
             { type: `Test Description`, description: `Verify_that_the_learner_is_able_to_re-enroll_after_completing_Instance_1_of_a_multi-instance_eLearning_course` }
+<<<<<<< HEAD
+        );
+=======
         );          
+>>>>>>> origin/master
 
         await adminHome.loadAndLogin("CUSTOMERADMIN")
         await adminHome.clickMenu("Course");
@@ -45,8 +49,13 @@ const elCourseName2 = ("Elearning" + " " + FakerData.getCourseName());
         await createCourse.editcourse();
         await editCourse.clickBusinessRule();
         await editCourse.clickcheckAllowRecReg();
+<<<<<<< HEAD
+        await createCourse.clickUpdate();
+        await createCourse.editcourse();
+=======
         // await createCourse.clickUpdate();
         // await createCourse.editcourse();
+>>>>>>> origin/master
         await createCourse.clickinstanceClass();
         await createCourse.addInstances();
         await addinstance("E-Learning");
@@ -84,9 +93,12 @@ const elCourseName2 = ("Elearning" + " " + FakerData.getCourseName());
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
         await learnerCourse.clickReEnroll();
+<<<<<<< HEAD
+=======
         await catalog.clickSelectcourse(elCourseName2);
         await catalog.clickEnroll();
         await learnerCourse.reEnrollPopup();
+>>>>>>> origin/master
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
     })

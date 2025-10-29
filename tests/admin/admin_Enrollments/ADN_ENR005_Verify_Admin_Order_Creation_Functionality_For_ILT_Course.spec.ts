@@ -9,7 +9,11 @@ const courseName = "ILT"+" "+FakerData.getCourseName();
 const instanceName = "ILT"+" "+FakerData.getCourseName();
 const sessionName = FakerData.getSession();
 const description = FakerData.getDescription()
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 const price = FakerData.getPrice();
 test.describe(`Confirm that Admin Order creation functions correctly and as expected for ILT Course`, async () => {
     test.describe.configure({ mode: "serial" });

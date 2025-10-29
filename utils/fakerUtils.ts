@@ -36,7 +36,11 @@ export class FakerData {
     }
 
     static getPinCode() {
+<<<<<<< HEAD
+        return faker.location.zipCode('');
+=======
         return faker.location.zipCode('######');
+>>>>>>> origin/master
     }
 
     static addressName(): string {
@@ -345,6 +349,8 @@ export function  getallRandomInstructor(): DataItem1| any {
         console.error('Error in getRandomDataItem:', error.message);
         return null;
     }
+<<<<<<< HEAD
+=======
 }
 type insData = string;
 export function getRandomIns(): insData | any {
@@ -362,4 +368,5 @@ export function getRandomIns(): insData | any {
         console.error('Error in getRandomINS:', error.message);
         return null;
     }
+>>>>>>> origin/master
 }

@@ -43,9 +43,14 @@ test.describe(`Ensure_that_a_course_enrolled_by_the_manager_is_available_in_the_
             { type: `Test Description`, description: `Ensure that the manager can successfully enrolled a course to a user` }
         );
         await learnerHome.learnerLogin("MANAGERNAME", "DefaultPortal");
+<<<<<<< HEAD
+        await managerHome.enterSearchCourse(createdCode);
+        await managerHome.clickGuideTeamIcon(courseName);
+=======
         await learnerHome.selectCollaborationHub();
         await managerHome.enterSearchCourse(createdCode);
          await managerHome.clickGuideTeamIcon(courseName);
+>>>>>>> origin/master
         await enrollHome.selectEnroll();
         await enrollHome.clickSelectedLearner();
          await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
@@ -63,8 +68,12 @@ test.describe(`Ensure_that_a_course_enrolled_by_the_manager_is_available_in_the_
         await learnerHome.learnerLogin("TEAMUSER1", "DefaultPortal");
         await catalog.clickMyLearning();
         await catalog.searchMyLearning(courseName);
+<<<<<<< HEAD
+        await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
       //  await catalog.verifyEnrolledCourseByCODE(createdCode);
               await catalog.clickCourseInMyLearning(courseName);
+>>>>>>> origin/master
         await catalog.clickLaunchButton();
         await catalog.saveLearningStatus();
         await catalog.clickMyLearning();

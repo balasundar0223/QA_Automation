@@ -2,7 +2,10 @@ import { ca } from "date-fns/locale";
 import { credentials } from "../../../constants/credentialData";
 import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from '../../../utils/fakerUtils';
+<<<<<<< HEAD
+=======
 import { en } from "@faker-js/faker";
+>>>>>>> origin/master
 
 let courseName = FakerData.getCourseName();
 const description = FakerData.getDescription()
@@ -52,6 +55,8 @@ test.describe(`Verify that the Max Seat Override functionality is working as exp
                 await enrollHome.selectBycourse(courseName)
                 await enrollHome.clickSelectedLearner();
                 await enrollHome.enterSearchUser(credentials.TEAMUSER1.username)
+<<<<<<< HEAD
+=======
                 await enrollHome.clickEnrollBtn(); 
                 await enrollHome.clickGotoHome()
 
@@ -60,6 +65,7 @@ test.describe(`Verify that the Max Seat Override functionality is working as exp
                 await adminHome.clickEnroll();
                // await enrollHome.selectBycourse(courseName)
                 //await enrollHome.clickSelectedLearner();
+>>>>>>> origin/master
                 await enrollHome.enterSearchUser(credentials.TEAMUSER2.username)
                 await enrollHome.clickEnrollBtn();
                 await enrollHome.verifyMaxSeatOverRidePopup();

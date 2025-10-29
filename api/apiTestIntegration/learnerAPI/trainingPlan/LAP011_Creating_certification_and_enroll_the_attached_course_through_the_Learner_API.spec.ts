@@ -120,5 +120,9 @@ test(`Verify that enrolled Course present on the My learning To complete section
     await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
     await catalog.clickMyLearning();
     await catalog.searchMyLearning(programCode);
+<<<<<<< HEAD
+    await catalog.verifyEnrolledCourseByCODE(programCode);
+=======
     //await catalog.verifyEnrolledCourseByCODE(programCode);
+>>>>>>> origin/master
 })

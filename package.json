@@ -10,9 +10,15 @@
   "author": "Qeagle",
   "license": "ISC",
   "devDependencies": {
+<<<<<<< HEAD
+    "@playwright/test": "^1.54.1",
+    "@types/jimp": "^0.2.1",
+    "@types/node": "^20.10.6",
+=======
     "@playwright/test": "^1.56.0",
     "@types/jimp": "^0.2.1",
     "@types/node": "^20.19.19",
+>>>>>>> origin/master
     "@types/pg": "^8.11.6",
     "allure-commandline": "^2.32.0"
   },
@@ -25,7 +31,10 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "glob": "^11.0.0",
+<<<<<<< HEAD
+=======
     "i": "^0.3.7",
+>>>>>>> origin/master
     "jimp": "^1.6.0",
     "jira-client": "^8.2.2",
     "jsdom": "^24.1.0",

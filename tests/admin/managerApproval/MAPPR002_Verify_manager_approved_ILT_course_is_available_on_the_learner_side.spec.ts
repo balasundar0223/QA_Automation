@@ -45,9 +45,15 @@ test.describe(`Verify manager approved ILT course is available on the learner si
         await editCourse.clickapprovaluserType("External Users")
         await editCourse.saveApproval()
         await createCourse.typeDescription("  Added Manager Approval")
+<<<<<<< HEAD
+        await createCourse.clickUpdate()
+        await createCourse.verifySuccessMessage()
+        await createCourse.clickEditCourseTabs();
+=======
         // await createCourse.clickUpdate()
         // await createCourse.verifySuccessMessage()
         // await createCourse.clickEditCourseTabs();
+>>>>>>> origin/master
         await createCourse.addInstances();
         async function addinstance(deliveryType: string) {
             await createCourse.selectInstanceDeliveryType(deliveryType);
@@ -78,8 +84,12 @@ test.describe(`Verify manager approved ILT course is available on the learner si
         await catalog.searchCatalog(courseName);
         await catalog.clickMoreonCourse(courseName);
         await catalog.clickSelectcourse(courseName);
+<<<<<<< HEAD
+        await catalog.clickRequestapproval();
+=======
         // await catalog.clickRequestapproval();
         await catalog.clickRequestClass();
+>>>>>>> origin/master
         await catalog.requstcostCenterdetails();
     })
 

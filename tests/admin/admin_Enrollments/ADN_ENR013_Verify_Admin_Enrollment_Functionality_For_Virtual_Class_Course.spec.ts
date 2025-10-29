@@ -6,7 +6,11 @@ import { FakerData } from '../../../utils/fakerUtils.js';
 
 
 const courseName = FakerData.getCourseName();
+<<<<<<< HEAD
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 let createdCode: any
 test.describe(`Confirm that Admin enrollments functions correctly and as expected for Virtual class course`, async () => {
     test.describe.configure({ mode: "serial" });
@@ -73,6 +77,10 @@ test.describe(`Confirm that Admin enrollments functions correctly and as expecte
     await learnerHome.learnerLogin("LEARNERUSERNAME", "DefaultPortal");
     await catalog.clickMyLearning();
     await catalog.searchMyLearning(courseName);
+<<<<<<< HEAD
+    await catalog.verifyEnrolledCourseByCODE(createdCode);
+=======
     //await catalog.verifyEnrolledCourseByCODE(createdCode);
+>>>>>>> origin/master
 })
 })

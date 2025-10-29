@@ -3,7 +3,12 @@ import { credentials } from "../../../constants/credentialData";
 import { test } from "../../../customFixtures/expertusFixture"
 import { FakerData } from '../../../utils/fakerUtils';
 
+<<<<<<< HEAD
+
+const instructorName = credentialConstants.INSTRUCTORNAME
+=======
 const instructorName = credentials.INSTRUCTORNAME.username
+>>>>>>> origin/master
 let createdCode: any
 const courseName = "VC" + " " + FakerData.getCourseName();
 const instanceName = "VC" + " " + FakerData.getCourseName();
@@ -33,7 +38,11 @@ test.describe(`Confirm that Admin Order creation functions correctly and as expe
         await createCourse.typeAdditionalInfo();
         await createCourse.clickCatalog();
         await createCourse.clickSave();
+<<<<<<< HEAD
+        // await createCourse.clickProceed();
+=======
         await createCourse.clickProceed();
+>>>>>>> origin/master
         await createCourse.verifySuccessMessage();
         await createCourse.clickEditCourseTabs();
         await createCourse.addInstances();
